@@ -1,33 +1,59 @@
 "use client";
 import React, { useContext, useState } from "react";
-import Slider from "@mui/material/Slider";
-import { HotelContext } from "@/context/hotelProvider";
+import GoogleMaps from "@/components/GoogleMaps";
+import { IHotel } from "@/types";
+import Slider from "react-slider";
 
 function valuetext(value: number) {
-  return `${value}₮`;
+  return `${value}$`;
 }
 
-const DrawerData = () => {
-  const { setSearchedHotel, searchedHotel } = useContext(HotelContext);
-  const [value, setValue] = useState<number[]>([20, 37]);
-  const [findSearchedHotel, setFindSearchedHotel] = useState();
+const DrawerData = ({
+  searchedHotel,
+  setSearchedHotel,
+  getSearchedHotels,
+  selectedCountry,
+}: any) => {
+  console.log("FFF", searchedHotel);
 
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    setValue(newValue as number[]);
+  const hotelPrice = () => {
+    return searchedHotel.map((hotel: IHotel) => {
+      return hotel?.price;
+    });
   };
+
+  const price = hotelPrice();
+  console.log("price", price);
+
+  const minPrice = Math.min(...price) || 0;
+  const maxPrice = Math.max(...price) || 100;
+  console.log("HotelPriceMin,", minPrice);
+  console.log("HotelPriceMaxx,", maxPrice);
+
+  const [value, setValue] = useState<number[]>([minPrice, maxPrice]);
 
   const handleButtonClick = (rating: number) => {
     console.log("Rating", rating);
-    const filteredHotel = searchedHotel.filter(
-      (hotel) => hotel?.stars === rating
+    console.log("Hotell", searchedHotel);
+    const filteredHotel = searchedHotel?.filter(
+      (hotel: any) => hotel?.stars === rating
     );
     console.log("FilteredHotels", filteredHotel);
-    if (filteredHotel.length > 0) {
+    if (filteredHotel?.length >= 0) {
       setSearchedHotel(filteredHotel);
     } else {
-      setSearchedHotel(searchedHotel);
+      getSearchedHotels(selectedCountry);
+      setSearchedHotel(filteredHotel);
     }
   };
+
+  const handleChange = (newValue: number | number[]) => {
+    setValue(newValue as number[]);
+  };
+
+  const filteredHotelByPrice = searchedHotel.filter(
+    (hotel: any) => hotel?.price >= value[0] && hotel?.price <= value[1]
+  );
 
   return (
     <ul className="menu p-3 w-[340px] 2xl:w-full min-h-full bg-base-200 lg:bg-zinc-100 lg:rounded-xl text-base-content">
@@ -35,17 +61,18 @@ const DrawerData = () => {
         <div>
           <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         </div>
-        <img className="my-2" src="map.jpg" alt="" />
+        <GoogleMaps />
         <div className=" shadow-2xl mt-6 rounded-2xl border border-slate-400 p-3">
           <h1 className="font-bold text-xl my-2 ">Price & Rank</h1>
           <div className="p-3">
             <h1 className="font-bold text-lg">Rank</h1>
             <div className="flex justify-around mt-4">
-              {[1, 2, 3, 4, 5].map((rating) => (
+              {[0 | 1, 2, 3, 4, 5].map((rating) => (
                 <button
                   key={rating}
-                  className={`rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ${searchedHotel?.map(
-                    (hotel) => (hotel.stars === rating ? "bg-yellow-400" : "")
+                  className={`rating rating-sm border border-slate-700 rounded-lg w-12 flex justify-center items-center gap-1 ${searchedHotel?.map(
+                    (hotel: any) =>
+                      hotel.stars === rating ? "bg-yellow-400" : ""
                   )}`}
                   onClick={() => handleButtonClick(rating)}
                 >
@@ -59,23 +86,22 @@ const DrawerData = () => {
               ))}
             </div>
             <div className="border-b border-slate-800 w-full mt-4"></div>
-            <h1 className="font-bold text-lg my-4">Assessment</h1>
+            <h1 className="font-bold text-lg my-4">Price Range</h1>
+            <div className="text-2xl flex justify-between">
+              <h1>${minPrice}</h1>
+              <h1>${maxPrice}</h1>
+            </div>
+
             <Slider
-              getAriaLabel={() => "Temperature range"}
+              className={"slider"}
               value={value}
               onChange={handleChange}
-              valueLabelDisplay="auto"
-              getAriaValueText={valuetext}
+              min={minPrice}
+              max={maxPrice}
             />
           </div>
         </div>
       </div>
-      {/* {hotel && (
-        <div>
-          <h2>Selected Hotel:</h2>
-          <pre>{JSON.stringify(hotel, null, 2)}</pre>
-        </div>
-      )} */}
     </ul>
   );
 };

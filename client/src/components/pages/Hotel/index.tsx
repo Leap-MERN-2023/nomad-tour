@@ -1,12 +1,17 @@
 "use client";
 import React, { useContext, useState } from "react";
 import { HotelContext } from "@/context/hotelProvider";
+import { CountryContext } from "@/context/CountryProvider";
 import HotelCard from "@/components/hotelcard/SerchHotelCard";
 
 import { HotelModal } from "./drawer";
 import DrawerData from "./drawerData";
 
 const Hotel = () => {
+  const { searchedHotel, setSearchedHotel, getSearchedHotels } =
+    useContext(HotelContext);
+  const { selectedCountry } = useContext(CountryContext);
+
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
     setOpenModal(true);
@@ -15,17 +20,27 @@ const Hotel = () => {
     console.log("Closing modal");
     setOpenModal(false);
   };
-  const { hotel, searchedHotel } = useContext(HotelContext);
 
   return (
     <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl 2xl:w-9/12 mb-10">
       <div className=" lg:hidden">
-        <HotelModal />
+        <HotelModal
+          searchedHotel={searchedHotel}
+          setSearchedHotel={setSearchedHotel}
+          getSearchedHotels={getSearchedHotels}
+          selectedCountry={selectedCountry}
+        />
       </div>
       <div className="flex justify-between gap-3">
         <div className="hidden lg:flex lg:border-[1px] lg:rounded-xl ">
-          <DrawerData />
+          <DrawerData
+            searchedHotel={searchedHotel}
+            setSearchedHotel={setSearchedHotel}
+            getSearchedHotels={getSearchedHotels}
+            selectedCountry={selectedCountry}
+          />
         </div>
+  
         <div className="flex flex-col w-full lg:w-7/12  gap-5 xl:w-8/12 2xl:w-8/12  ">
           {searchedHotel?.map((e, i) => (
             <HotelCard key={i} hotels={e} />

@@ -30,4 +30,5 @@ export interface IHotel {
   name: string;
   desc: string;
   star: number;
+  price: number;
 }
