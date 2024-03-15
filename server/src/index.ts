@@ -1,28 +1,21 @@
-import express, { Application } from "express";
-import color from "colors";
+import express from "express";
+
+import airportRoutes from "./routes/airPortRoutes";
+import { connectDb } from "./config/db";
 import dotenv from "dotenv";
-import { connectDB } from "./config/db";
-import cors from "cors";
-
-import authRoutes from "./routes/authRoutes";
-import countryRoutes from "./routes/countryRoutes";
-import airportRoutes from "./routes/airportRoutes";
-
 dotenv.config();
 
-const app: Application = express();
+const MONGODB_URI = process.env.MONGODB_URI ?? "";
+const PORT = process.env.PORT ?? "";
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-const port = process.env.PORT;
+const app = express();
 
-connectDB(MONGODB_URI);
-
+connectDb(MONGODB_URI);
 app.use(express.json());
-app.use(cors());
-app.use("/auth", authRoutes);
-app.use("/country", countryRoutes);
 app.use("/airport", airportRoutes);
 
-app.listen(port, () =>
-  console.log(color.rainbow(`Server is listening ${port}`))
-);
+app.get("/", (req, res) => {
+  res.send("Hello");
+});
+
+app.listen(PORT, () => console.log("Server is running at " + PORT));

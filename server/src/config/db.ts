@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
-import color from "colors";
 
-export const connectDB = async (uri: string) => {
+export const connectDb = async (uri: string) => {
   try {
     await mongoose.connect(uri);
-    console.log(color.bgGreen("Database is connected"));
+    console.log("Database is connected");
   } catch (error) {
-    console.log(color.bgRed("Database failed to connect"));
-    console.error(error);
+    console.log("DB-ERR", error);
   }
 };
