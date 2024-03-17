@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import Airport from "../model/airport";
+import Airport from "../model/user";
 
 export const createAirport = async (req: Request, res: Response) => {
   try {
