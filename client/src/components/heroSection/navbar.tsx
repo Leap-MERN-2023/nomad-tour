@@ -9,8 +9,7 @@ const Navbar = (props: Props) => {
   return (
     <nav
       className="sm:px-16 px-6 w-full text-white 
-    flex items-center py-5  top-0 z-20 
-    bg-[#0082B0] backdrop-blur-2xl"
+    flex items-center py-5 relative z-20 "
     >
       <div
         className="w-full flex justify-between 

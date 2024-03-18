@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="w-screen h-[2000px]">
+    <main className="w-screen">
       <HeroSection />
     </main>
   );
