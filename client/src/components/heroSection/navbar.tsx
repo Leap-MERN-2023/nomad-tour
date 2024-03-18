@@ -1,11 +1,19 @@
 "use client";
 import { navItems } from "@/constants";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
+import { LoginForm } from "../LoginForm";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const [open, setOpen]=useState(false)
+  const openForm= ()=>{
+    setOpen(()=>true)
+  }
+  const closeForm = ()=>{
+    setOpen(()=>false)
+  }
   return (
     <nav
       className="sm:px-16 px-6 w-full text-white 
@@ -30,7 +38,10 @@ const Navbar = (props: Props) => {
             </li>
           ))}
         </ul>
+        <button onClick={openForm}>Login</button>
+      
       </div>
+      <LoginForm open={open} closeForm={closeForm}/>
     </nav>
   );
 };
