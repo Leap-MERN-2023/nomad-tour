@@ -6,9 +6,11 @@ import { getCountries } from "../controller/country";
 import { updateCountry } from "../controller/country";
 import { deleteCountry } from "../controller/country";
 
+import { upload } from "../utils/multer";
+
 const router = Router();
 
-router.route("/").post(createCountry).get(getCountries);
+router.route("/").post(upload.single("image"), createCountry).get(getCountries);
 
 router
   .route("/:countryId")
