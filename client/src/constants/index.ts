@@ -1,3 +1,5 @@
+import { carousel1, carousel2, carousel3, carousel4 } from "@/assets";
+
 const navItems = [
   { name: "Home", url: "#home" },
   { name: "Hotels", url: "#hotels" },
@@ -5,4 +7,5 @@ const navItems = [
   { name: "Testimonials", url: "#testimonials" },
 ];
 
-export { navItems };
+const carouselImages = [carousel1, carousel2, carousel3, carousel4];
+export { navItems, carouselImages };

@@ -82,3 +82,37 @@ export const login = async (
     next(error);
   }
 };
+ 
+
+export const updateUser = async(req:Request, res:Response, next:NextFunction)=>{
+  try {
+    const {userId}=req.params
+   
+    const userInfo=req.body
+ 
+ const user= await User.findByIdAndUpdate(userId, userInfo)
+
+
+ await user?.save()
+
+res.status(201).json({message: `${userId}-tai hereglegch amjilttai shinchillee`})
+  } catch (error) {
+    console.log("err", error)
+    next(error)
+  }
+}
+
+export const deleteUser = async(req:Request, res:Response, next:NextFunction)=>{
+  try {
+    const {userId}=req.params
+   console.log("iddd", userId)
+    const user= await User.findByIdAndDelete(userId)
+    console.log("user", user)
+    await user?.save()
+    res.status(201).json({message:`${userId}-tai hereglegch ustlaa`})
+  } catch (error) {
+    console.log("err", error)
+    next(error)
+  }
+}
+

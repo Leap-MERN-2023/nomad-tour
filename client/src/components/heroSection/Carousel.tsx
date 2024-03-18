@@ -1,32 +1,34 @@
 "use client";
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import { carousel1 } from "@/assets";
+
+import { carouselImages } from "@/constants";
 
 type Props = {};
 
 const Carousel = (props: Props) => {
-  console.log("c", carousel1);
   return (
-    <div className="w-full h-[400px]">
+    <div className="w-full absolute z-0 top-0">
       <Swiper
         className="mySwiper"
+        modules={[Autoplay]}
         slidesPerView={1}
-        spaceBetween={30}
+        spaceBetween={0}
         loop={true}
+        cssMode={true}
+        autoplay={{ delay: 5000 }}
       >
-        <SwiperSlide>
-          <img src={carousel1.src} alt="" />
-        </SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
+        {carouselImages.map((img) => (
+          <SwiperSlide>
+            <img
+              className="w-full h-[700px] object-cover"
+              src={img.src}
+              alt=""
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
