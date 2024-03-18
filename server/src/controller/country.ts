@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import Country from "../model/country";
+import cloudinary from "../utils/cloudinary";
 
 export const createCountry = async (
   req: Request,
@@ -8,13 +9,18 @@ export const createCountry = async (
 ) => {
   try {
     console.log("REQ", req.body);
+    console.log("File", req.file);
     const newCountry = { ...req.body };
-    const country = await Country.create(newCountry);
-    res.status(200).json({ message: "Success" });
-    // if (req.file) {
-    //   const { secure_url } = await cloudinary;
-    // } else {
-    // }
+    console.log("contyr", newCountry);
+
+    if (req.file) {
+      const { secure_url } = await cloudinary.uploader.upload(req.file?.path);
+      newCountry.images = secure_url;
+      const country = await Country.create(newCountry);
+      res.status(200).json({ message: "Success", country });
+    } else {
+      res.status(400).json({ message: "You must to upload image" });
+    }
   } catch (error) {
     res.status(400).json({ message: "Failed", error });
   }
