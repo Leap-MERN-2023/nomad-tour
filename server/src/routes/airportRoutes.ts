@@ -1,8 +1,13 @@
 import { Router } from "express";
-import { createAirport } from "../controller/airportController";
-
+import { CreateAirport,getAirport,deleteAirport,updateAirport} from "../controller/airportController";
 const router = Router();
 
-router.route("/").post(createAirport);
+router.route("/").get(getAirport).post(CreateAirport).put(updateAirport).delete(deleteAirport)
 
+// router.route("/:airportId")
+// .get(getoneAirport)
+// .delete(deleteAirport)
+// .put(updateAirport)
 export default router;
+
+
