@@ -2,41 +2,47 @@
 import { useState } from "react";
 import { Tab } from "@headlessui/react";
 import MySelect from "./MySelect";
+import { IoLocationOutline } from "react-icons/io5";
+import { IoAirplaneOutline } from "react-icons/io5";
+import { MdOutlineBed } from "react-icons/md";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Tabs() {
-  let [categories] = useState({
-    Country: [
-      {
+  let [categories] = useState([
+    {
+      name: "Country",
+      value: {
         id: 1,
-        title: "Select country to travel",
-        date: "5h ago",
+        title: "Select country",
+        icon: <IoLocationOutline size="35px" />,
         commentCount: 5,
         shareCount: 2,
       },
-    ],
-    Flight: [
-      {
+    },
+    {
+      name: "Flight",
+      value: {
         id: 1,
         title: "Search flights",
-        date: "Jan 7",
+        icon: <IoAirplaneOutline size="35px" />,
         commentCount: 29,
         shareCount: 16,
       },
-    ],
-    Hotel: [
-      {
+    },
+    {
+      name: "Hotel",
+      value: {
         id: 1,
-        title: "Search hotels that located in",
-        date: "2d ago",
+        title: "Search hotels",
+        icon: <MdOutlineBed size="35px" />,
         commentCount: 9,
         shareCount: 5,
       },
-    ],
-  });
+    },
+  ]);
 
   return (
     <div
@@ -48,19 +54,19 @@ export default function Tabs() {
       <h1 className="text-blue-400 font-bold text-3xl sm:text-5xl tracking-tighter">
         Good Morning!
       </h1>
-      <p className="text-[22px]">
+      <p className="text-[14px]">
         Explore beautiful places in the world with Nomad tour
       </p>
       <Tab.Group>
         <Tab.List className="flex rounded-3xl bg-white mt-4 sm:mt-10 border-[1px]">
-          {Object.keys(categories).map((category) => {
+          {categories.map((category) => {
             console.log("CATEGORY", category);
             return (
               <Tab
-                key={category}
+                key={category.name}
                 className={({ selected }) =>
                   classNames(
-                    "w-full rounded-3xl py-5 text-sm font-medium leading-5",
+                    "w-full rounded-3xl p-5 text-sm font-medium leading-5",
                     "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
                     selected
                       ? "bg-[#0281B0] text-white shadow"
@@ -68,13 +74,21 @@ export default function Tabs() {
                   )
                 }
               >
-                <h1>{category}</h1>
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  <div className="hidden sm:block">{category.value.icon}</div>
+                  <div className="sm:text-left text-center">
+                    <h1 className="">{category.name}</h1>
+                    <p className="font-light hidden sm:block">
+                      {category.value.title}
+                    </p>
+                  </div>
+                </div>
               </Tab>
             );
           })}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          {Object.values(categories).map((posts, idx) => (
+          {categories.map((category, idx) => (
             <Tab.Panel
               key={idx}
               className={classNames(
@@ -83,12 +97,10 @@ export default function Tabs() {
               )}
             >
               <ul>
-                {posts.map((post) => (
-                  <div>
-                    <h2>{post.title}</h2>
-                    <MySelect />
-                  </div>
-                ))}
+                <div>
+                  <h2>{category.value.title}</h2>
+                  <MySelect />
+                </div>
               </ul>
             </Tab.Panel>
           ))}

@@ -10,7 +10,7 @@ type Props = {};
 
 const Carousel = (props: Props) => {
   return (
-    <div className="w-full absolute z-0 top-0">
+    <div className="w-full">
       <Swiper
         className="mySwiper"
         modules={[Autoplay]}
