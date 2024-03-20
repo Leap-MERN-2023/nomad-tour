@@ -3,18 +3,18 @@ import { Schema, model } from "mongoose";
 const countrySchema = new Schema({
   name: {
     type: String,
-    required: true,
+    // required: true,
     unique: true,
   },
   images: [
     {
       type: String,
-      required: true,
+      // required: true,
     },
   ],
   description: {
     type: String,
-    required: true,
+    // required: true,
   },
 });
 

@@ -11,28 +11,15 @@ const hotelSchema = new Schema({
   ],
   description: {
     type: String,
-    require: true,
+    required: true,
   },
-  rooms: [
-    {
-      name: {
-        type: String,
-        required: true,
-      },
 
-      image: {
-        type: String,
-        required: true,
-      },
-      price: { USD: Number, MNT: Number, CNY: Number },
-    },
-  ],
   stars: Number,
   country: {
     type: Schema.ObjectId,
     ref: Country,
-    require: true,
+    required: true,
   },
 });
 
-const Hotel = model("Hotel", hotelSchema);
+export const Hotel = model("Hotel", hotelSchema);
