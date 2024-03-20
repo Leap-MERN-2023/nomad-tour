@@ -40,12 +40,12 @@ export default function Tabs() {
 
   return (
     <div
-      className="w-11/12 px-2 py-10 sm:px-9
-    absolute top-[300px] sm:top-[540px] z-30 bg-white rounded-3xl
-    shadow-xl
+      className="w-full max-w-7xl px-2 py-10 sm:px-9
+     bg-white rounded-3xl
+    shadow-xl 
     "
     >
-      <h1 className="text-blue-400 font-bold text-5xl sm:text-7xl tracking-tighter">
+      <h1 className="text-blue-400 font-bold text-3xl sm:text-5xl tracking-tighter">
         Good Morning!
       </h1>
       <p className="text-[22px]">

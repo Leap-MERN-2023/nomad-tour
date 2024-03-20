@@ -10,7 +10,7 @@ const HeroSection = (props: Props) => {
     <section className="w-full relative">
       <Navbar />
       <Carousel />
-      <div className="flex justify-center">
+      <div className="w-full flex justify-center items-center sm:px-16 px-6 absolute top-[500px] z-30">
         <Tabs />
       </div>
     </section>

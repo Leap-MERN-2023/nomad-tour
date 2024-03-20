@@ -25,7 +25,7 @@ const Navbar = (props: Props) => {
     >
       <div
         className="w-full flex justify-between 
-      items-center max-w-7xl mx-auto "
+      items-center max-w-7xl mx-auto bg-black "
       >
         <Link
           href="/"
@@ -73,8 +73,8 @@ const Navbar = (props: Props) => {
           ))}
         </ul>
         <button onClick={openForm}>Login</button>
+        <LoginForm open={open} closeForm={closeForm} />
       </div>
-      <LoginForm open={open} closeForm={closeForm} />
     </nav>
   );
 };
