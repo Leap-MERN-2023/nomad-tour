@@ -4,10 +4,6 @@ import { upload } from "../utils/multer";
 
 const router = Router();
 
-// const upload = multer({ dest: "./upload" });
-//utils multerees
-//uploads gedeg filed hadgalna zamiin zaaj ugnu
-
-router.route("/").post(upload.single("image"), uploadFile);
+router.route("/").post(upload.array("images", 5), uploadFile);
 
 export default router;

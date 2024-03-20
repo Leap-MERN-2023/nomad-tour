@@ -7,10 +7,19 @@ export const uploadFile = async (
   next: NextFunction
 ) => {
   try {
-    console.log("FILE", req.files);
+    console.log("FILES", req.files);
 
-    const result = await cloudinary.uploader.upload(req.file?.path!);
-    res.send("send==>" + result.secure_url);
+    let promises: Promise<any>[] = [];
+    if (req.files && Array.isArray(req.files)) {
+      promises = req.files.map((file: Express.Multer.File) =>
+        cloudinary.uploader.upload(file.path)
+      );
+      const results = await Promise.all(promises);
+      console.log("first,  results");
+      res.status(200).json(results.map((result) => result.secure_url));
+    } else {
+      res.status(400).json({ message: "No files uploaded" });
+    }
   } catch (error) {
     next(error);
   }

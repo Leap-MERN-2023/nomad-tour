@@ -8,19 +8,15 @@ export const createCountry = async (
   next: NextFunction
 ) => {
   try {
-    console.log("REQ", req.body);
-    console.log("File", req.file);
     const newCountry = { ...req.body };
-    console.log("contyr", newCountry);
 
     if (req.file) {
       const { secure_url } = await cloudinary.uploader.upload(req.file?.path);
       newCountry.images = secure_url;
-      const country = await Country.create(newCountry);
-      res.status(200).json({ message: "Success", country });
-    } else {
-      res.status(400).json({ message: "You must to upload image" });
     }
+
+    const country = await Country.create(newCountry);
+    res.status(200).json({ message: "Success", country });
   } catch (error) {
     res.status(400).json({ message: "Failed", error });
   }

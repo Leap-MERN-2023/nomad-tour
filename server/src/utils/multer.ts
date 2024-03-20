@@ -1,3 +1,3 @@
 import multer from "multer";
 
-export const upload = multer({ dest: "./upload" });
+export const upload = multer({ dest: "./uploads/" });
