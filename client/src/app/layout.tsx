@@ -18,9 +18,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <AirPortProvider>
-      <body className={inter.className}>{children}</body>
-      </AirPortProvider>
+      <body className={inter.className}>
+        <AirPortProvider>
+        {children}
+        </AirPortProvider>
+      </body>
+      
     </html>
   );
 }
