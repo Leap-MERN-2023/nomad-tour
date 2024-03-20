@@ -2,28 +2,22 @@
 import { navItems } from "@/constants";
 import Link from "next/link";
 import React, { useState } from "react";
-<<<<<<< HEAD
 import { LoginForm } from "../LoginForm";
-=======
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
->>>>>>> main
 
 type Props = {};
 
 const Navbar = (props: Props) => {
-<<<<<<< HEAD
-  const [open, setOpen]=useState(false)
-  const openForm= ()=>{
-    setOpen(()=>true)
-  }
-  const closeForm = ()=>{
-    setOpen(()=>false)
-  }
-=======
+  const [open, setOpen] = useState(false);
+  const openForm = () => {
+    setOpen(() => true);
+  };
+  const closeForm = () => {
+    setOpen(() => false);
+  };
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
->>>>>>> main
   return (
     <nav
       className="sm:px-16 px-6 w-full text-white 
@@ -79,9 +73,8 @@ const Navbar = (props: Props) => {
           ))}
         </ul>
         <button onClick={openForm}>Login</button>
-      
       </div>
-      <LoginForm open={open} closeForm={closeForm}/>
+      <LoginForm open={open} closeForm={closeForm} />
     </nav>
   );
 };
