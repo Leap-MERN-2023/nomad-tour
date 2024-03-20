@@ -7,7 +7,7 @@ type Props = {};
 
 const HeroSection = (props: Props) => {
   return (
-    <section className="w-full relative">
+    <section className="w-full relative ">
       <Navbar />
       <Carousel />
       <div className="flex justify-center">

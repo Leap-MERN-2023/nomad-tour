@@ -21,7 +21,7 @@ const Navbar = (props: Props) => {
   return (
     <nav
       className="sm:px-16 px-6 w-full text-white 
-    flex items-center py-5 relative z-20 position:static"
+    flex items-center py-5 relative z-50 position:static " 
     >
       <div
         className="w-full flex justify-between 
@@ -74,8 +74,9 @@ const Navbar = (props: Props) => {
         </ul>
         <button onClick={openForm}>Login</button>
       </div>
-
+      <div className="flex justify-center items-center">
       <LoginForm open={open} closeForm={closeForm} />
+      </div>
     </nav>
   );
 };
