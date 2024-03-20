@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 import airportRoutes from "./routes/airportRoutes";
 import flightRoutes from "./routes/flightRoutes";
@@ -18,6 +19,7 @@ const PORT = process.env.PORT ?? "";
 const app = express();
 
 connectDb(MONGODB_URI);
+app.use(cors());
 app.use(express.json());
 app.use("/airport", airportRoutes);
 app.use("/flight", flightRoutes);
