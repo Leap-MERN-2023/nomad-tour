@@ -8,7 +8,7 @@ import {
   useContext,
   ChangeEvent,
 } from "react";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
 export interface IUser {
@@ -74,7 +74,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      toast("amjilttai nevterlee");
+      // toast("amjilttai nevterlee");
+      // alert("amjilttai nevterlee");
+      <ToastContainer/>
     } catch (error) {
       toast.error("nevtrelt amjiltgui");
     }

@@ -37,6 +37,9 @@ export const LoginForm = ({ open, closeForm }: any) => {
     validateOnBlur: false,
     validationSchema,
   });
+
+
+
   return (
     <dialog
       open={open}
@@ -65,7 +68,7 @@ export const LoginForm = ({ open, closeForm }: any) => {
             onChange={formik.handleChange}
             className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black"
           />
-          {formik.errors["email"] && <p>{formik.errors["email"]}</p>}
+          {formik.errors["email"] && <p className="text-red-400">{formik.errors["email"]}</p>}
         </>
         <input
           type="text"
@@ -74,6 +77,7 @@ export const LoginForm = ({ open, closeForm }: any) => {
           name="password"
           onChange={formik.handleChange}
         />
+         {formik.errors["password"] && <p className="text-red-400">{formik.errors["password"]}</p>}
         <div className="flex justify-end">
           <button className="btn btn-outline btn-success">
             Нууц үг мартсан
@@ -82,7 +86,8 @@ export const LoginForm = ({ open, closeForm }: any) => {
         <button
           className="btn btn-neutral"
           //  onClick={login}
-          onClick={() => formik.handleSubmit()}
+          type="button"
+          onClick={() => {formik.handleSubmit()}}
         >
           Үргэлжлүүлэх
         </button>
