@@ -1,0 +1,26 @@
+"use client"
+import React from 'react'
+import Slider from './slider';
+
+const index = () => {
+  return (
+    <div className="bg-white sm:w-[300px] xl:w-96">
+        <figure className='flex flex-col sm:h-32 xl:h-64'>
+            <Slider/>
+        </figure>
+         <div className="card-body">
+           <p className='flex items-center gap-1'><img src='calendar.png'/> Febraury 20,2024</p>
+           <h2 className="card-title">Delicious restaurant at Hanalei Bay</h2>
+           <p>Lorem Ipsum is simply dummy text of the printing and typeset industry. Lorem Ipsum has been lorem ...</p>
+           <div className="card-actions items-center ml-[-16px]">
+             <button className="btn btn-ghost text-blue-800">
+             <img src='arrow1.png' className='border-2 border-blue-700 rounded-full p-1 m-[]'/>
+                see more
+             </button>
+           </div>
+        </div>
+    </div>
+  )
+}
+
+export default index;
