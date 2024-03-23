@@ -27,12 +27,10 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
 
   const getCountries = async () => {
-    console.log("ddd");
     try {
       const {
         data: { allCountry },
       } = await axios.get("http://localhost:8008/country");
-      console.log("COUNTRY_get", allCountry);
       setCountries(allCountry);
     } catch (error: any) {
       console.log("ERR", error);

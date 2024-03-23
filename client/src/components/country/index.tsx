@@ -11,8 +11,6 @@ import "swiper/css";
 import { CountryContext } from "@/context/CountryProvider";
 import { Autoplay } from "swiper/modules";
 
-import { gsap } from "gsap";
-
 const Country = () => {
   const { countries } = useContext(CountryContext);
   return (
