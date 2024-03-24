@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
+import { FaArrowRight } from "react-icons/fa";
+
+import { HotelContext } from "@/context/hotelProvider";
 
 interface Country {
   country: string;
@@ -8,6 +11,7 @@ interface Country {
 }
 
 const Explore = ({ country }: { country: Country }) => {
+  const { hotels } = useContext(HotelContext);
   const backgroundStyle = {
     backgroundImage: `url(${country?.images[0]})`,
     backgroundSize: "cover",
@@ -25,21 +29,26 @@ const Explore = ({ country }: { country: Country }) => {
         Explore {country.name}
       </div>
       <p className="border-b-4 border-white w-10/12 2xl:mt-20" />
-      <div className="flex flex-col gap-5 justify-center xl:flex-row xl:w-10/12 xl:justify-between  2xl:text-3xl">
-        <div className="flex flex-col w-10/12 xl:text-xl mx-auto gap-5 xl:w-3/12 2xl:w-4/12 bg-transparent 2xl:ml-0 xl:mt-5 xl:pt-5 2xl:font-bold 2xl:text-2xl">
-          <div>{country.description}</div>
-          <button className="border-2 rounded-lg md:hidden w-3/12 p-1 text-sm ">
-            See all..
+      <div className="flex flex-col gap-5 justify-center xl:flex-row xl:w-full xl:justify-between 2xl:text-3xl">
+        <div className="flex flex-col w-10/12 xl:text-md mx-auto gap-5 xl:w-1/2  xl:ml-28 2xl:w-4/12 bg-transparent 2xl:ml-0  xl:mt-8 xl:pt-5 2xl:font-bold 2xl:text-2xl">
+          <div className="xl:w-2/3  ">
+            {country.description} 
+          </div>
+          <button className="flex justify-evenly items-center w-24  bg-slate-50  text-black border-2 rounded-xl md:hidden p-1 xl:p-2 hover:bg-slate-300 text-sm xl:flex text-center xl:w-28 xl:text-sm">
+            See all
+            <h1>
+              <FaArrowRight />
+            </h1>
           </button>
         </div>
-        <div className="hidden md:flex md:justify-center md:space-x-10 mt-10 bg-transparent 2xl:space-x-4">
+        <div className="hidden md:flex md:justify-center md:space-x-10 mt-10 bg-transparent xl:space-x-4 2xl:space-x-5">
           {Array.isArray(country.images) &&
             country.images
               .slice(1, 4)
               .map((image: string, index: number) => (
                 <img
                   key={index}
-                  className="w-1/4 h-64 rounded-md 2xl:w-3/12 2xl:h-72 xl:w-3/12"
+                  className="w-1/4 h-60 rounded-md 2xl:w-3/12 2xl:h-72 xl:w-3/12 "
                   src={image}
                   alt=""
                 />

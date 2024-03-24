@@ -13,6 +13,7 @@ import { Autoplay } from "swiper/modules";
 
 const Country = () => {
   const { countries } = useContext(CountryContext);
+  console.log("cc", countries);
   return (
     <Swiper
       className="CountrySwipper"

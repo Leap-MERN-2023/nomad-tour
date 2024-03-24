@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import AirPortProvider from "@/context/airportProvider";
 import CountryProvider from "@/context/CountryProvider";
+import HotelProvider from "@/context/hotelProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,7 +22,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <CountryProvider>
-          <AirPortProvider>{children}</AirPortProvider>
+          <HotelProvider>
+            <AirPortProvider>{children}</AirPortProvider>
+          </HotelProvider>
         </CountryProvider>
       </body>
     </html>

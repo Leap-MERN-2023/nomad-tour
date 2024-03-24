@@ -3,6 +3,7 @@
 import React, {
   PropsWithChildren,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from "react";
@@ -31,11 +32,25 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allCountry },
       } = await axios.get("http://localhost:8008/country");
-<<<<<<< Updated upstream:client/src/context/CountryProvider.tsx
-=======
-      console.log("COUNTRY_get", allCountry);
->>>>>>> Stashed changes:client/src/context/CountryProvider/index.tsx
       setCountries(allCountry);
+    } catch (error: any) {
+      console.log("ERR", error);
+    }
+  };
+
+  const [hotels, setHotels] = useState([]);
+  const [ref, setRef] = useState(false);
+
+  const getHotels = async () => {
+    console.log("Working");
+    try {
+      const {
+        data: { filteredHotels },
+      } = await axios.get(
+        "http://localhost:8008/hotel/" + "65f9aca67a1a0f2424ab74c6"
+      );
+      console.log("Hotels", filteredHotels);
+      setHotels(filteredHotels);
     } catch (error: any) {
       console.log("ERR", error);
     }
@@ -43,6 +58,7 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     getCountries();
+    getHotels();
   }, []);
 
   return (
