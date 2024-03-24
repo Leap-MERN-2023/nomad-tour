@@ -25,7 +25,7 @@ const Country = () => {
     >
       {countries.map((country) => (
         <SwiperSlide>
-          <Explore country={country} />
+          <Explore country={country as any} />
         </SwiperSlide>
       ))}
     </Swiper>

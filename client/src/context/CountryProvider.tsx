@@ -9,6 +9,7 @@ import React, {
 import axios from "axios";
 
 interface ICountry {
+  country: string;
   name: string;
   description: string;
   images: string;
@@ -17,7 +18,6 @@ interface ICountry {
 interface ICountryContext {
   countries: ICountry[];
 }
-interface ICountryContext {}
 
 export const CountryContext = createContext<ICountryContext>(
   {} as ICountryContext
@@ -31,6 +31,10 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allCountry },
       } = await axios.get("http://localhost:8008/country");
+<<<<<<< Updated upstream:client/src/context/CountryProvider.tsx
+=======
+      console.log("COUNTRY_get", allCountry);
+>>>>>>> Stashed changes:client/src/context/CountryProvider/index.tsx
       setCountries(allCountry);
     } catch (error: any) {
       console.log("ERR", error);

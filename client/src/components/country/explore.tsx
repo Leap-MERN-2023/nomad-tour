@@ -1,38 +1,51 @@
 import React from "react";
 
-const Explore = ({ country }: any) => {
+interface Country {
+  country: string;
+  images: string[];
+  name: string;
+  description: string;
+}
+
+const Explore = ({ country }: { country: Country }) => {
+  const backgroundStyle = {
+    backgroundImage: `url(${country?.images[0]})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    width: "100vw",
+    height: "100vh",
+  };
+
   return (
-    <div className="">
-      <img
-        className="w-full h-screen  object-cover"
-        src={country?.images[0]}
-        alt=""
-      />
-      <div className="absolute top-48 text-2xl text-white font-extrabold left-14 border-white border-b-2 w-2/3 gap-3 md:flex md:w-full md:top-[330px] md:text-7xl 2xl:left-60 2xl:text-9xl 2xl:top-40">
+    <div
+      className="flex flex-col justify-center items-center gap-5 2xl:gap-10   text-white "
+      style={backgroundStyle}
+    >
+      <div className="font-black text-[40px] 2xl:font-extrabold  w-10/12 sm:text-7xl md:text-7xl lg:text-[100px] xl:text-[140px] 2xl:text-[210px]">
         Explore {country.name}
       </div>
-      <div className="absolute top-64 left-14 right-5 flex flex-row  md:top-[430px] 2xl:left-60">
-        <div className="text-white w-2/3 h-44 overflow-hidden p-2 rounded-lg items-center shadow-2xl md:py-1  md:h-60 md:w-1/4 md:top-[480px] 2xl:h-80 2xl:py-10 2xl:text-xl 2xl:font-mono">
-          {country.description}
+      <p className="border-b-4 border-white w-10/12 2xl:mt-20" />
+      <div className="flex flex-col gap-5 justify-center xl:flex-row xl:w-10/12 xl:justify-between  2xl:text-3xl">
+        <div className="flex flex-col w-10/12 xl:text-xl mx-auto gap-5 xl:w-3/12 2xl:w-4/12 bg-transparent 2xl:ml-0 xl:mt-5 xl:pt-5 2xl:font-bold 2xl:text-2xl">
+          <div>{country.description}</div>
+          <button className="border-2 rounded-lg md:hidden w-3/12 p-1 text-sm ">
+            See all..
+          </button>
         </div>
-        <div className="hidden md:flex md:space-x-4 md:ml-4 2xl:w-2/3   ">
+        <div className="hidden md:flex md:justify-center md:space-x-10 mt-10 bg-transparent 2xl:space-x-4">
           {Array.isArray(country.images) &&
             country.images
               .slice(1, 4)
-              .map((image: any, index: any) => (
+              .map((image: string, index: number) => (
                 <img
                   key={index}
-                  className="w-1/3 h-60 rounded-md 2xl:h-80"
+                  className="w-1/4 h-64 rounded-md 2xl:w-3/12 2xl:h-72 xl:w-3/12"
                   src={image}
                   alt=""
                 />
               ))}
         </div>
       </div>
-
-      <button className="absolute border rounded-lg hover:outline shadow-lg bottom-64 md:bottom-[400px] md:hidden p-2 h-10 ml-16 text-white 2xl:hidden ">
-        See all..
-      </button>
     </div>
   );
 };
