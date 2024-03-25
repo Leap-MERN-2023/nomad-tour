@@ -10,7 +10,7 @@ import { upload } from "../utils/multer";
 
 const router = Router();
 
-router.route("/").post(upload.single("image"), createCountry).get(getCountries);
+router.route("/").post(upload.array("images"), createCountry).get(getCountries);
 
 router
   .route("/:countryId")
