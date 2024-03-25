@@ -1,16 +1,20 @@
 "use client";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Tab } from "@headlessui/react";
 import MySelect from "./MySelect";
+import FlightSearch from "./FlightSearch";
 import { IoLocationOutline } from "react-icons/io5";
 import { IoAirplaneOutline } from "react-icons/io5";
 import { MdOutlineBed } from "react-icons/md";
+import { CountryContext } from "@/context/CountryProvider";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Tabs() {
+  const { countries } = useContext(CountryContext);
+  const [selectedItem, setSelectedItem] = useState("Flight");
   let [categories] = useState([
     {
       name: "Country",
@@ -22,6 +26,7 @@ export default function Tabs() {
         shareCount: 2,
       },
     },
+
     {
       name: "Flight",
       value: {
@@ -57,10 +62,9 @@ export default function Tabs() {
       <p className="text-[14px]">
         Explore beautiful places in the world with Nomad tour
       </p>
-      <Tab.Group>
+      <Tab.Group manual>
         <Tab.List className="flex rounded-3xl bg-white mt-4 sm:mt-10 border-[1px]">
           {categories.map((category) => {
-            console.log("CATEGORY", category);
             return (
               <Tab
                 key={category.name}
@@ -68,11 +72,12 @@ export default function Tabs() {
                   classNames(
                     "w-full rounded-3xl p-5 text-sm font-medium leading-5",
                     "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2",
-                    selected
+                    selectedItem === category.name
                       ? "bg-[#0281B0] text-white shadow"
                       : "text-dark bg-white hover:bg-white/[0.12] hover:text-blue-400"
                   )
                 }
+                onClick={() => setSelectedItem(category.name)}
               >
                 <div className="flex flex-col sm:flex-row items-center gap-3">
                   <div className="hidden sm:block">{category.value.icon}</div>
@@ -88,22 +93,51 @@ export default function Tabs() {
           })}
         </Tab.List>
         <Tab.Panels className="mt-2">
-          {categories.map((category, idx) => (
-            <Tab.Panel
-              key={idx}
-              className={classNames(
-                "rounded-xl bg-white p-3",
-                "ring-white/60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2"
-              )}
-            >
-              <ul>
-                <div>
-                  <h2>{category.value.title}</h2>
-                  <MySelect />
-                </div>
-              </ul>
-            </Tab.Panel>
-          ))}
+          {categories.map((category, idx) => {
+            switch (category.name) {
+              case "Country":
+                return (
+                  <Tab.Panel
+                    key={idx}
+                    className={classNames("rounded-xl border-[1px] p-3")}
+                  >
+                    <ul>
+                      <div>
+                        <h2>{category.value.title}</h2>
+                        <MySelect datas={countries} />
+                      </div>
+                    </ul>
+                  </Tab.Panel>
+                );
+                break;
+              case "Flight":
+                return (
+                  <Tab.Panel
+                    key={idx}
+                    className={classNames("rounded-xl border-[1px] p-3")}
+                  >
+                    <FlightSearch />
+                  </Tab.Panel>
+                );
+                break;
+              case "Hotel":
+                return (
+                  <Tab.Panel
+                    key={idx}
+                    className={classNames("rounded-xl border-[1px] p-3")}
+                  >
+                    <ul>
+                      <div>
+                        <h2>{category.value.title}</h2>
+                        <MySelect datas={countries} />
+                      </div>
+                    </ul>
+                  </Tab.Panel>
+                );
+              default:
+                break;
+            }
+          })}
         </Tab.Panels>
       </Tab.Group>
     </div>

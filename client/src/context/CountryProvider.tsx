@@ -38,27 +38,8 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  const [hotels, setHotels] = useState([]);
-  const [ref, setRef] = useState(false);
-
-  const getHotels = async () => {
-    console.log("Working");
-    try {
-      const {
-        data: { filteredHotels },
-      } = await axios.get(
-        "http://localhost:8008/hotel/" + "65f9aca67a1a0f2424ab74c6"
-      );
-      console.log("Hotels", filteredHotels);
-      setHotels(filteredHotels);
-    } catch (error: any) {
-      console.log("ERR", error);
-    }
-  };
-
   useEffect(() => {
     getCountries();
-    getHotels();
   }, []);
 
   return (
