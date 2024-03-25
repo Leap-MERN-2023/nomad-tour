@@ -1,4 +1,5 @@
 import { HeroSection, Country, HotelCard } from "@/components";
+import { EmailSection } from "@/components/emailSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,6 +8,7 @@ export default function Home() {
       <HeroSection />
       <Country />
       <HotelCard />
+      <EmailSection/>
     </main>
   );
 }

@@ -9,7 +9,6 @@ import upload from "./routes/upload";
 import hotel from "./routes/hotel";
 import room from "./routes/room";
 
-import cors from "cors";
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
 dotenv.config();
