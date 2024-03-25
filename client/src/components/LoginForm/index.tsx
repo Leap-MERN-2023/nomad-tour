@@ -45,10 +45,10 @@ export const LoginForm = ({ open, closeForm }: any) => {
       open={open}
       className="modal flex justify-center items-center w-[100] h-screen rounded-xl absolute z-50 bg-black bg-opacity-40"
     >
-      <div className="modal-box flex flex-col gap-4  bg-white w-[330px] h-[450px] md:w-[420px] absolute z-50 ">
-        <div className="flex justify-around">
+      <div className="modal-box flex flex-col gap-4  bg-white  h-[480px] md:w-[420px] absolute z-50 w-[100] items-center">
+        <div className="flex gap-36 fle-col gap-32">
           <div className="">
-            <button className="text-blue-900 font-bold">Нэвтрэх </button>
+            <button className="text-blue-900 font-bold ">Нэвтрэх </button>
             <button className="text-blue-900 font-bold">/ Бүртгүүлэх </button>
           </div>
           <button
@@ -59,59 +59,63 @@ export const LoginForm = ({ open, closeForm }: any) => {
           </button>
         </div>
 
-        <>
+        <div className="flex flex-col gap-4">
           <input
             type="text"
             placeholder="email"
             name="email"
             value={formik.values.email}
             onChange={formik.handleChange}
-            className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black"
+            className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
           />
           {formik.errors["email"] && <p className="text-red-400">{formik.errors["email"]}</p>}
-        </>
+        
         <input
           type="text"
           placeholder="password"
-          className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black"
+          className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
           name="password"
           onChange={formik.handleChange}
         />
+       
          {formik.errors["password"] && <p className="text-red-400">{formik.errors["password"]}</p>}
         <div className="flex justify-end">
-          <button className="btn btn-outline btn-success">
+          <button className="btn btn-outline btn-success ">
             Нууц үг мартсан
           </button>
         </div>
         <button
-          className="btn btn-neutral"
+          className="btn btn-neutral w-[320px]"
           //  onClick={login}
           type="button"
           onClick={() => {formik.handleSubmit()}}
         >
           Үргэлжлүүлэх
         </button>
-        <div className="divider divider-neutral text-black">OR</div>
-        <div className="flex justify-between">
-          <button className="border-[1px] sm:w-24 w-16 p-3 hover:bg-gray-200 rounded-md flex justify-center">
+        </div>
+        
+        <div className="divider divider-neutral text-black  sm:mx-6">OR</div>
+        <div className="flex sm:gap-5  gap-8">
+          <button className="border-[1px] sm:w-24 w-20 p-3 hover:bg-gray-200 rounded-md flex justify-center">
             <img
               src="https://cdn.icon-icons.com/icons2/730/PNG/512/gmail_icon-icons.com_62758.png"
               className="w-6 rounded-full "
             />
           </button>
-          <button className="border-[1px] w-16 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
+          <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
             <img
               src="https://www.cabriniclinic.org/wp-content/uploads/2014/02/facebook-icon.png"
               className="w-6 rounded-full"
             />
           </button>
-          <button className="border-[1px] w-16 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
+          <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
             <img
               src="https://static.vecteezy.com/system/resources/previews/018/930/695/original/twitter-logo-twitter-icon-transparent-free-free-png.png"
-              className="w-6 rounded-full"
+              className="w-8 rounded-full"
             />
           </button>
-        </div>
+          </div>
+        
       </div>
     </dialog>
   );
