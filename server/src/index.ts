@@ -9,6 +9,7 @@ import upload from "./routes/upload";
 import hotel from "./routes/hotel";
 import room from "./routes/room";
 
+import cors from "cors";
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
 dotenv.config();
@@ -17,6 +18,8 @@ const MONGODB_URI = process.env.MONGODB_URI ?? "";
 const PORT = process.env.PORT ?? "";
 
 const app = express();
+
+app.use(cors());
 
 connectDb(MONGODB_URI);
 app.use(cors());

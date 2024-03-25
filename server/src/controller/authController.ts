@@ -8,7 +8,7 @@ import MyError from "../utils/myError";
 export const signup = async (
   req: Request,
   res: Response,
-  nexr: NextFunction
+  next: NextFunction
 ) => {
   try {
     const newUser = req.body;
@@ -46,16 +46,16 @@ export const login = async (
 ) => {
   try {
     console.log("LOGIN", req.body);
-    const { userEmail, userPassword } = req.body;
-    console.log("LOGIN", userEmail);
-    console.log("Password", userPassword);
+    const { email: userEmail, password: userPassword } = req.body;
+    // console.log("LOGIN", userEmail);
+    // console.log("Password", userPassword);
 
     const user = await User.findOne({ email: userEmail }).select("+password");
 
     if (!user) {
       throw new MyError(`${userEmail}-тэй хэрэглэгч бүртгэлгүй байна.`, 400);
     }
-    console.log("success", user);
+    // console.log("success", user);
     const isValid = await bcrypt.compare(userPassword, user.password);
     console.log("bcrypted", isValid);
     if (!isValid) {
@@ -82,37 +82,44 @@ export const login = async (
     next(error);
   }
 };
- 
 
-export const updateUser = async(req:Request, res:Response, next:NextFunction)=>{
+export const updateUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const {userId}=req.params
-   
-    const userInfo=req.body
- 
- const user= await User.findByIdAndUpdate(userId, userInfo)
+    const { userId } = req.params;
 
+    const userInfo = req.body;
 
- await user?.save()
+    const user = await User.findByIdAndUpdate(userId, userInfo);
 
-res.status(201).json({message: `${userId}-tai hereglegch amjilttai shinchillee`})
+    await user?.save();
+
+    res
+      .status(201)
+      .json({ message: `${userId}-tai hereglegch amjilttai shinchillee` });
   } catch (error) {
-    console.log("err", error)
-    next(error)
+    console.log("err", error);
+    next(error);
   }
-}
+};
 
-export const deleteUser = async(req:Request, res:Response, next:NextFunction)=>{
+export const deleteUser = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
-    const {userId}=req.params
-   console.log("iddd", userId)
-    const user= await User.findByIdAndDelete(userId)
-    console.log("user", user)
-    await user?.save()
-    res.status(201).json({message:`${userId}-tai hereglegch ustlaa`})
+    const { userId } = req.params;
+    console.log("iddd", userId);
+    const user = await User.findByIdAndDelete(userId);
+    console.log("user", user);
+    await user?.save();
+    res.status(201).json({ message: `${userId}-tai hereglegch ustlaa` });
   } catch (error) {
-    console.log("err", error)
-    next(error)
+    console.log("err", error);
+    next(error);
   }
-}
-
+};
