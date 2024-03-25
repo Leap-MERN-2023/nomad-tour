@@ -10,7 +10,8 @@ import {
 
 const router = Router();
 
-router.route("/").post(createHotel).get(getHotels);
+router.route("/").post(createHotel);
+router.route("/:countryId").get(getHotels);
 router.route("/:hotelId").get(getHotel).put(updateHotel).delete(deleteHotel);
 
 export default router;

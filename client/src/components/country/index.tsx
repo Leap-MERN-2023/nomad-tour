@@ -23,9 +23,9 @@ const Country = () => {
       cssMode={true}
       autoplay={{ delay: 5000 }}
     >
-      {countries.map((country) => (
+      {countries?.map((country) => (
         <SwiperSlide>
-          <Explore country={country} />
+          <Explore country={country as any} />
         </SwiperSlide>
       ))}
     </Swiper>
