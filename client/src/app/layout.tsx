@@ -4,6 +4,7 @@ import "./globals.css";
 import AirPortProvider from "@/context/airportProvider";
 import CountryProvider from "@/context/CountryProvider";
 import HotelProvider from "@/context/hotelProvider";
+import { UserContext, UserProvider } from "@/context/UserProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CountryProvider>
-          <HotelProvider>
-            <AirPortProvider>{children}</AirPortProvider>
-          </HotelProvider>
-        </CountryProvider>
+        <UserProvider>
+          <CountryProvider>
+            <HotelProvider>
+              <AirPortProvider>{children}</AirPortProvider>
+            </HotelProvider>
+          </CountryProvider>
+        </UserProvider>
       </body>
     </html>
   );
