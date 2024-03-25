@@ -1,5 +1,4 @@
-import { HeroSection, Country, HotelCard } from "@/components";
-import { EmailSection } from "@/components/emailSection";
+import { HeroSection, Country, HotelSection, NewsSection, TestSection } from "@/components";
 import Image from "next/image";
 
 export default function Home() {
@@ -7,8 +6,9 @@ export default function Home() {
     <main className=" ">
       <HeroSection />
       <Country />
-      <HotelCard />
-      <EmailSection/>
+      <HotelSection/>
+      <NewsSection/>
+      <TestSection/>
     </main>
   );
 }

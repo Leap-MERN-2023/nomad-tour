@@ -22,7 +22,7 @@ export default function slider() {
         }}
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
-        className="w-full h-full"
+        className="w-[320px] h-[200px] rounded-t-3xl"
       >
         <SwiperSlide>
           <img className='w-full h-full' src="https://swiperjs.com/demos/images/nature-1.jpg" />
