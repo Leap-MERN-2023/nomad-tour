@@ -13,7 +13,6 @@ import { Autoplay } from "swiper/modules";
 
 const Country = () => {
   const { countries } = useContext(CountryContext);
-  console.log("cc", countries);
   return (
     <Swiper
       className="CountrySwipper"
@@ -24,7 +23,7 @@ const Country = () => {
       cssMode={true}
       autoplay={{ delay: 5000 }}
     >
-      {countries.map((country) => (
+      {countries?.map((country) => (
         <SwiperSlide>
           <Explore country={country as any} />
         </SwiperSlide>
