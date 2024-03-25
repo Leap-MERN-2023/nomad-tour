@@ -22,9 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <UserProvider>
         <CountryProvider>
           <AirPortProvider>{children}</AirPortProvider>
         </CountryProvider>
+        </UserProvider>
       </body>
     </html>
   );
