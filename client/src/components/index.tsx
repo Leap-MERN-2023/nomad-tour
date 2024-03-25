@@ -1,4 +1,6 @@
 import HeroSection from "./heroSection/HeroSection";
 import Country from "./country";
-import HotelCard from "./hotelcard";
-export { HeroSection, Country, HotelCard };
+import HotelSection from "./hotelSection";
+import NewsSection from "./newsSection";
+import TestSection from "./testSection";
+export { HeroSection, Country, HotelSection,NewsSection,TestSection};
