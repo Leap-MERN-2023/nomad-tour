@@ -8,7 +8,7 @@ import { FaYoutube } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className="flex flex-col justify-center items-center  text-white bg-black">
-      <div className="flex w-full justify-evenly 2xl:w-3/4 2xl:justify-between items-center p-7 2xl:py-10">
+      <div className="flex w-full justify-evenly lg:w-3/4 lg:justify-between 2xl:w-3/4 2xl:justify-between items-center p-7 2xl:py-10">
         <div className=" flex flex-col  gap-3 lg:flex-row lg:gap-16  2xl:w-1/2 2xl:justify-between 2xl:mr-28">
           <div className="flex-initial ">
             <h1 className="text-lg md:text-2xl font-bold lg:text-4xl 2xl:text-4xl 2xl:my-5">
@@ -25,9 +25,10 @@ const Footer = () => {
               Company
             </h1>
             <h1 className="text-sm lg:text-lg 2xl:text-xl">
-              <h1>Help center</h1>
-              <h1>Safety information</h1>
-              <h1>Cancelation options</h1>
+              <h1>About us</h1>
+              <h1>Privacy policy</h1>
+              <h1>Community Blog</h1>
+              <h1>Terms of servise</h1>
             </h1>
           </div>
         </div>
@@ -38,9 +39,10 @@ const Footer = () => {
               Contact
             </h1>
             <h1 className="text-sm lg:text-lg 2xl:text-xl">
-              <h1>Help center</h1>
-              <h1>Safety information</h1>
-              <h1>Cancelation options</h1>
+              <h1>FAQ</h1>
+              <h1>CAQ</h1>
+              <h1>Get in touch</h1>
+              <h1>Partnerships</h1>
             </h1>
           </div>
           <div className="flex-initial ">
