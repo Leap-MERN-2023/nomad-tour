@@ -65,14 +65,14 @@ const Navbar = (props: Props) => {
                     setToggle(!toggle);
                   }}
                 >
-                  <a href={`#${nav.url}`}>{nav.name}</a>
+                  <a href={`${nav.url}`}>{nav.name}</a>
                 </li>
               ))}
             </ul>
           </div>
           <ul className="list-none hidden sm:flex flex-row gap-10 font-extralight">
             {navItems.map((item) => (
-              <li>
+              <li key={item.name}>
                 <a href={item.url}>{item.name}</a>
               </li>
             ))}

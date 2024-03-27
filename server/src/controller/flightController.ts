@@ -13,11 +13,17 @@ export const CreateFlight = async (req: Request, res: Response) => {
 };
 export const getFlights = async (req: Request, res: Response) => {
   try {
-    const allFlights = await Flight.find();
+    const allFlights = await Flight.find().populate([
+      "departureAirportId",
+      "arrivalAirportId",
+      "countryId",
+    ]);
+    console.log("first", allFlights);
     res
       .status(200)
       .json({ message: "Succesfully get all flights", allFlights });
   } catch (error) {
+    console.log("ERR", error);
     res.status(500).json({ message: "failed to get flights", error });
   }
 };

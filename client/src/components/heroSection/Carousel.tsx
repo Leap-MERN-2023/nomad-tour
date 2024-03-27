@@ -21,7 +21,7 @@ const Carousel = (props: Props) => {
         autoplay={{ delay: 5000 }}
       >
         {carouselImages.map((img) => (
-          <SwiperSlide>
+          <SwiperSlide key={img.src}>
             <img
               className="w-full h-[700px] object-cover"
               src={img.src}
