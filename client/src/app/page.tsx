@@ -1,4 +1,11 @@
-import { HeroSection, Country, HotelCard } from "@/components";
+import {
+  HeroSection,
+  Country,
+  HotelSection,
+  NewsSection,
+  TestSection,
+} from "@/components";
+import Footer from "@/components/Footer";
 import Image from "next/image";
 
 export default function Home() {
@@ -6,7 +13,10 @@ export default function Home() {
     <main className=" ">
       <HeroSection />
       <Country />
-      <HotelCard />
+      <HotelSection />
+      <NewsSection />
+      <TestSection />
+      <Footer />
     </main>
   );
 }
