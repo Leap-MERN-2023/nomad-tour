@@ -1,12 +1,13 @@
+import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AirPortProvider from "@/context/airportProvider";
-import CountryProvider from "@/context/CountryProvider";
-import HotelProvider from "@/context/hotelProvider";
-import { UserContext, UserProvider } from "@/context/UserProvider";
-import FlightProvider from "@/context/flightProvider";
-import Navbar from "@/components/heroSection/navbar";
+import AirPortProvider from "../context/airportProvider";
+import CountryProvider from "../context/CountryProvider"
+import HotelProvider from "../context/hotelProvider";
+import { UserContext, UserProvider } from "../context/UserProvider";
+import FlightProvider from "../context/flightProvider";
+import Navbar from "../components/heroSection/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
