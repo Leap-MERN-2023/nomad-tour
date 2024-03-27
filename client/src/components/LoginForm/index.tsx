@@ -1,4 +1,4 @@
-import { UserContext } from "@/context/UserProvider";
+import { UserContext } from "../../context/UserProvider";
 import React, { useState } from "react";
 import { useContext } from "react";
 import * as yup from "yup";
