@@ -1,10 +1,10 @@
-"use client"
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/free-mode';
-import 'swiper/css/pagination';
-import TestimonialCard from "@/components/testimonialCard"
-import { FreeMode, Pagination } from 'swiper/modules';
+"use client";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/free-mode";
+import "swiper/css/pagination";
+import TestimonialCard from "@/components/testimonialCard";
+import { FreeMode, Pagination } from "swiper/modules";
 
 export default function slider() {
   return (
@@ -18,11 +18,15 @@ export default function slider() {
           clickable: true,
         }}
         modules={[FreeMode, Pagination]}
-        className="w-full h-full gap-6" 
+        className="w-full h-full gap-6"
       >
-        <SwiperSlide><TestimonialCard/></SwiperSlide>
-        <SwiperSlide><TestimonialCard/></SwiperSlide>
+        <SwiperSlide>
+          <TestimonialCard />
+        </SwiperSlide>
+        <SwiperSlide>
+          <TestimonialCard />
+        </SwiperSlide>
       </Swiper>
     </>
   );
-};
+}
