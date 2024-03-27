@@ -1,12 +1,3 @@
-<<<<<<< Updated upstream
-"use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
-import TestimonialCard from "@/components/testimonialCard";
-import { FreeMode, Pagination } from "swiper/modules";
-=======
 "use client"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -15,7 +6,6 @@ import 'swiper/css/pagination';
 import TestimonialCard from "@/components/testimonialCard"
 import { FreeMode, Pagination } from 'swiper/modules';
 import { carouselImages } from '@/constants';
->>>>>>> Stashed changes
 
 export default function slider() {
   return (
@@ -27,18 +17,6 @@ export default function slider() {
           watchOverflow={true}
           pagination={{
           clickable: true,
-<<<<<<< Updated upstream
-        }}
-        modules={[FreeMode, Pagination]}
-        className="w-full h-full gap-6"
-      >
-        <SwiperSlide>
-          <TestimonialCard />
-        </SwiperSlide>
-        <SwiperSlide>
-          <TestimonialCard />
-        </SwiperSlide>
-=======
           }}
           breakpoints={{
             280: {
@@ -70,7 +48,6 @@ export default function slider() {
             <TestimonialCard />
           </SwiperSlide>
           ))}
->>>>>>> Stashed changes
       </Swiper>
     </>
   );
