@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import AirPortProvider from "@/context/airportProvider";
-import CountryProvider from "@/context/CountryProvider";
-import HotelProvider from "@/context/hotelProvider";
-import { UserContext, UserProvider } from "@/context/UserProvider";
+import AirPortProvider from "../context/airportProvider";
+import CountryProvider from "../context/CountryProvider";
+import HotelProvider from "../context/hotelProvider";
+import { UserContext, UserProvider } from "../context/UserProvider";
+import FlightProvider from "../context/flightProvider";
+import Navbar from "../components/heroSection/navbar";
 import { ToastContainer } from 'react-toastify';
   import 'react-toastify/dist/ReactToastify.css';
 
@@ -27,7 +29,8 @@ export default function RootLayout({
         <UserProvider>
           <CountryProvider>
             <HotelProvider>
-              <AirPortProvider>{children}
+              <AirPortProvider>
+                {children}
               <ToastContainer/>
               </AirPortProvider>
             </HotelProvider>

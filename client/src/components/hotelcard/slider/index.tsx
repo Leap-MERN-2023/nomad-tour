@@ -1,8 +1,8 @@
-"use client"
-import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { carouselImages } from '@/constants';
-import { Pagination } from 'swiper/modules';
+"use client";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { carouselImages } from "@/constants";
+import { Pagination } from "swiper/modules";
 
 export default function slider() {
   return (
@@ -16,7 +16,7 @@ export default function slider() {
         className="w-full h-48 absolute"
       >
         {carouselImages.map((img) => (
-          <SwiperSlide>
+          <SwiperSlide key={img.src}>
             <img
               className="w-full h-48 rounded-btn object-cover"
               src={img.src}

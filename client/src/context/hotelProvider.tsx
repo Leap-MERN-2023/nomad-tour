@@ -16,7 +16,7 @@ interface IHotel {
 
 interface IHotelContext {
   hotels: IHotel[];
-  getHotels: () => void;
+  // getHotels: () => void;
 }
 
 export const HotelContext = createContext<IHotelContext>({} as IHotelContext);
@@ -41,13 +41,11 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    getHotels;
+    getHotels();
   }, [!ref]);
 
   return (
-    <HotelContext.Provider value={{ hotels, getHotels }}>
-      {children}
-    </HotelContext.Provider>
+    <HotelContext.Provider value={{ hotels }}>{children}</HotelContext.Provider>
   );
 };
 
