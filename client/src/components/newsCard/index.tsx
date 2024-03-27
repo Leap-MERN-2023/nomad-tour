@@ -4,11 +4,11 @@ import Slider from './slider';
 
 const index = () => {
   return (
-    <div className="bg-white rounded-3xl min-[280px]:w-64 sm:w-72 md:w-72 lg:w-80 xl:w-96 2xl:w-96">
-        <figure className='min[280px]:w-64 sm:w-72 md:w-72 lg:w-80 xl:w-96 2xl:96'>
+    <div className="bg-white rounded-3xl min-[280px]:w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-full">
+        <figure className='min[280px]:w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-full'>
             <Slider/>
         </figure>
-         <div className="card-body">
+         <div className="">
            <p className='flex items-center gap-1'><img src='calendar.png'/> Febraury 20,2024</p>
            <h2 className="card-title">Delicious restaurant at Hanalei Bay</h2>
            <p className='text-justify '>Lorem Ipsum is simply dummy text of the printing and typeset industry. Lorem Ipsum has been lorem ...</p>
