@@ -4,6 +4,7 @@ import 'swiper/css';
 import 'swiper/css/effect-coverflow';
 import 'swiper/css/pagination';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
+import { carouselImages } from '@/constants';
 
 export default function slider() {
   return (
@@ -22,20 +23,13 @@ export default function slider() {
         }}
         pagination={true}
         modules={[EffectCoverflow, Pagination]}
-        className="w-[320px] h-[200px] rounded-t-3xl"
+        className="w-full rounded-t-3xl"
       >
-        <SwiperSlide>
-          <img className='w-full h-full' src="https://swiperjs.com/demos/images/nature-1.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full h-full' src="https://swiperjs.com/demos/images/nature-2.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full h-full' src="https://swiperjs.com/demos/images/nature-3.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img className='w-full h-full' src="https://swiperjs.com/demos/images/nature-4.jpg" />
-        </SwiperSlide>
+         {carouselImages.map((img,index) => (
+          <SwiperSlide key={index}>
+             <img src={img.src}/>
+          </SwiperSlide>
+          ))}
       </Swiper>
     </>
   );
