@@ -7,6 +7,7 @@ import HotelProvider from "@/context/hotelProvider";
 import { UserContext, UserProvider } from "@/context/UserProvider";
 import FlightProvider from "@/context/flightProvider";
 import Navbar from "@/components/heroSection/navbar";
+import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,6 +33,7 @@ export default function RootLayout({
                   <main>
                     <Navbar />
                     {children}
+                    <Footer />
                   </main>
                 </FlightProvider>
               </AirPortProvider>
