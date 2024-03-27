@@ -5,6 +5,8 @@ import AirPortProvider from "@/context/airportProvider";
 import CountryProvider from "@/context/CountryProvider";
 import HotelProvider from "@/context/hotelProvider";
 import { UserContext, UserProvider } from "@/context/UserProvider";
+import { ToastContainer } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,9 @@ export default function RootLayout({
         <UserProvider>
           <CountryProvider>
             <HotelProvider>
-              <AirPortProvider>{children}</AirPortProvider>
+              <AirPortProvider>{children}
+              <ToastContainer/>
+              </AirPortProvider>
             </HotelProvider>
           </CountryProvider>
         </UserProvider>

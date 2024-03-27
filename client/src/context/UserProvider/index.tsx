@@ -23,6 +23,7 @@ export interface IUserContext {
   token: string | null;
   login: (email: string, password: string) => void;
   handleChangeUser: any;
+  signup: (email: string, password:string, phoneNumber:string, name: string)=>void
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -35,6 +36,7 @@ export const UserContext = createContext<IUserContext>({
   token: "",
   login: function () {},
   handleChangeUser() {},
+  signup: function(){}
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
@@ -74,43 +76,42 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      // toast("amjilttai nevterlee");
+      toast("amjilttai nevterlee");
       // alert("amjilttai nevterlee");
-      <ToastContainer/>
+   
     } catch (error) {
       toast.error("nevtrelt amjiltgui");
     }
   };
 
-  // const signup = async (
-  //   email: string,
-  //   password: string,
-  //   name: string,
-  //   phoneNumber: string
-  // ) => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.set("name", newUser.name);
-  //     formData.set("email", newUser.email);
-  //     formData.set("password", newUser.password);
-  //     formData.set("phoneNumber", newUser.phoneNumber);
+  const signup = async (
+    email: string,
+    password: string,
+    name: string,
+    phoneNumber: string
+  ) => {
+    try {
+      const newUser = new FormData();
+      newUser.set("name", name);
+      newUser.set("email", email);
+      newUser.set("password", password);
+      newUser.set("phoneNumber", phoneNumber);
 
-  //     const token = localStorage.getItem("token");
-
-  //     await axios.post("http://localhost:8008/auth/signup"),
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       };
-  //   } catch (error: any) {
-  //     alert("Error" + error.message);
-  //   }
-  // };
+      const token = localStorage.getItem("token");
+console.log("gore", newUser)
+      await axios.post("http://localhost:8008/auth", newUser, { 
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      toast("amjilttai burtguullee");
+    } catch (error: any) {
+      toast.error("Signup failed: " + error.message);
+    }
+  };
 
   return (
-    <UserContext.Provider value={{ login, user, token, handleChangeUser }}>
+    <UserContext.Provider value={{ login, user, token, handleChangeUser, signup }}>
       {children}
     </UserContext.Provider>
   );
