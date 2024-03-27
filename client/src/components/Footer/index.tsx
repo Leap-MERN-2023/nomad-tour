@@ -14,22 +14,22 @@ const Footer = () => {
             <h1 className="text-lg md:text-2xl font-bold lg:text-4xl 2xl:text-4xl 2xl:my-5">
               Support
             </h1>
-            <h1 className="text-sm lg:text-lg 2xl:text-xl">
+            <div className="text-sm lg:text-lg 2xl:text-xl">
               <h1>Help center</h1>
               <h1>Safety information</h1>
               <h1>Cancelation options</h1>
-            </h1>
+            </div>
           </div>
           <div className="flex-initial">
             <h1 className="text-lg md:text-2xl font-bold lg:text-4xl 2xl:text-4xl 2xl:my-5">
               Company
             </h1>
-            <h1 className="text-sm lg:text-lg 2xl:text-xl">
+            <div className="text-sm lg:text-lg 2xl:text-xl">
               <h1>About us</h1>
               <h1>Privacy policy</h1>
               <h1>Community Blog</h1>
               <h1>Terms of servise</h1>
-            </h1>
+            </div>
           </div>
         </div>
         {/* //////// */}
@@ -38,15 +38,14 @@ const Footer = () => {
             <h1 className="text-lg md:text-2xl font-bold lg:text-4xl 2xl:text-4xl 2xl:my-5">
               Contact
             </h1>
-            <h1 className="text-sm lg:text-lg 2xl:text-xl">
+            <div className="text-sm lg:text-lg 2xl:text-xl">
               <h1>FAQ</h1>
               <h1>CAQ</h1>
               <h1>Get in touch</h1>
               <h1>Partnerships</h1>
-            </h1>
+            </div>
           </div>
           <div className="flex-initial ">
-            {" "}
             <h1 className="text-lg md:text-2xl font-bold mb-1 lg:text-4xl 2xl:text-4xl 2xl:my-5">
               Social
             </h1>
