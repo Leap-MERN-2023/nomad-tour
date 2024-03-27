@@ -9,7 +9,6 @@ type Props = {};
 const HeroSection = (props: Props) => {
   return (
     <section className="w-full relative bg-white ">
-      <Navbar />
       <Carousel />
       <div className="w-full flex justify-center items-center relative z-10 sm:px-16 px-6 -mt-[350px] sm:-mt-52">
         <Tabs />

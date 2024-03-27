@@ -14,7 +14,6 @@ export const getAirport = async (req: Request, res: Response) => {
   try {
     const airport = await Airport.find().populate("country", "name");
     res.status(200).json({ message: "Airport амжилттай олдлоо ", airport });
-    console.log("airports", airport);
   } catch (error) {
     console.log("get-error", error);
   }
@@ -25,12 +24,10 @@ export const updateAirport = async (req: Request, res: Response) => {
     const updateAirport = req.body;
     const airport = await Airport.findByIdAndUpdate(airportId, updateAirport);
 
-    res
-      .status(200)
-      .json({
-        message: `${airportId} -тай Airport шинэчлэгдлээ`,
-        updateAirport,
-      });
+    res.status(200).json({
+      message: `${airportId} -тай Airport шинэчлэгдлээ`,
+      updateAirport,
+    });
   } catch (error) {
     console.log("update-error", error);
   }

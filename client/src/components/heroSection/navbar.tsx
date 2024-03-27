@@ -65,7 +65,7 @@ const Navbar = (props: Props) => {
                     setToggle(!toggle);
                   }}
                 >
-                  <a href={`#${nav.url}`}>{nav.name}</a>
+                  <a href={`${nav.url}`}>{nav.name}</a>
                 </li>
               ))}
             </ul>

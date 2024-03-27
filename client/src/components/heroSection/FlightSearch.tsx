@@ -7,6 +7,7 @@ import { CountryContext } from "@/context/CountryProvider";
 import { AirPortContext } from "@/context/airportProvider";
 
 import { flightClasses } from "@/constants";
+import Link from "next/link";
 
 type Props = {};
 
@@ -41,9 +42,11 @@ const FlightSearch = (props: Props) => {
           />
           <MySelect datas={flightClasses} />
         </div>
-        <button className="btn bg-[#0281B0] mt-4 border-0 text-white hover:bg-blue-300">
-          Search
-        </button>
+        <Link href={"/searchFlight"}>
+          <button className="btn bg-[#0281B0] mt-4 border-0 text-white hover:bg-blue-300">
+            Search
+          </button>
+        </Link>
       </div>
     </div>
   );

@@ -28,15 +28,11 @@ export const getHotels = async (
 ) => {
   try {
     const { countryId } = req.params;
-    console.log("id", countryId);
     const findHotel = await Hotel.find();
 
     const filteredHotels = findHotel.filter(
       (el) => el.country.toString() === countryId
     );
-
-    console.log("Filter", filteredHotels);
-
     res
       .status(200)
       .json({ message: "Successfully get hotels.", filteredHotels });
@@ -54,9 +50,7 @@ export const getHotel = async (
   next: NextFunction
 ) => {
   try {
-    console.log("Id", req.params);
     const { hotelId } = req.params;
-
     const hotel = await Hotel.findById(hotelId);
     res.status(200).json({ message: "Succesfully get hotel", hotel });
   } catch (error) {

@@ -1,6 +1,6 @@
 import { carousel1, carousel2, carousel3, carousel4 } from "@/assets";
 const navItems = [
-  { name: "Home", url: "#home" },
+  { name: "Home", url: "/" },
   { name: "Hotels", url: "#hotels" },
   { name: "Countries", url: "#countries" },
   { name: "Testimonials", url: "#testimonials" },

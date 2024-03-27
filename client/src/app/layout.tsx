@@ -5,6 +5,8 @@ import AirPortProvider from "@/context/airportProvider";
 import CountryProvider from "@/context/CountryProvider";
 import HotelProvider from "@/context/hotelProvider";
 import { UserContext, UserProvider } from "@/context/UserProvider";
+import FlightProvider from "@/context/flightProvider";
+import Navbar from "@/components/heroSection/navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +27,14 @@ export default function RootLayout({
         <UserProvider>
           <CountryProvider>
             <HotelProvider>
-              <AirPortProvider>{children}</AirPortProvider>
+              <AirPortProvider>
+                <FlightProvider>
+                  <main>
+                    <Navbar />
+                    {children}
+                  </main>
+                </FlightProvider>
+              </AirPortProvider>
             </HotelProvider>
           </CountryProvider>
         </UserProvider>

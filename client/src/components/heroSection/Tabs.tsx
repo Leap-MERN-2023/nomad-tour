@@ -14,7 +14,7 @@ function classNames(...classes: any) {
 
 export default function Tabs() {
   const { countries } = useContext(CountryContext);
-  const [selectedItem, setSelectedItem] = useState("Flight");
+  const [selectedItem, setSelectedItem] = useState("Country");
   let [categories] = useState([
     {
       name: "Country",
