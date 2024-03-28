@@ -4,14 +4,8 @@ import { HotelContext } from "@/context/hotelProvider";
 import HotelCard from "@/components/hotelcard";
 
 const Hotel = () => {
-  const { hotels } = useContext(HotelContext);
-  return (
-    <div>
-      {hotels?.map((hotel) => (
-        <HotelCard hotel={hotel} />
-      ))}
-    </div>
-  );
+  const { allHotel } = useContext(HotelContext);
+  return <div>{allHotel?.map((hotel) => <HotelCard hotel={hotel} />)}</div>;
 };
 
 export default Hotel;
