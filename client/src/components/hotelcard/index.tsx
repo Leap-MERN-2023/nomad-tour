@@ -16,7 +16,7 @@ const HotelCard = ({ hotel }: any) => {
       </figure>
       <div className="card-body bg-white rounded-b-2xl">
         <div className="flex justify-between">
-          <h2 className="text-2xl font-bold text-black">The Oasis</h2>
+          <h2 className="text-2xl font-bold text-black">{hotel.name}</h2>
           <h2 className="text-2xl font-bold text-black">10000$</h2>
         </div>
         <div className="flex justify-center items-center gap-1">
