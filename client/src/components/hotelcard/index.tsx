@@ -6,7 +6,7 @@ import { IHotel } from "../../types";
 
 const HotelCard = ({ hotel }: any) => {
   return (
-    <div className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex m-auto w-[300px]">
+    <div className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex m-auto w-full">
       <figure className="relative">
         <Slider images={hotel.images} />
         <div className="flex justify-center items-center absolute z-10 bg-neutral-600 px-2 right-4 top-4 text-white gap-1 rounded-lg">
