@@ -6,6 +6,7 @@ import {
   TestSection,
 } from "@/components";
 import Footer from "@/components/Footer";
+import { EmailSection } from "@/components/emailSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,6 +17,7 @@ export default function Home() {
       <HotelSection />
       <NewsSection />
       <TestSection />
+      <EmailSection />
       <Footer />
     </main>
   );

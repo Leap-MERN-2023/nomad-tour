@@ -8,8 +8,10 @@ import {
   useContext,
   ChangeEvent,
 } from "react";
+import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { CgLayoutGrid } from "react-icons/cg";
 
 export interface IUser {
   name: string;
@@ -23,6 +25,13 @@ export interface IUserContext {
   token: string | null;
   login: (email: string, password: string) => void;
   handleChangeUser: any;
+  signup: (
+    email: string,
+    password: string,
+    phoneNumber: string,
+    name: string
+  ) => void;
+
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -35,10 +44,13 @@ export const UserContext = createContext<IUserContext>({
   token: "",
   login: function () {},
   handleChangeUser() {},
+  signup: function () {},
+ 
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
+
 
   const [user, setUser] = useState<IUser>({
     name: "",
@@ -74,43 +86,44 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      // toast("amjilttai nevterlee");
+      toast("амжилттай нэвтэрлээ");
       // alert("amjilttai nevterlee");
-      <ToastContainer/>
     } catch (error) {
-      toast.error("nevtrelt amjiltgui");
+      toast.error("Нэвтрэлт амжилтгүй");
     }
   };
 
-  // const signup = async (
-  //   email: string,
-  //   password: string,
-  //   name: string,
-  //   phoneNumber: string
-  // ) => {
-  //   try {
-  //     const formData = new FormData();
-  //     formData.set("name", newUser.name);
-  //     formData.set("email", newUser.email);
-  //     formData.set("password", newUser.password);
-  //     formData.set("phoneNumber", newUser.phoneNumber);
-
-  //     const token = localStorage.getItem("token");
-
-  //     await axios.post("http://localhost:8008/auth/signup"),
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       };
-  //   } catch (error: any) {
-  //     alert("Error" + error.message);
-  //   }
-  // };
+  const signup = async (
+    email: string,
+    password: string,
+    name: string,
+    phoneNumber: string
+  ) => {
+    console.log("AAA", email, password, name, phoneNumber)
+    try {
+      const { data } = await axios.post("http://localhost:8008/auth", {
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber,
+        name: name,
+      });
+      console.log("DATA: ", data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
+      setUser(data.token);
+      router.push("/");
+      toast("Амжилттай бүртгүүллээ");
+      // alert("amjilttai nevterlee");
+    } catch (error: any) {
+      toast.error("Signup failed: " + error.message);
+    }
+  };
 
   return (
-    <UserContext.Provider value={{ login, user, token, handleChangeUser }}>
+    <UserContext.Provider
+      value={{ login, user, token, handleChangeUser, signup }}
+    >
       {children}
     </UserContext.Provider>
   );
