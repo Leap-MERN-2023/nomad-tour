@@ -1,14 +1,18 @@
 "use client";
 import { navItems } from "@/constants";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { LoginForm } from "../LoginForm";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
+import { UserContext } from "@/context/UserProvider";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  
+
+
   const [open, setOpen] = useState(false);
   const openForm = () => {
     setOpen(() => true);
@@ -16,8 +20,11 @@ const Navbar = (props: Props) => {
   const closeForm = () => {
     setOpen(() => false);
   };
+
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
+
+  
   return (
     <>
       <div
