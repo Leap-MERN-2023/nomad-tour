@@ -11,6 +11,7 @@ export const signup = async (
   next: NextFunction
 ) => {
   try {
+    console.log("REQ: ", req.body);
     const newUser = req.body;
     console.log("user-------", newUser);
     const salt = await bcrypt.genSalt(10);

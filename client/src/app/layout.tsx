@@ -3,11 +3,14 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import AirPortProvider from "../context/airportProvider";
-import CountryProvider from "../context/CountryProvider"
+import CountryProvider from "../context/CountryProvider";
 import HotelProvider from "../context/hotelProvider";
 import { UserContext, UserProvider } from "../context/UserProvider";
 import FlightProvider from "../context/flightProvider";
 import Navbar from "../components/heroSection/navbar";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,10 +33,10 @@ export default function RootLayout({
             <HotelProvider>
               <AirPortProvider>
                 <FlightProvider>
-                  <main>
-                    <Navbar />
-                    {children}
-                  </main>
+                  <Navbar />
+                  {children}
+
+                  <ToastContainer />
                 </FlightProvider>
               </AirPortProvider>
             </HotelProvider>

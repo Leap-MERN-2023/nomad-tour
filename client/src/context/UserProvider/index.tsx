@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import  {
+import {
   useState,
   useEffect,
   createContext,
@@ -24,7 +24,12 @@ export interface IUserContext {
   token: string | null;
   login: (email: string, password: string) => void;
   handleChangeUser: any;
-  signup: (email: string, password:string, phoneNumber:string, name: string)=>void
+  signup: (
+    email: string,
+    password: string,
+    phoneNumber: string,
+    name: string
+  ) => void;
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -37,7 +42,7 @@ export const UserContext = createContext<IUserContext>({
   token: "",
   login: function () {},
   handleChangeUser() {},
-  signup: function(){}
+  signup: function () {},
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
@@ -79,7 +84,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       router.push("/");
       toast("amjilttai nevterlee");
       // alert("amjilttai nevterlee");
-   
     } catch (error) {
       toast.error("nevtrelt amjiltgui");
     }
@@ -92,27 +96,29 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     phoneNumber: string
   ) => {
     try {
-      const newUser = new FormData();
-      newUser.set("name", name);
-      newUser.set("email", email);
-      newUser.set("password", password);
-      newUser.set("phoneNumber", phoneNumber);
-
-      const token = localStorage.getItem("token");
-console.log("gore", newUser)
-      await axios.post("http://localhost:8008/auth", newUser, { 
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+      const { data } = await axios.post("http://localhost:8008/auth/signup", {
+        email: email,
+        password: password,
+        phoneNumber: phoneNumber,
+        name: name,
       });
-      toast("amjilttai burtguullee");
+      console.log("DATA: ", data);
+      localStorage.setItem("token", data.token);
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
+      setUser(data.token);
+      router.push("/");
+      toast("amjiltta burtgelee");
+      // alert("amjilttai nevterlee");
     } catch (error: any) {
       toast.error("Signup failed: " + error.message);
     }
   };
 
   return (
-    <UserContext.Provider value={{ login, user, token, handleChangeUser, signup }}>
+    <UserContext.Provider
+      value={{ login, user, token, handleChangeUser, signup }}
+    >
       {children}
     </UserContext.Provider>
   );
