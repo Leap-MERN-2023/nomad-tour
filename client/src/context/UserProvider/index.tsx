@@ -11,6 +11,7 @@ import {
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import { CgLayoutGrid } from "react-icons/cg";
 
 export interface IUser {
   name: string;
@@ -30,6 +31,7 @@ export interface IUserContext {
     phoneNumber: string,
     name: string
   ) => void;
+
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -43,10 +45,12 @@ export const UserContext = createContext<IUserContext>({
   login: function () {},
   handleChangeUser() {},
   signup: function () {},
+ 
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
+
 
   const [user, setUser] = useState<IUser>({
     name: "",
@@ -82,10 +86,10 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      toast("amjilttai nevterlee");
+      toast("амжилттай нэвтэрлээ");
       // alert("amjilttai nevterlee");
     } catch (error) {
-      toast.error("nevtrelt amjiltgui");
+      toast.error("Нэвтрэлт амжилтгүй");
     }
   };
 
@@ -95,8 +99,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     name: string,
     phoneNumber: string
   ) => {
+    console.log("AAA", email, password, name, phoneNumber)
     try {
-      const { data } = await axios.post("http://localhost:8008/auth/signup", {
+      const { data } = await axios.post("http://localhost:8008/auth", {
         email: email,
         password: password,
         phoneNumber: phoneNumber,
@@ -108,7 +113,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      toast("amjiltta burtgelee");
+      toast("Амжилттай бүртгүүллээ");
       // alert("amjilttai nevterlee");
     } catch (error: any) {
       toast.error("Signup failed: " + error.message);
