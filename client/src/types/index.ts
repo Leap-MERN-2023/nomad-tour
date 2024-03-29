@@ -21,7 +21,7 @@ export interface IFlight {
   departureAirportId: IAirport;
   countryId: ICountry;
   availableSeats: number;
-  arrivalDate: Date;
-  departureDate: Date;
+  arrivalDate: string;
+  departureDate: string;
   price: IPrice;
 }

@@ -13,7 +13,7 @@ const HotelCard = () => {
           <h1>4.8</h1>
         </div>
       </figure>
-      <div className="card-body">
+      <div className="card-body bg-white rounded-b-2xl">
         <div className="flex justify-between">
           <h2 className="text-2xl font-bold text-black">The Oasis</h2>
           <h2 className="text-2xl font-bold text-black">10000$</h2>

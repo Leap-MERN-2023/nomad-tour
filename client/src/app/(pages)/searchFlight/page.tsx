@@ -11,7 +11,9 @@ const pageSearchFlights = (props: Props) => {
       <div className="w-full flex justify-center items-center relative z-10 sm:px-16 px-6 pt-32">
         <Tabs />
       </div>
-      <FlightInfo />
+      <div className="w-full flex flex-col items-center">
+        <FlightInfo />
+      </div>
     </div>
   );
 };
