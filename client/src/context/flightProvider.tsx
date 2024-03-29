@@ -13,7 +13,6 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getFlights = async () => {
     try {
       const { data } = await axios.get("http://localhost:8008/flight");
-      console.log("FLIGHT DATA", data);
       setFlights(data.allFlights);
     } catch (error) {
       console.log("ERROR IN GET FLIGHTS", error);

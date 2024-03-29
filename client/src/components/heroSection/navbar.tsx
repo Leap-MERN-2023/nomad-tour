@@ -22,11 +22,11 @@ const Navbar = (props: Props) => {
     <>
       <div
         className="sm:px-16 px-6 w-full
-    flex items-center py-5 fixed z-40 bg-gray-400 h-20 blur-sm opacity-40"
+    flex items-center py-5 fixed z-40 bg-gray-600 h-20 opacity-60 "
       ></div>
       <nav
         className="sm:px-16 px-6 w-full text-white 
-    flex items-center py-5 fixed z-50 "
+    flex items-center py-5 fixed z-50 backdrop-blur-sm"
       >
         <div
           className="w-full flex justify-between 
