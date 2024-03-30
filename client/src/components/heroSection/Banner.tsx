@@ -25,7 +25,7 @@ const Banner = (props: Props) => {
   ];
   return (
     <div className="mt-28  sm:px-16 px-6 w-full max-w-7xl mx-auto text-center">
-      <h1 className="text-3xl text-black font-bold tracking-wide">
+      <h1 className="text-3xl md:text-5xl text-black font-bold tracking-wide">
         WHY CHOOSE US?
       </h1>
       <div className="mt-10 flex flex-wrap justify-around gap-6">

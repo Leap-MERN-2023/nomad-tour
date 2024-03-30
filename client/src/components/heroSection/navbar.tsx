@@ -10,9 +10,6 @@ import { UserContext } from "@/context/UserProvider";
 type Props = {};
 
 const Navbar = (props: Props) => {
-  
-
-
   const [open, setOpen] = useState(false);
   const openForm = () => {
     setOpen(() => true);
@@ -24,7 +21,6 @@ const Navbar = (props: Props) => {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
 
-  
   return (
     <>
       <div
@@ -40,7 +36,7 @@ const Navbar = (props: Props) => {
       items-center max-w-7xl mx-auto"
         >
           <Link
-            href="/"
+            href="#home"
             onClick={() => {
               window.scrollTo(0, 0);
             }}

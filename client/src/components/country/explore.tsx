@@ -59,7 +59,7 @@ const Explore = ({ country }: { country: Country }) => {
                 >
                   <img
                     key={index}
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                     src={image}
                     alt=""
                   />
