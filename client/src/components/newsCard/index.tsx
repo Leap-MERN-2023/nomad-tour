@@ -4,8 +4,8 @@ import Slider from "./slider";
 
 const index = () => {
   return (
-    <div className="bg-white shadow-xl rounded-3xl min-[280px]:w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-full">
-      <figure className="min[280px]:w-full sm:w-full md:w-full lg:w-full xl:w-full 2xl:w-full">
+    <div className="bg-white shadow-xl rounded-3xl max-w-sm">
+      <figure className="">
         <Slider />
       </figure>
       <div className="p-5">
