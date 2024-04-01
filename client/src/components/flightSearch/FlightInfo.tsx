@@ -3,6 +3,7 @@ import { FlightContext } from "@/context/flightProvider";
 import { IFlight } from "@/types";
 import React, { useContext } from "react";
 import { MdFlight } from "react-icons/md";
+import { IoFilterOutline } from "react-icons/io5";
 
 type Props = {};
 
@@ -10,7 +11,10 @@ const FlightInfo = (props: Props) => {
   const { flights } = useContext(FlightContext);
   console.log("FLIGHT DATA", flights);
   return (
-    <div className="w-full max-w-7xl flex flex-col items-center sm:px-16 px-6">
+    <div className=" flex flex-col items-center">
+      <button className="btn w-full mt-5 btn-outline xl:hidden">
+        <IoFilterOutline /> Filter{" "}
+      </button>
       {flights?.map((flight: IFlight) => {
         return (
           <div
