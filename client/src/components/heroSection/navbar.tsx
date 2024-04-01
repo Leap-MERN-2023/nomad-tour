@@ -10,9 +10,6 @@ import { UserContext } from "@/context/UserProvider";
 type Props = {};
 
 const Navbar = (props: Props) => {
-  
-
-
   const [open, setOpen] = useState(false);
   const openForm = () => {
     setOpen(() => true);
@@ -24,7 +21,6 @@ const Navbar = (props: Props) => {
   const [toggle, setToggle] = useState(false);
   const [active, setActive] = useState("");
 
-  
   return (
     <>
       <div
@@ -40,7 +36,7 @@ const Navbar = (props: Props) => {
       items-center max-w-7xl mx-auto"
         >
           <Link
-            href="/"
+            href="#home"
             onClick={() => {
               window.scrollTo(0, 0);
             }}
@@ -72,19 +68,36 @@ const Navbar = (props: Props) => {
                     setToggle(!toggle);
                   }}
                 >
-                  <a href={`${nav.url}`}>{nav.name}</a>
+                  {nav.url === "login" ? (
+                    <button
+                      className="bg-blue-400 text-white"
+                      onClick={openForm}
+                    >
+                      Login / Signup
+                    </button>
+                  ) : (
+                    <a href={`${nav.url}`}>{nav.name}</a>
+                  )}
                 </li>
               ))}
             </ul>
           </div>
-          <ul className="list-none hidden sm:flex flex-row gap-10 font-extralight">
+          <ul className="list-none hidden sm:flex items-center flex-row gap-10 font-extralight">
             {navItems.map((item) => (
               <li key={item.name}>
-                <a href={item.url}>{item.name}</a>
+                {item.url === "login" ? (
+                  <button
+                    className="btn border-0 hover:bg-blue-500 bg-[#0281B0] text-white"
+                    onClick={openForm}
+                  >
+                    Login / Signup
+                  </button>
+                ) : (
+                  <a href={item.url}>{item.name}</a>
+                )}
               </li>
             ))}
           </ul>
-          <button onClick={openForm}>Login</button>
           <LoginForm open={open} closeForm={closeForm} />
         </div>
       </nav>

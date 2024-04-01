@@ -34,14 +34,14 @@ const Explore = ({ country }: { country: Country }) => {
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden bg-[#00000080] 2xl:p-48 p-16">
         <div
           className="font-black text-[40px] 2xl:font-extrabold  
-        w-10/12 sm:text-7xl md:text-7xl lg:text-[100px] 
-        xl:text-[140px] 2xl:text-[180px]"
+        w-10/12 sm:text-5xl md:text-6xl lg:text-[90px] 
+        xl:text-[130px] 2xl:text-[150px]"
         >
           Explore {country.name}
         </div>
         <div className="border-b-2 border-white w-full 2xl:mt-20" />
         <div className="flex flex-col xl:flex-row 2xl:text-3xl w-full flex-wrap">
-          <div className="md:flex-1 flex-col justify-center items-center sm:justify-normal sm:items-start gap-5 text-xl mt-4 xl:mt-8 2xl:font-bold 2xl:text-2xl w-full">
+          <div className="md:flex-1 flex-col justify-center items-center sm:justify-normal sm:items-start gap-5 text-xl mt-4 xl:mt-8 2xl:text-2xl w-full">
             <div className="">{country.description}</div>
             <button className="flex justify-evenly items-center w-24 mt-8  bg-slate-50  text-black border-2 rounded-xl md:hidden p-1 xl:p-2 hover:bg-slate-300 text-sm xl:flex text-center xl:w-28 xl:text-sm">
               See all
@@ -59,7 +59,7 @@ const Explore = ({ country }: { country: Country }) => {
                 >
                   <img
                     key={index}
-                    className="w-full h-full"
+                    className="w-full h-full object-cover"
                     src={image}
                     alt=""
                   />

@@ -1,14 +1,18 @@
+"use client";
 import React from "react";
 import HotelCard from "../hotelcard";
+import SectionWrapper from "@/hoc/SectionCenterer";
 
 type Props = {};
 
 const hotelSection = (props: Props) => {
   return (
-    <div className="bg-white">
-      <section className="py-16 w-[56%] flex flex-col justify-center items-center mx-auto">
+    <div className="bg-[#f7f7f7] sm:px-16 px-6 w-full flex flex-col items-center">
+      <section className=" items-center max-w-7xl">
         <div className="flex items-center justify-center">
-          <h1 className="text-5xl font-extrabold">TOP HOTEL NOW</h1>
+          <h1 className="text-3xl md:text-5xl text-black font-bold tracking-wide">
+            TOP HOTEL NOW
+          </h1>
         </div>
         <div className="flex my-12 flex-wrap gap-12">
           <HotelCard />
@@ -26,4 +30,4 @@ const hotelSection = (props: Props) => {
   );
 };
 
-export default hotelSection;
+export default SectionWrapper(hotelSection, "hotels");
