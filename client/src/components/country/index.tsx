@@ -10,6 +10,7 @@ import "swiper/css";
 
 import { CountryContext } from "@/context/CountryProvider";
 import { Autoplay } from "swiper/modules";
+import SectionWrapper from "@/hoc/SectionCenterer";
 
 const Country = () => {
   const { countries } = useContext(CountryContext);
@@ -32,4 +33,4 @@ const Country = () => {
   );
 };
 
-export default Country;
+export default SectionWrapper(Country, "countries");

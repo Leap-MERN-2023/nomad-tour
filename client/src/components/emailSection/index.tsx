@@ -39,7 +39,7 @@ const handleSubscribe=()=>{
           </div>
           <div
             //  className="bg-white rounded-full md:p-3 md:w-full md:flex md:rounded-full"
-            className="bg-white rounded-xl h-26 flex flex-col md:rounded-full md:w-full md:flex md:p-3 md:flex-row"
+            className="bg-white rounded-xl h-26 flex flex-col md:rounded-full md:w-full md:flex md:flex-row"
           >
             <input
               className="bg-white w-full p-3 outline-none text-black rounded-full"
@@ -47,7 +47,7 @@ const handleSubscribe=()=>{
               value={email}
               onChange={handleInputChange}
             />
-            <button className="rounded-full bg-green-600 text-black  p-2 w-15 md:w-20 lg:w-36"
+            <button className="rounded-full bg-[#0281B0] text-white font-medium hover:bg-blue-500 p-2 w-15 md:w-20 lg:w-36"
             onClick={handleSubscribe}
             >
               

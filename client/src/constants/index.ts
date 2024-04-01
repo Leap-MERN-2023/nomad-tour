@@ -4,7 +4,7 @@ const navItems = [
   { name: "Hotels", url: "#hotels" },
   { name: "Countries", url: "#countries" },
   { name: "Testimonials", url: "#testimonials" },
-  // { name: "Login/Signup", url: "#login"}
+  { name: "Login/Signup", url: "login" },
 ];
 export const flightClasses = [
   { name: "Economy", value: "eco" },
