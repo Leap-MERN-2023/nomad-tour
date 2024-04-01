@@ -1,5 +1,7 @@
 "use client";
+import React, { useState } from "react";
 import { IoFilterOutline } from "react-icons/io5";
+import DrawerData from "./drawerData";
 
 export const HotelModal = () => {
   return (
@@ -20,15 +22,7 @@ export const HotelModal = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu p-4 w-80 min-h-full bg-base-200 text-base-content">
-          {/* Sidebar content here */}
-          <li>
-            <a>Sidebar Item 1</a>
-          </li>
-          <li>
-            <a>Sidebar Item 2</a>
-          </li>
-        </ul>
+        <DrawerData />
       </div>
     </div>
   );

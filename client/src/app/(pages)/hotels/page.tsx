@@ -9,6 +9,7 @@ const Page = () => {
       <div className="w-full flex justify-center items-center relative z-10 sm:px-16 px-6 pt-[92px]">
         <Tabs />
       </div>
+
       <Hotel />
     </div>
   );

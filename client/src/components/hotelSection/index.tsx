@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import HotelCard from "../hotelcard";
+import HotelCard from "../hotelcard/SerchHotelCard";
 import { HotelContext } from "@/context/hotelProvider";
 import { IHotel } from "../../types";
 import SectionWrapper from "@/hoc/SectionCenterer";
@@ -8,15 +8,15 @@ import SectionWrapper from "@/hoc/SectionCenterer";
 type Props = {};
 
 const hotelSection = (props: Props) => {
-  const { hotels }: any = useContext(HotelContext);
+  const { allHotel }: any = useContext(HotelContext);
   return (
     <section className="mt-12 w-[56%] flex flex-col justify-center items-center mx-auto">
       <div className="flex items-center justify-center">
         <h1 className="text-5xl font-extrabold">TOP HOTEL NOW</h1>
       </div>
       <div className="flex my-12 flex-wrap gap-12">
-        {hotels?.map((hotel: any) => (
-          <HotelCard hotel={hotel} />
+        {allHotel?.map((hotel: any) => (
+          <HotelCard hotels={hotel} />
         ))}
       </div>
       <div className="flex items-center justify-center">
