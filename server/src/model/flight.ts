@@ -6,6 +6,11 @@ const flightSchema = new Schema({
     ref: "Country",
     required: true,
   },
+  airline: {
+    type: Schema.ObjectId,
+    ref: "Airline",
+    required: true,
+  },
   departureDate: {
     type: Date,
     required: true,
@@ -25,13 +30,17 @@ const flightSchema = new Schema({
     required: true,
   },
   availableSeats: {
-    type: Number,
-    required: true,
+    type: String,
+    enum: ["eco", "ecoBusiness", "business", "first"],
   },
   price: {
     USD: Number,
     MNT: Number,
     CNY: Number,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
