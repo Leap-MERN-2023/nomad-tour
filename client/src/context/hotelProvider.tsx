@@ -63,10 +63,11 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   //Get hotel
 
   const getHotel = async (hotelId: string) => {
+    console.log("HotelId", hotelId);
     try {
       const {
         data: { hotel },
-      } = await axios.get("http://localhost:8008/hotels/" + hotelId);
+      } = await axios.get(`http://localhost:8008/hotels/${hotelId}`);
       console.log("HOTEl", hotel);
       setHotel(hotel);
     } catch (error) {

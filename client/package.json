@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.7.18",
+    "@react-google-maps/api": "^2.19.3",
     "axios": "^1.6.8",
     "formik": "^2.4.5",
     "framer-motion": "^11.0.12",

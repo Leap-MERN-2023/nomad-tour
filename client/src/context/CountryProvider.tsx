@@ -32,6 +32,7 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allCountry },
       } = await axios.get("http://localhost:8008/country");
+      console.log("Countyr", allCountry);
       setCountries(allCountry);
     } catch (error: any) {
       console.log("ERR", error);

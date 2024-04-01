@@ -67,6 +67,7 @@ export const getHotel = async (
 ) => {
   try {
     const { hotelId } = req.params;
+    console.log("hotelId", hotelId);
     const hotel = await Hotel.findById(hotelId);
     console.log("hotel", hotel);
     res.status(200).json({ message: "Succesfully get hotel", hotel });

@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { carouselImages } from "@/constants";
 import { Pagination } from "swiper/modules";
 
-export default function slider({ images }: any) {
+export default function slider({ hotel }: any) {
   return (
     <>
       <Swiper
@@ -15,7 +15,7 @@ export default function slider({ images }: any) {
         modules={[Pagination]}
         className="w-full h-48 absolute"
       >
-        {images?.map((img: string) => (
+        {hotel?.images?.map((img: string) => (
           <SwiperSlide key={img}>
             <img
               className="w-full h-48 rounded-btn object-cover"
