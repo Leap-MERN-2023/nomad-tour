@@ -3,6 +3,7 @@ import React from "react";
 import NewsCard from "../newsCard";
 import Slider from "./slider";
 import { url } from "inspector";
+import SectionWrapper from "@/hoc/SectionCenterer";
 
 type Props = {};
 
@@ -23,4 +24,4 @@ const testSection = (props: Props) => {
   );
 };
 
-export default testSection;
+export default SectionWrapper(testSection, "testimonials");

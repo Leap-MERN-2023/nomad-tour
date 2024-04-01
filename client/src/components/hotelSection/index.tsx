@@ -3,6 +3,7 @@ import React, { useContext } from "react";
 import HotelCard from "../hotelcard";
 import { HotelContext } from "@/context/hotelProvider";
 import { IHotel } from "../../types";
+import SectionWrapper from "@/hoc/SectionCenterer";
 
 type Props = {};
 
@@ -27,4 +28,4 @@ const hotelSection = (props: Props) => {
   );
 };
 
-export default hotelSection;
+export default SectionWrapper(hotelSection, "hotels");

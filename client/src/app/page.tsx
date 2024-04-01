@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <main className=" ">
       <HeroSection />
-      <Country />
       <HotelSection />
+      <Country />
       <NewsSection />
       <TestSection />
     </main>
