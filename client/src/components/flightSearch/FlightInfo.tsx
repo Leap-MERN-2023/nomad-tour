@@ -11,7 +11,7 @@ const FlightInfo = (props: Props) => {
   const { flights } = useContext(FlightContext);
   console.log("FLIGHT DATA", flights);
   return (
-    <div className=" flex flex-col items-center">
+    <div className="xl:w-2/3 flex flex-col items-center">
       <button className="btn w-full mt-5 btn-outline xl:hidden">
         <IoFilterOutline /> Filter{" "}
       </button>
