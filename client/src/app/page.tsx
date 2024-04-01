@@ -17,8 +17,6 @@ export default function Home() {
       <HotelSection />
       <NewsSection />
       <TestSection />
-      <EmailSection />
-      <Footer />
     </main>
   );
 }
