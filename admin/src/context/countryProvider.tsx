@@ -14,11 +14,12 @@ interface ICountry {
   name: string;
   description: string;
   images: string;
+  _id: string;
 }
 
 interface ICountryContext {
   countries: ICountry[];
-  getCountries: any
+  getCountries: any;
 }
 
 export const CountryContext = createContext<ICountryContext>(

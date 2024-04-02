@@ -5,7 +5,7 @@ import React, {
   createContext,
   useEffect,
   useState,
-  ChangeEvent
+  ChangeEvent,
 } from "react";
 
 interface IairPortContext {
@@ -15,7 +15,7 @@ interface IairPortContext {
   handleAirportForm: (e: any) => void;
   newAirport: {
     name: string;
-  }
+  };
 }
 
 export const AirPortContext = createContext<IairPortContext>(
@@ -25,6 +25,7 @@ export const AirPortContext = createContext<IairPortContext>(
 const AirPortProvider = ({ children }: PropsWithChildren) => {
   const [airports, setAirPorts] = useState();
   const [newAirport, setNewAirport] = useState({
+    country: "",
     name: "",
   });
 
@@ -33,8 +34,8 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
       const { airport } = await axios
         .get("http://localhost:8008/airport")
         .then((res) => res.data);
-        console.log("airport", airport)
-        setAirPorts(airport);
+      console.log("airport", airport);
+      setAirPorts(airport);
     } catch (error) {
       console.log("error", error);
     }
@@ -44,26 +45,32 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const handleAirportForm = (e: ChangeEvent<HTMLInputElement>) => {
-    setNewAirport({...newAirport});
-    console.log("NewAirport handle",e.target.value)
+    setNewAirport({ ...newAirport, [e.target.name]: e.target.value });
+    console.log(e.target.name, e.target.value);
   };
   const createAirport = async () => {
     try {
       const formData = new FormData();
-      formData.set("name",newAirport.name);
-      console.log("formdata", formData)
-      const {
-        data: { data},
-      } = (await axios.post("http://localhost:8008/airport", formData)) as {
-        data: { data : object };
-      };
-      console.log("createData", data)
-    } catch (error:any) {console.log("create airport error",error)}
+      formData.set("name", newAirport.name);
+      const data = await axios.post(
+        "http://localhost:8008/airport",
+        newAirport
+      );
+    } catch (error: any) {
+      console.log("create airport error", error);
+    }
   };
 
-
   return (
-    <AirPortContext.Provider value={{getAllairPort, airports, createAirport, handleAirportForm, newAirport}}>
+    <AirPortContext.Provider
+      value={{
+        getAllairPort,
+        airports,
+        createAirport,
+        handleAirportForm,
+        newAirport,
+      }}
+    >
       {children}
     </AirPortContext.Provider>
   );
