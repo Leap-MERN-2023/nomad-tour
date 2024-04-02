@@ -8,6 +8,7 @@ import authRoutes from "./routes/authRoutes";
 import upload from "./routes/upload";
 import hotel from "./routes/hotel";
 import room from "./routes/room";
+import email from "./routes/email"
 
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
@@ -30,6 +31,7 @@ app.use("/country", country);
 app.use("/upload", upload);
 app.use("/hotel", hotel);
 app.use("/room", room);
+app.use("/email", email)
 
 app.get("/", (req, res) => {
   res.send("Hello");
