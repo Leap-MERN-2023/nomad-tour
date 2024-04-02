@@ -2,7 +2,7 @@
 
 import { sidebarMenu } from "@/lib/constants";
 import Image from "next/image";
-import Weather from "@/components/weather/weather";
+import Weather from "@/components/tripit/weather/weather";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { cn } from "@/lib/utils";
@@ -16,14 +16,8 @@ function SideBar() {
 					href={"/admin"}
 					className="flex items-center place-content-center gap-5 py-4 hover:bg-tripit hover:rounded-2xl hover:cursor-pointer"
 				>
-					<Image
-						priority
-						src={"/assets/tripit-logo.svg"}
-						height={42}
-						width={36}
-						alt=""
-					/>
-					<div className="font-bold text-4xl">Tripit</div>
+					<img className="w-26 h-20 rounded-full" src="/assets/nomad.png"/>
+					<div className="font-bold text-2xl">Nomad Tour</div>
 				</Link>
 				<div className="py-4">
 					<div className="text-center text-white font-semibold rounded-2xl bg-[#346AFF] w-60 p-3">
