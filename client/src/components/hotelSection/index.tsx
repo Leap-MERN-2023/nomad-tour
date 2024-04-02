@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext } from "react";
-import HotelCard from "../hotelcard/SerchHotelCard";
+import HotelCard from "../hotelcard";
 import { HotelContext } from "@/context/hotelProvider";
 import { IHotel } from "../../types";
 import SectionWrapper from "@/hoc/SectionCenterer";

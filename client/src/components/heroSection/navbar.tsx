@@ -29,12 +29,16 @@ const Navbar = (props: Props) => {
       ></div>
       <nav
         className="sm:px-16 px-6 w-full text-white 
+<<<<<<< Updated upstream
     flex items-center py-5 fixed z-50 backdrop-blur-sm"
+=======
+    flex items-center py-5 fixed z-50 "
+        className="w-full flex justify-between 
+      items-center max-w-7xl mx-auto bg-black "
+>>>>>>> Stashed changes
       >
         <div
-          className="w-full flex justify-between 
-      items-center max-w-7xl mx-auto"
-        >
+          className="w-full flex justify-between items-center max-w-7xl mx-auto">
           <Link
             href="#home"
             onClick={() => {
@@ -100,8 +104,22 @@ const Navbar = (props: Props) => {
           </ul>
           <LoginForm open={open} closeForm={closeForm} />
         </div>
+<<<<<<< Updated upstream
       </nav>
     </>
+=======
+        <ul className="list-none hidden sm:flex flex-row gap-10 font-extralight">
+          {navItems.map((item) => (
+            <li>
+              <a href={item.url}>{item.name}</a>
+            </li>
+          ))}
+        </ul>
+        <button onClick={openForm}>Login</button>
+        <LoginForm open={open} closeForm={closeForm} />
+      </div>
+    </nav>
+>>>>>>> Stashed changes
   );
 };
 

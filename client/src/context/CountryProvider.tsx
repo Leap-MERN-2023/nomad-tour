@@ -19,6 +19,10 @@ interface ICountry {
 interface ICountryContext {
   countries: ICountry[];
 }
+<<<<<<< Updated upstream:client/src/context/CountryProvider.tsx
+=======
+interface ICountryContext {}
+>>>>>>> Stashed changes:client/src/context/CountryProvider/index.tsx
 
 export const CountryContext = createContext<ICountryContext>(
   {} as ICountryContext
@@ -32,7 +36,11 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allCountry },
       } = await axios.get("http://localhost:8008/country");
+<<<<<<< Updated upstream:client/src/context/CountryProvider.tsx
       console.log("Countyr", allCountry);
+=======
+      console.log("COUNTRY_get", allCountry);
+>>>>>>> Stashed changes:client/src/context/CountryProvider/index.tsx
       setCountries(allCountry);
     } catch (error: any) {
       console.log("ERR", error);
