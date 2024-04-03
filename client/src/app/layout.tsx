@@ -11,6 +11,7 @@ import Navbar from "../components/heroSection/navbar";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import TicketProvider from "@/context/ticketProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,9 +34,10 @@ export default function RootLayout({
             <HotelProvider>
               <AirPortProvider>
                 <FlightProvider>
-                  <Navbar />
-                  {children}
-
+                  <TicketProvider>
+                    <Navbar />
+                    {children}
+                  </TicketProvider>
                   <ToastContainer />
                 </FlightProvider>
               </AirPortProvider>

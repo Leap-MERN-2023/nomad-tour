@@ -9,6 +9,7 @@ import upload from "./routes/upload";
 import hotel from "./routes/hotel";
 import room from "./routes/room";
 import airlineRoutes from "./routes/airlineRoutes";
+import ticketsRoutes from "./routes/ticketsRoutes";
 
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
@@ -32,6 +33,7 @@ app.use("/upload", upload);
 app.use("/hotel", hotel);
 app.use("/room", room);
 app.use("/airline", airlineRoutes);
+app.use("/tickets", ticketsRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello");

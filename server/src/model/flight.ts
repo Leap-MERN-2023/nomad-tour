@@ -11,6 +11,14 @@ const flightSchema = new Schema({
     ref: "Airline",
     required: true,
   },
+  isRounded: {
+    type: Boolean,
+    required: true,
+  },
+  roundFlight: {
+    type: Schema.ObjectId,
+    ref: "Flight",
+  },
   departureDate: {
     type: Date,
     required: true,
@@ -30,13 +38,8 @@ const flightSchema = new Schema({
     required: true,
   },
   availableSeats: {
-    type: String,
-    enum: ["eco", "ecoBusiness", "business", "first"],
-  },
-  price: {
-    USD: Number,
-    MNT: Number,
-    CNY: Number,
+    type: Number,
+    required: true,
   },
   createdAt: {
     type: Date,

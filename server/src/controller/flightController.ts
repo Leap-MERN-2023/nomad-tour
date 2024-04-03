@@ -17,7 +17,7 @@ export const getFlights = async (req: Request, res: Response) => {
       "departureAirportId",
       "arrivalAirportId",
       "countryId",
-      "departureAirportId.country",
+      "departureAirportId",
     ]);
     console.log("first", allFlights);
     res
