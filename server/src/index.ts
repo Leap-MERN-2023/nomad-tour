@@ -34,7 +34,7 @@ app.use("/flight", flightRoutes);
 app.use("/auth", authRoutes);
 app.use("/country", country);
 app.use("/upload", upload);
-app.use("/hotel", hotel);
+app.use("/hotels", hotel);
 app.use("/room", room);
 <<<<<<< HEAD
 app.use("/airline", airlineRoutes);

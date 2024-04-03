@@ -15,37 +15,76 @@ interface IHotel {
 }
 
 interface IHotelContext {
-  hotels: IHotel[];
+  allHotel: IHotel[];
+  searchedHotels: IHotel[];
+  getSearchedHotels: (countryId: string) => void;
+  getHotel: (hotel: string) => void;
+  hotel: IHotel[];
   // getHotels: () => void;
 }
 
 export const HotelContext = createContext<IHotelContext>({} as IHotelContext);
 
 const HotelProvider = ({ children }: PropsWithChildren) => {
-  const [hotels, setHotels] = useState<IHotel[]>([]);
+  const [allHotel, setAllHotel] = useState<IHotel[]>([]);
+  const [searchedHotels, setSearchedHotels] = useState<IHotel[]>([]);
+  const [hotel, setHotel] = useState<IHotel[]>([]);
   const [ref, setRef] = useState(false);
 
-  const getHotels = async () => {
+  //Get All hotel with high rank
+  const getAllHotel = async () => {
     console.log("Working");
     try {
       const {
-        data: { filteredHotels },
-      } = await axios.get(
-        "http://localhost:8008/hotel/" + "65f9aca67a1a0f2424ab74c6"
-      );
-      console.log("Hotels", filteredHotels);
-      setHotels(filteredHotels);
+        data: { allHotel },
+      } = await axios.get("http://localhost:8008/hotels");
+      console.log("Hotels", allHotel);
+      setAllHotel(allHotel);
     } catch (error: any) {
       console.log("ERR", error);
     }
   };
 
+  //Get hotels of country searched
+  const getSearchedHotels = async (countryId: string) => {
+    try {
+      const {
+        data: { filteredHotels },
+      } = await axios.get(
+        "http://localhost:8008/hotels/" + "65f9aca67a1a0f2424ab74c6"
+      );
+      console.log("Hotels", filteredHotels);
+      setSearchedHotels(filteredHotels);
+    } catch (error: any) {
+      console.log("ERR", error);
+    }
+  };
+
+  //Get hotel
+
+  const getHotel = async (hotelId: string) => {
+    console.log("HotelId", hotelId);
+    try {
+      const {
+        data: { hotel },
+      } = await axios.get(`http://localhost:8008/hotels/${hotelId}`);
+      console.log("HOTEl", hotel);
+      setHotel(hotel);
+    } catch (error) {
+      console.log("ERR", error);
+    }
+  };
+
   useEffect(() => {
-    getHotels();
+    getAllHotel();
   }, [!ref]);
 
   return (
-    <HotelContext.Provider value={{ hotels }}>{children}</HotelContext.Provider>
+    <HotelContext.Provider
+      value={{ allHotel, searchedHotels, getSearchedHotels, getHotel, hotel }}
+    >
+      {children}
+    </HotelContext.Provider>
   );
 };
 

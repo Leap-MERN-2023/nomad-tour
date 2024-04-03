@@ -8,6 +8,7 @@ import HotelProvider from "../context/hotelProvider";
 import { UserContext, UserProvider } from "../context/UserProvider";
 import FlightProvider from "../context/flightProvider";
 import Navbar from "../components/heroSection/navbar";
+import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import TicketProvider from "@/context/ticketProvider";

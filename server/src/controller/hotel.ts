@@ -21,7 +21,23 @@ export const createHotel = async (
 
 //getAllHotel
 
-export const getHotels = async (
+export const getAllHotel = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const allHotel = await Hotel.find();
+    res.status(200).json({ message: "Successfully get hotels.", allHotel });
+  } catch (error) {
+    next(error);
+    console.log("ERR_all", error);
+  }
+};
+
+//getAllHotel+ Country Id
+
+export const getHotelsOfCountry = async (
   req: Request,
   res: Response,
   next: NextFunction
@@ -42,7 +58,7 @@ export const getHotels = async (
   }
 };
 
-//getHotel
+//getHotel + hotelId
 
 export const getHotel = async (
   req: Request,
@@ -51,7 +67,9 @@ export const getHotel = async (
 ) => {
   try {
     const { hotelId } = req.params;
+    console.log("hotelId", hotelId);
     const hotel = await Hotel.findById(hotelId);
+    console.log("hotel", hotel);
     res.status(200).json({ message: "Succesfully get hotel", hotel });
   } catch (error) {
     console.log("ERR_get", error);

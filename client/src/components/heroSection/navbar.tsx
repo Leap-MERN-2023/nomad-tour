@@ -31,10 +31,7 @@ const Navbar = (props: Props) => {
         className="sm:px-16 px-6 w-full text-white 
     flex items-center py-5 fixed z-50 backdrop-blur-sm"
       >
-        <div
-          className="w-full flex justify-between 
-      items-center max-w-7xl mx-auto"
-        >
+        <div className="w-full flex justify-between items-center max-w-7xl mx-auto">
           <Link
             href="#home"
             onClick={() => {

@@ -1,13 +1,13 @@
-"use client";
 import React, { useContext } from "react";
 import Slider from "./slider";
 import "swiper/css";
 import "swiper/css/pagination";
-
-import { HotelContext } from "@/context/hotelProvider";
+import { IHotel } from "../../types";
 import HotelModal from "./HotelModal";
 
-const HotelCard = ({ hotels }: any) => {
+import { HotelContext } from "@/context/hotelProvider";
+
+const SearchHotelCard = ({ hotels }: any) => {
   const { getHotel, hotel } = useContext(HotelContext);
 
   const showModal = () => {
@@ -28,7 +28,7 @@ const HotelCard = ({ hotels }: any) => {
   };
   return (
     <div
-      className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex m-auto w-[300px]"
+      className="card card-compact bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex w-full"
       onClick={hotelClick}
     >
       <figure className="relative">
@@ -53,4 +53,4 @@ const HotelCard = ({ hotels }: any) => {
   );
 };
 
-export default HotelCard;
+export default SearchHotelCard;

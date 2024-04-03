@@ -25,3 +25,9 @@ export interface IFlight {
   departureDate: string;
   price: IPrice;
 }
+
+export interface IHotel {
+  name: string;
+  desc: string;
+  star: number;
+}
