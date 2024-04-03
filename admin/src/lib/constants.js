@@ -1,41 +1,41 @@
 import {
-	IoCalendarOutline,
+	IoManOutline,
 	IoAirplaneOutline,
 	IoBedOutline,
-	IoCarOutline,
 	IoBusinessOutline,
+	IoEarth,
 } from "react-icons/io5";
 
 const sidebarMenu = [
 	{
 		id: 1,
-		name: "All trips",
-		route: "/admin/all-trips",
-		icon: IoCalendarOutline,
+		name: "users",
+		route: "/admin/user",
+		icon: IoManOutline,
 	},
 	{
 		id: 2,
-		name: "Travels",
-		route: "/admin/travels",
-		icon: IoAirplaneOutline,
+		name: "Airports",
+		route: "/admin/airport",
+		icon:IoBusinessOutline,
 	},
 	{
 		id: 3,
-		name: "Rooms",
-		route: "/admin/rooms",
+		name: "Hotels",
+		route: "/admin/hotel",
 		icon: IoBedOutline,
 	},
 	{
 		id: 4,
-		name: "Transport",
-		route: "/admin/transport",
-		icon: IoCarOutline,
+		name: "Flights",
+		route: "/admin/flight",
+		icon: IoAirplaneOutline,
 	},
 	{
 		id: 5,
-		name: "Attractions",
-		route: "/admin/attractions",
-		icon: IoBusinessOutline,
+		name: "Country",
+		route: "/admin/country",
+		icon: IoEarth,
 	},
 ];
 

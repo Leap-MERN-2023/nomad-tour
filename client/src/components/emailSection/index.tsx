@@ -1,6 +1,21 @@
+'use client'
+import { EmailContext } from "@/context/email";
 import React from "react";
+import { useState, useContext } from "react";
+
 
 export const EmailSection = () => {
+  const {sendEmail, handleChangeEmail}= useContext(EmailContext)
+  const [email, setEmail]=useState("")
+  const handleInputChange=(e:any)=>{
+    setEmail(e.target.value)
+  }
+
+const handleSubscribe=()=>{
+  sendEmail(email)
+  setEmail("")
+}
+
   return (
     <div className="bg-white h-[800px] flex flex-col items-center justify-center ">
       <div className="card lg:card-side shadow-xl h-[400px] w-[60%] bg-gray-200 ">
@@ -29,8 +44,13 @@ export const EmailSection = () => {
             <input
               className="bg-white w-full p-3 outline-none text-black rounded-full"
               placeholder="Enter your email"
+              value={email}
+              onChange={handleInputChange}
             />
-            <button className="rounded-full bg-[#0281B0] text-white font-medium hover:bg-blue-500 p-2 w-15 md:w-20 lg:w-36">
+            <button className="rounded-full bg-[#0281B0] text-white font-medium hover:bg-blue-500 p-2 w-15 md:w-20 lg:w-36"
+            onClick={handleSubscribe}
+            >
+              
               Subscribe
             </button>
           </div>

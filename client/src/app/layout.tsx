@@ -9,6 +9,11 @@ import { UserContext, UserProvider } from "../context/UserProvider";
 import FlightProvider from "../context/flightProvider";
 import Navbar from "../components/heroSection/navbar";
 import Footer from "../components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { EmailProvider } from "@/context/email";
+import swal from "sweetalert";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -30,11 +35,13 @@ export default function RootLayout({
             <HotelProvider>
               <AirPortProvider>
                 <FlightProvider>
-                  <main>
+                  <EmailProvider>
                     <Navbar />
                     {children}
                     <Footer />
-                  </main>
+                    {/* <SweetAlert/> */}
+                    <ToastContainer />
+                  </EmailProvider>
                 </FlightProvider>
               </AirPortProvider>
             </HotelProvider>
