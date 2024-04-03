@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import {
+import  {
   useState,
   useEffect,
   createContext,
@@ -12,7 +12,7 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { CgLayoutGrid } from "react-icons/cg";
-
+import swal from "sweetalert";
 export interface IUser {
   name: string;
   email: string;
@@ -31,7 +31,6 @@ export interface IUserContext {
     phoneNumber: string,
     name: string
   ) => void;
-
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -45,7 +44,6 @@ export const UserContext = createContext<IUserContext>({
   login: function () {},
   handleChangeUser() {},
   signup: function () {},
- 
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
@@ -86,10 +84,10 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      toast("амжилттай нэвтэрлээ");
+      swal("Good job", "Login successfully", "success");
       // alert("amjilttai nevterlee");
     } catch (error) {
-      toast.error("Нэвтрэлт амжилтгүй");
+      swal("failed", " login failed ", "error");
     }
   };
 
@@ -113,10 +111,10 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      toast("Амжилттай бүртгүүллээ");
-      // alert("amjilttai nevterlee");
+      swal("Successfully", "Signup successfully", "success")
+      
     } catch (error: any) {
-      toast.error("Signup failed: " + error.message);
+      swal("Failed", "Signup failed", "error")
     }
   };
 

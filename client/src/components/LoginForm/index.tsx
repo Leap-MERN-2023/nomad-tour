@@ -44,7 +44,7 @@ export const LoginForm = ({ open, closeForm }: any) => {
   const [isSignup, setIsSignup] = useState("login")
   // const [isLogin, setIsLogin]=useState(false)
 
-  const handleForm = (e) => {
+  const handleForm = (e: any) => {
     console.log("FORMMM: ", e.target.name)
     setIsSignup(e.target.name)
   }
