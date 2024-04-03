@@ -12,7 +12,6 @@ import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { EmailProvider } from "@/context/email";
-import swal from "sweetalert";
 
 const inter = Inter({ subsets: ["latin"] });
 
