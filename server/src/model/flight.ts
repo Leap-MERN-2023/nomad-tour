@@ -6,6 +6,19 @@ const flightSchema = new Schema({
     ref: "Country",
     required: true,
   },
+  airline: {
+    type: Schema.ObjectId,
+    ref: "Airline",
+    required: true,
+  },
+  isRounded: {
+    type: Boolean,
+    required: true,
+  },
+  roundFlight: {
+    type: Schema.ObjectId,
+    ref: "Flight",
+  },
   departureDate: {
     type: Date,
     required: true,
@@ -28,10 +41,9 @@ const flightSchema = new Schema({
     type: Number,
     required: true,
   },
-  price: {
-    USD: Number,
-    MNT: Number,
-    CNY: Number,
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 
