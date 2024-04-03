@@ -1,20 +1,20 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/tripit/ui/button";
 import { datasFromAPI } from "@/lib/datas";
 import { useState } from "react";
 import Link from "next/link";
-import HeaderSearchBar from "@/components/header/header-search-bar";
-import HeaderAccount from "@/components/header/header-account";
-import Featured from "@/components/featured/featured";
-import Chart from "@/components/chart/chart";
-import Calendar from "@/components/calendar/calendar";
-import TravelDateCard from "@/components/travel-date-card/travel-date-card";
-import PeopleCard from "@/components/people-card/people-card";
-import DestinationCard from "@/components/destination-card/destination-card";
-import Map from "@/components/map/map";
-import Todos from "@/components/todos/todos";
-import Timeline from "@/components/timeline/timeline";
+import HeaderSearchBar from "@/components/tripit/header/header-search-bar";
+import HeaderAccount from "@/components/tripit/header/header-account";
+import Featured from "@/components/tripit/featured/featured";
+import Chart from "@/components/tripit/chart/chart";
+import Calendar from "@/components/tripit/calendar/calendar";
+import TravelDateCard from "@/components/tripit/travel-date-card/travel-date-card";
+import PeopleCard from "@/components/tripit/people-card/people-card";
+import DestinationCard from "@/components/tripit/destination-card/destination-card";
+import Map from "@/components/tripit/map/map";
+import Todos from "@/components/tripit/todos/todos";
+import Timeline from "@/components/tripit/timeline/timeline";
 
 function Admin() {
 	const [currentData, setCurrentData] = useState(datasFromAPI[0]);

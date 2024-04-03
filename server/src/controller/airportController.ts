@@ -3,6 +3,7 @@ import Airport from "../model/airport";
 
 export const CreateAirport = async (req: Request, res: Response) => {
   try {
+    console.log("CREATE AIRPORT");
     await Airport.create({ ...req.body });
     res.status(201).json({ message: "Airport амжилттай нэмэгдлээ" });
   } catch (error) {
