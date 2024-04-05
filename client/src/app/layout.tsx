@@ -11,8 +11,8 @@ import Navbar from "../components/heroSection/navbar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TicketProvider from "@/context/ticketProvider";
-import { EmailProvider } from "@/context/email";
+import TicketProvider from "../context/ticketProvider";
+import { EmailProvider } from "../context/email";
 import swal from "sweetalert";
 
 const inter = Inter({ subsets: ["latin"] });
