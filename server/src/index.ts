@@ -8,12 +8,9 @@ import authRoutes from "./routes/authRoutes";
 import upload from "./routes/upload";
 import hotel from "./routes/hotel";
 import room from "./routes/room";
-<<<<<<< HEAD
 import airlineRoutes from "./routes/airlineRoutes";
 import ticketsRoutes from "./routes/ticketsRoutes";
-=======
-import email from "./routes/email"
->>>>>>> main
+import email from "./routes/email";
 
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
@@ -36,12 +33,9 @@ app.use("/country", country);
 app.use("/upload", upload);
 app.use("/hotels", hotel);
 app.use("/room", room);
-<<<<<<< HEAD
 app.use("/airline", airlineRoutes);
 app.use("/tickets", ticketsRoutes);
-=======
-app.use("/email", email)
->>>>>>> main
+app.use("/email", email);
 
 app.get("/", (req, res) => {
   res.send("Hello");
