@@ -7,6 +7,7 @@ import { IoLocationOutline } from "react-icons/io5";
 import { IoAirplaneOutline } from "react-icons/io5";
 import { MdOutlineBed } from "react-icons/md";
 import { CountryContext } from "@/context/CountryProvider";
+import { HotelContext } from "@/context/hotelProvider";
 import { ICountry } from "@/types";
 import Link from "next/link";
 
@@ -15,8 +16,10 @@ function classNames(...classes: any) {
 }
 
 export default function Tabs() {
-  const { countries, handleSelectCountry } = useContext(CountryContext);
-  const [selectedItem, setSelectedItem] = useState("Hotel");
+  const { countries, handleSelectCountry, selectedCountry } =
+    useContext(CountryContext);
+  const { getSearchedHotels } = useContext(HotelContext);
+  const [selectedItem, setSelectedItem] = useState("Country");
   let [categories] = useState([
     {
       name: "Country",
@@ -145,7 +148,12 @@ export default function Tabs() {
                             ))}
                           </select>
                           <Link href="/hotels">
-                            <button className="btn bg-[#0281B0] border-0 text-white hover:bg-blue-300">
+                            <button
+                              className="btn bg-[#0281B0] border-0 text-white hover:bg-blue-300"
+                              onClick={() => {
+                                getSearchedHotels(selectedCountry!);
+                              }}
+                            >
                               Search
                             </button>
                           </Link>

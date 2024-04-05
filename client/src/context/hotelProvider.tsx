@@ -3,11 +3,11 @@
 import React, {
   PropsWithChildren,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from "react";
 import axios from "axios";
-
 interface IHotel {
   name: string;
   desc: string;
@@ -15,20 +15,20 @@ interface IHotel {
 }
 
 interface IHotelContext {
-  allHotel: IHotel[];
-  searchedHotels: IHotel[];
   getSearchedHotels: (countryId: string) => void;
   getHotel: (hotel: string) => void;
   hotel: IHotel[];
+  allHotel: IHotel[];
+  searchedHotel: IHotel[];
   // getHotels: () => void;
 }
 
 export const HotelContext = createContext<IHotelContext>({} as IHotelContext);
 
 const HotelProvider = ({ children }: PropsWithChildren) => {
-  const [allHotel, setAllHotel] = useState<IHotel[]>([]);
-  const [searchedHotels, setSearchedHotels] = useState<IHotel[]>([]);
   const [hotel, setHotel] = useState<IHotel[]>([]);
+  const [allHotel, setAllHotel] = useState<IHotel[]>([]);
+  const [searchedHotel, setSearchedHotel] = useState<IHotel[]>([]);
   const [ref, setRef] = useState(false);
 
   //Get All hotel with high rank
@@ -45,16 +45,16 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  //Get hotels of country searched
-  const getSearchedHotels = async (countryId: string) => {
+  // searched hotels of country
+  const getSearchedHotels = async (selectedCountry: string) => {
     try {
+      console.log("SelectedCountryID_Get", selectedCountry);
       const {
-        data: { filteredHotels },
+        data: { findHotel },
       } = await axios.get(
-        "http://localhost:8008/hotels/" + "65f9aca67a1a0f2424ab74c6"
+        "http://localhost:8008/hotels/search/" + selectedCountry
       );
-      console.log("Hotels", filteredHotels);
-      setSearchedHotels(filteredHotels);
+      setSearchedHotel(findHotel);
     } catch (error: any) {
       console.log("ERR", error);
     }
@@ -81,7 +81,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <HotelContext.Provider
-      value={{ allHotel, searchedHotels, getSearchedHotels, getHotel, hotel }}
+      value={{ getSearchedHotels, getHotel, hotel, searchedHotel, allHotel }}
     >
       {children}
     </HotelContext.Provider>

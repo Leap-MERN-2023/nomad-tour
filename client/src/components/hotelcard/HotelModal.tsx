@@ -16,7 +16,7 @@ type Swiper = /*unresolved*/ any;
 
 const HotelModal = ({ hotel }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
-  const stars = Array.from({ length: hotel.stars }, (_, index) => index + 1);
+  const stars = Array.from({ length: hotel?.stars }, (_, index) => index + 1);
 
   return (
     <dialog id="my_modal_3" className="modal">
@@ -68,7 +68,9 @@ const HotelModal = ({ hotel }: any) => {
         </Swiper>
         <div className="border-t border-black w-full mt-3"></div>
         <div className="flex justify-between my-3 ">
-          <div className="text-3xl font-extrabold   ">{hotel.name}</div>
+          <div className="text-3xl font-extrabold max-w-[80%] truncate ">
+            {hotel?.name}
+          </div>
           <div className="flex items-center">
             {stars.map((_: any, index: any) => (
               <svg

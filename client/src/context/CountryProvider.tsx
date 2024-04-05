@@ -20,6 +20,7 @@ interface ICountry {
 interface ICountryContext {
   countries: ICountry[];
   handleSelectCountry: (e: any) => void;
+  selectedCountry: string | undefined;
 }
 
 export const CountryContext = createContext<ICountryContext>(
@@ -51,7 +52,9 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={{ countries, handleSelectCountry }}>
+    <CountryContext.Provider
+      value={{ countries, handleSelectCountry, selectedCountry }}
+    >
       {children}
     </CountryContext.Provider>
   );

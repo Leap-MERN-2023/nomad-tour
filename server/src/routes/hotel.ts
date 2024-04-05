@@ -13,7 +13,7 @@ const router = Router();
 
 router.route("/").post(createHotel).get(getAllHotel);
 
+router.route("/search/:countryId").get(getHotelsOfCountry);
 router.route("/:hotelId").get(getHotel).put(updateHotel).delete(deleteHotel);
-router.route("/:countryId").get(getHotelsOfCountry);
 
 export default router;
