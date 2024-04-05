@@ -16,8 +16,10 @@ export const ticketContext = createContext({} as ITicketContext);
 const TicketProvider = ({ children }: PropsWithChildren) => {
   const [tickets, setTickets] = useState();
   const getTickets = async () => {
-    const { data } = await axios.get("http://localhost:8008/tickets");
-    setTickets(data.tickets);
+    try {
+      const { data } = await axios.get("http://localhost:8008/tickets");
+      setTickets(data.tickets);
+    } catch (error) {}
   };
   useEffect(() => {
     getTickets();

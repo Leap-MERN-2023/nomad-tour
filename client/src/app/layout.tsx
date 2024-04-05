@@ -40,6 +40,7 @@ export default function RootLayout({
                     <TicketProvider>
                       <Navbar />
                       {children}
+                      <Footer />
                     </TicketProvider>
                     <ToastContainer />
                   </EmailProvider>

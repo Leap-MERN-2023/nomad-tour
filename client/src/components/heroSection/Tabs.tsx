@@ -7,13 +7,15 @@ import { IoLocationOutline } from "react-icons/io5";
 import { IoAirplaneOutline } from "react-icons/io5";
 import { MdOutlineBed } from "react-icons/md";
 import { CountryContext } from "@/context/CountryProvider";
+import { ICountry } from "@/types";
+import Link from "next/link";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Tabs() {
-  const { countries } = useContext(CountryContext);
+  const { countries, handleSelectCountry } = useContext(CountryContext);
   const [selectedItem, setSelectedItem] = useState("Hotel");
   let [categories] = useState([
     {
@@ -129,7 +131,25 @@ export default function Tabs() {
                     <ul>
                       <div>
                         <h2>{category.value.title}</h2>
-                        <MySelect datas={countries} />
+                        <div className="flex gap-6 items-center">
+                          <select
+                            onChange={handleSelectCountry}
+                            className="select bg-zinc-100 w-full"
+                            name="hotelCountry"
+                            id=""
+                          >
+                            {countries?.map((country) => (
+                              <option value={country._id}>
+                                {country.name}
+                              </option>
+                            ))}
+                          </select>
+                          <Link href="/hotels">
+                            <button className="btn bg-[#0281B0] border-0 text-white hover:bg-blue-300">
+                              Search
+                            </button>
+                          </Link>
+                        </div>
                       </div>
                     </ul>
                   </Tab.Panel>
