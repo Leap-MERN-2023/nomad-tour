@@ -10,21 +10,21 @@ const FlightFilter = (props: Props) => {
         <h2>Departure times</h2>
         <div className="flex justify-between mt-5">
           <div className="flex gap-2">
-            <input type="checkbox" checked={true} className="checkbox" />
+            <input type="checkbox" defaultChecked className="checkbox" />
             <p>00:00 12:00</p>
           </div>
           <p>morning</p>
         </div>
         <div className="flex justify-between mt-3">
           <div className="flex gap-2">
-            <input type="checkbox" checked={true} className="checkbox" />
+            <input type="checkbox" defaultChecked className="checkbox" />
             <p>12:00 18:00</p>
           </div>
           <p>afternoon</p>
         </div>
         <div className="flex justify-between mt-3">
           <div className="flex gap-2">
-            <input type="checkbox" checked={true} className="checkbox" />
+            <input type="checkbox" defaultChecked className="checkbox" />
             <p>18:00 00:00</p>
           </div>
           <p>evening</p>

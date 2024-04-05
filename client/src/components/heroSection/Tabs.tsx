@@ -16,7 +16,7 @@ function classNames(...classes: any) {
 
 export default function Tabs() {
   const { countries, handleSelectCountry } = useContext(CountryContext);
-  const [selectedItem, setSelectedItem] = useState("Hotel");
+  const [selectedItem, setSelectedItem] = useState("Country");
   let [categories] = useState([
     {
       name: "Country",
@@ -106,7 +106,22 @@ export default function Tabs() {
                     <ul>
                       <div>
                         <h2>{category.value.title}</h2>
-                        <MySelect datas={countries} />
+                        <select
+                          defaultValue=""
+                          onChange={handleSelectCountry}
+                          className="select bg-zinc-100 w-full"
+                          name="hotelCountry"
+                          id=""
+                        >
+                          <option disabled selected>
+                            Select country to travel
+                          </option>
+                          {countries?.map((country) => (
+                            <option key={country._id} value={country._id}>
+                              {country.name}
+                            </option>
+                          ))}
+                        </select>
                       </div>
                     </ul>
                   </Tab.Panel>
@@ -133,13 +148,17 @@ export default function Tabs() {
                         <h2>{category.value.title}</h2>
                         <div className="flex gap-6 items-center">
                           <select
+                            defaultValue=""
                             onChange={handleSelectCountry}
                             className="select bg-zinc-100 w-full"
                             name="hotelCountry"
                             id=""
                           >
+                            <option disabled selected>
+                              Select country
+                            </option>
                             {countries?.map((country) => (
-                              <option value={country._id}>
+                              <option key={country._id} value={country._id}>
                                 {country.name}
                               </option>
                             ))}

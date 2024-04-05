@@ -15,7 +15,7 @@ const FlightInfo = (props: Props) => {
   return (
     <div className="xl:w-2/3 flex flex-col items-center">
       <button className="btn w-full mt-5 btn-outline xl:hidden">
-        <IoFilterOutline /> Filter{" "}
+        <IoFilterOutline /> Filter
       </button>
       {tickets?.map((ticket: any) => {
         return (
