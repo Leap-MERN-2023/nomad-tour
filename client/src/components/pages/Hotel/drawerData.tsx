@@ -1,18 +1,34 @@
 "use client";
-import React, { useState } from "react";
-import Box from "@mui/material/Box";
+import React, { useContext, useState } from "react";
 import Slider from "@mui/material/Slider";
+import { HotelContext } from "@/context/hotelProvider";
 
 function valuetext(value: number) {
   return `${value}₮`;
 }
 
 const DrawerData = () => {
+  const { setSearchedHotel, searchedHotel } = useContext(HotelContext);
   const [value, setValue] = useState<number[]>([20, 37]);
+  const [findSearchedHotel, setFindSearchedHotel] = useState();
 
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
   };
+
+  const handleButtonClick = (rating: number) => {
+    console.log("Rating", rating);
+    const filteredHotel = searchedHotel.filter(
+      (hotel) => hotel?.stars === rating
+    );
+    console.log("FilteredHotels", filteredHotel);
+    if (filteredHotel.length > 0) {
+      setSearchedHotel(filteredHotel);
+    } else {
+      setSearchedHotel(searchedHotel);
+    }
+  };
+
   return (
     <ul className="menu p-3 w-[340px] 2xl:w-full min-h-full bg-base-200 lg:bg-zinc-100 lg:rounded-xl text-base-content">
       <div className="flex flex-col mt-5">
@@ -25,38 +41,22 @@ const DrawerData = () => {
           <div className="p-3">
             <h1 className="font-bold text-lg">Rank</h1>
             <div className="flex justify-around mt-4">
-              <button className="rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-orange-400 "
-                />
-                <h1 className="text-xl ">{2}</h1>
-              </button>
-              <button className="rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-orange-400 "
-                />
-                <h1 className="text-xl ">{3}</h1>
-              </button>
-              <button className="rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-orange-400 "
-                />
-                <h1 className="text-xl ">{4}</h1>
-              </button>
-              <button className="rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ">
-                <input
-                  type="radio"
-                  name="rating-5"
-                  className="mask mask-star-2 bg-orange-400 "
-                />
-                <h1 className="text-xl ">{5}</h1>
-              </button>
+              {[1, 2, 3, 4, 5].map((rating) => (
+                <button
+                  key={rating}
+                  className={`rating rating-sm border border-slate-700 rounded-lg w-16 flex justify-center items-center gap-1 ${searchedHotel?.map(
+                    (hotel) => (hotel.stars === rating ? "bg-yellow-400" : "")
+                  )}`}
+                  onClick={() => handleButtonClick(rating)}
+                >
+                  <input
+                    type="radio"
+                    name="rating-5"
+                    className="mask mask-star-2 bg-orange-400 "
+                  />
+                  <h1 className="text-xl ">{rating}</h1>
+                </button>
+              ))}
             </div>
             <div className="border-b border-slate-800 w-full mt-4"></div>
             <h1 className="font-bold text-lg my-4">Assessment</h1>
@@ -70,6 +70,12 @@ const DrawerData = () => {
           </div>
         </div>
       </div>
+      {/* {hotel && (
+        <div>
+          <h2>Selected Hotel:</h2>
+          <pre>{JSON.stringify(hotel, null, 2)}</pre>
+        </div>
+      )} */}
     </ul>
   );
 };

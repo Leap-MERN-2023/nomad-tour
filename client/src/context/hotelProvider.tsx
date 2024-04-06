@@ -11,7 +11,7 @@ import axios from "axios";
 interface IHotel {
   name: string;
   desc: string;
-  star: number;
+  stars: number;
 }
 
 interface IHotelContext {
@@ -20,6 +20,7 @@ interface IHotelContext {
   hotel: IHotel[];
   allHotel: IHotel[];
   searchedHotel: IHotel[];
+  setSearchedHotel: (hotels: IHotel[]) => void;
   // getHotels: () => void;
 }
 
@@ -81,7 +82,14 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <HotelContext.Provider
-      value={{ getSearchedHotels, getHotel, hotel, searchedHotel, allHotel }}
+      value={{
+        getSearchedHotels,
+        getHotel,
+        hotel,
+        searchedHotel,
+        allHotel,
+        setSearchedHotel,
+      }}
     >
       {children}
     </HotelContext.Provider>
