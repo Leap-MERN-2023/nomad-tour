@@ -17,6 +17,7 @@ export interface IPrice {
 }
 export interface IFlight {
   _id: string;
+  airline: IAirline;
   arrivalAirportId: IAirport;
   departureAirportId: IAirport;
   countryId: ICountry;
@@ -30,4 +31,18 @@ export interface IHotel {
   name: string;
   desc: string;
   star: number;
+}
+
+export interface IAirline {
+  logo: string;
+  name: string;
+  _id: string;
+}
+
+export interface ITicket {
+  flight: IFlight;
+  price: IPrice;
+  seatClass: string;
+  seatNumber: number;
+  _id: string;
 }
