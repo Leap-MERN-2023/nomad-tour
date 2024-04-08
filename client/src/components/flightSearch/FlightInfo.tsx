@@ -1,23 +1,20 @@
-import { FlightContext } from "@/context/flightProvider";
-import { IFlight } from "@/types";
 import React, { useContext } from "react";
 import { MdFlight } from "react-icons/md";
 import { IoFilterOutline } from "react-icons/io5";
-import { useTicketContext } from "@/context/ticketProvider";
 import { dateFormat, flightTimeCalculator } from "@/utils/dateFormat";
 import { priceCalculator } from "@/utils/priceCalc";
+import { useFlightsContext } from "@/context/flightProvider";
 
 type Props = {};
 
 const FlightInfo = (props: Props) => {
-  const { tickets } = useTicketContext();
-  console.log("FLIGHT DATA", tickets);
+  const { foundTickets } = useFlightsContext();
   return (
     <div className="xl:w-2/3 flex flex-col items-center">
       <button className="btn w-full mt-5 btn-outline xl:hidden">
-        <IoFilterOutline /> Filter{" "}
+        <IoFilterOutline /> Filter
       </button>
-      {tickets?.map((ticket: any) => {
+      {foundTickets?.map((ticket: any) => {
         return (
           <div
             key={ticket._id}

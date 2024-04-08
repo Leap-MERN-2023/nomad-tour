@@ -21,8 +21,8 @@ export const getAirport = async (req: Request, res: Response) => {
 };
 export const updateAirport = async (req: Request, res: Response) => {
   try {
-    const { airportId } = req.body;
-    const updateAirport = req.body;
+    const { airportId } = req.params;
+    const updateAirport = req.params;
     const airport = await Airport.findByIdAndUpdate(airportId, updateAirport);
 
     res.status(200).json({
@@ -35,8 +35,8 @@ export const updateAirport = async (req: Request, res: Response) => {
 };
 export const deleteAirport = async (req: Request, res: Response) => {
   try {
-    const { airportId } = req.body;
-    const airport = Airport.findByIdAndDelete(airportId);
+    const { airportId } = req.params;
+    const airport = await Airport.findByIdAndDelete(airportId);
     res.status(200).json({ message: `${airportId}-тай Airport устлаа` });
   } catch (error) {
     console.log("delete-error", error);

@@ -5,6 +5,9 @@ import {
 	IoBusinessOutline,
 	IoEarth,
 } from "react-icons/io5";
+import { MdOutlineBorderColor } from "react-icons/md";
+import { MdOutlineAirplaneTicket } from "react-icons/md";
+import { TbPlaneInflight } from "react-icons/tb";
 
 const sidebarMenu = [
 	{
@@ -36,6 +39,24 @@ const sidebarMenu = [
 		name: "Country",
 		route: "/admin/country",
 		icon: IoEarth,
+	},
+	{
+		id: 6,
+		name: "Airlines",
+		route: "/admin/airlines",
+		icon: TbPlaneInflight,
+	},
+	{
+		id: 7,
+		name: "Ticket",
+		route: "/admin/ticket",
+		icon: MdOutlineAirplaneTicket,
+	},
+	{
+		id: 8,
+		name: "Order",
+		route: "/admin/order",
+		icon: MdOutlineBorderColor,
 	},
 ];
 

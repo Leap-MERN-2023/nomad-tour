@@ -117,10 +117,17 @@ export const deleteUser = async (
     console.log("iddd", userId);
     const user = await User.findByIdAndDelete(userId);
     console.log("user", user);
-    await user?.save();
     res.status(201).json({ message: `${userId}-tai hereglegch ustlaa` });
   } catch (error) {
     console.log("err", error);
     next(error);
+  }
+};
+export const getAllusers = async (req:Request, res:Response ) => {
+  try {
+    const getUsers = await User.find();
+    res.status(200).json({ message: "хэрэглэгчид амжилттай олдлоо ", getUsers });
+  } catch (error) {
+    console.log("getuser-error", error);
   }
 };

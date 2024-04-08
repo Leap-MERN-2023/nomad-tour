@@ -10,6 +10,7 @@ import React, {
 import axios from "axios";
 
 interface ICountry {
+  _id: string;
   country: string;
   name: string;
   description: string;
@@ -18,6 +19,8 @@ interface ICountry {
 
 interface ICountryContext {
   countries: ICountry[];
+  handleSelectCountry: (e: any) => void;
+  selectedCountry: string | undefined;
 }
 
 export const CountryContext = createContext<ICountryContext>(
@@ -26,6 +29,11 @@ export const CountryContext = createContext<ICountryContext>(
 
 const CountryProvider = ({ children }: PropsWithChildren) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
+  const [selectedCountry, setSelectedCountry] = useState<string>();
+  const handleSelectCountry = (e: any) => {
+    console.log("SELECTED COUNTRY ID", e.target.value);
+    setSelectedCountry(e.target.value);
+  };
 
   const getCountries = async () => {
     try {
@@ -44,7 +52,9 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   return (
-    <CountryContext.Provider value={{ countries }}>
+    <CountryContext.Provider
+      value={{ countries, handleSelectCountry, selectedCountry }}
+    >
       {children}
     </CountryContext.Provider>
   );
