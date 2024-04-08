@@ -2,11 +2,11 @@
 import React, { useContext, useState } from "react";
 import GoogleMaps from "@/components/GoogleMaps";
 import { IHotel } from "@/types";
-import Slider from "react-slider";
+import Slider from "@mui/material/Slider";
+import Box from "@mui/material/Box";
+import { FaArrowRightArrowLeft } from "react-icons/fa6";
 
-function valuetext(value: number) {
-  return `${value}$`;
-}
+// const filterHotels = (minPrice, maxPrice, rating) => {};
 
 const DrawerData = ({
   searchedHotel,
@@ -16,6 +16,7 @@ const DrawerData = ({
 }: any) => {
   console.log("FFF", searchedHotel);
 
+  //Price Range
   const hotelPrice = () => {
     return searchedHotel.map((hotel: IHotel) => {
       return hotel?.price;
@@ -23,37 +24,41 @@ const DrawerData = ({
   };
 
   const price = hotelPrice();
-  console.log("price", price);
 
-  const minPrice = Math.min(...price) || 0;
-  const maxPrice = Math.max(...price) || 100;
-  console.log("HotelPriceMin,", minPrice);
-  console.log("HotelPriceMaxx,", maxPrice);
+  const initialMinPrice = price.length > 0 ? Math.min(...price) : 0;
+  const initialMaxPrice = price.length > 0 ? Math.max(...price) : 100;
 
-  const [value, setValue] = useState<number[]>([minPrice, maxPrice]);
+  const [value, setValue] = React.useState<number[]>([
+    initialMinPrice,
+    initialMaxPrice,
+  ]);
+
+  const handleChange = (event: Event, newValue: number | number[]) => {
+    console.log("New Value", newValue);
+    setValue(newValue as number[]);
+    if (Array.isArray(newValue)) {
+      const filteredHotel = searchedHotel.filter(
+        (hotel: any) =>
+          hotel?.price >= newValue[0] && hotel?.price <= newValue[1]
+      );
+      setSearchedHotel(filteredHotel);
+    } else {
+      getSearchedHotels(selectedCountry);
+    }
+  };
+  //Price Range end
 
   const handleButtonClick = (rating: number) => {
-    console.log("Rating", rating);
-    console.log("Hotell", searchedHotel);
     const filteredHotel = searchedHotel?.filter(
       (hotel: any) => hotel?.stars === rating
     );
-    console.log("FilteredHotels", filteredHotel);
-    if (filteredHotel?.length >= 0) {
+    if (filteredHotel?.length > 0) {
       setSearchedHotel(filteredHotel);
     } else {
       getSearchedHotels(selectedCountry);
       setSearchedHotel(filteredHotel);
     }
   };
-
-  const handleChange = (newValue: number | number[]) => {
-    setValue(newValue as number[]);
-  };
-
-  const filteredHotelByPrice = searchedHotel.filter(
-    (hotel: any) => hotel?.price >= value[0] && hotel?.price <= value[1]
-  );
 
   return (
     <ul className="menu p-3 w-[340px] 2xl:w-full min-h-full bg-base-200 lg:bg-zinc-100 lg:rounded-xl text-base-content">
@@ -62,17 +67,17 @@ const DrawerData = ({
           <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         </div>
         <GoogleMaps />
-        <div className=" shadow-2xl mt-6 rounded-2xl border border-slate-400 p-3">
-          <h1 className="font-bold text-xl my-2 ">Price & Rank</h1>
-          <div className="p-3">
-            <h1 className="font-bold text-lg">Rank</h1>
+        <div className=" shadow-2xl rounded-2xl border mt-6 border-slate-400 p-3">
+          <h1 className="font-bold text-2xl my-2 ">Price & Rank</h1>
+          <div className="p-1 flex flex-col gap-1 ">
+            <h1 className="font-bold text-xl">Rank</h1>
             <div className="flex justify-around mt-4">
               {[0 | 1, 2, 3, 4, 5].map((rating) => (
                 <button
                   key={rating}
                   className={`rating rating-sm border border-slate-700 rounded-lg w-12 flex justify-center items-center gap-1 ${searchedHotel?.map(
                     (hotel: any) =>
-                      hotel.stars === rating ? "bg-yellow-400" : ""
+                      hotel.stars === rating ? "bg-yellow-500" : ""
                   )}`}
                   onClick={() => handleButtonClick(rating)}
                 >
@@ -85,20 +90,26 @@ const DrawerData = ({
                 </button>
               ))}
             </div>
-            <div className="border-b border-slate-800 w-full mt-4"></div>
-            <h1 className="font-bold text-lg my-4">Price Range</h1>
-            <div className="text-2xl flex justify-between">
-              <h1>${minPrice}</h1>
-              <h1>${maxPrice}</h1>
+            <div className="flex flex-col">
+              <div className="border-b border-slate-800 w-full mt-4"></div>
+              <h1 className="font-bold text-xl my-4">Price Range</h1>
+              <div className="text-2xl flex justify-between items-center">
+                <h1>${initialMinPrice}</h1>
+                <FaArrowRightArrowLeft style={{ height: 20 }} />
+                <h1>${initialMaxPrice}</h1>
+              </div>
+              <Box sx={{ width: 260 }}>
+                <Slider
+                  getAriaLabel={() => "Price range"}
+                  value={value}
+                  valueLabelDisplay="auto"
+                  onChange={handleChange}
+                  getAriaValueText={(value) => value.toString()}
+                  min={initialMinPrice}
+                  max={initialMaxPrice}
+                />
+              </Box>
             </div>
-
-            <Slider
-              className={"slider"}
-              value={value}
-              onChange={handleChange}
-              min={minPrice}
-              max={maxPrice}
-            />
           </div>
         </div>
       </div>

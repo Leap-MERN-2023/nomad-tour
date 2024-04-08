@@ -40,7 +40,7 @@ const Hotel = () => {
             selectedCountry={selectedCountry}
           />
         </div>
-  
+
         <div className="flex flex-col w-full lg:w-7/12  gap-5 xl:w-8/12 2xl:w-8/12  ">
           {searchedHotel?.map((e, i) => (
             <HotelCard key={i} hotels={e} />
