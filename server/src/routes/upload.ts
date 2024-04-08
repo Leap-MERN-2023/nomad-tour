@@ -4,6 +4,5 @@ import { upload } from "../utils/multer";
 
 const router = Router();
 
-router.route("/").post(upload.array("images", 5), uploadFile);
-
+router.route("/").post(upload.single("image"), uploadFile);
 export default router;
