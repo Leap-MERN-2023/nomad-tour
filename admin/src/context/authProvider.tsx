@@ -8,43 +8,45 @@ import React, {
 } from "react";
 import axios from "axios";
 
-interface IAuth {
-  name: string;
-  email: string;
-  password:string;
-  phoneNumber:string;
-}
 
 interface IAuthContext {
-  users: IAuth[];
+  users: any,
+  deleteUser :(e: any) => void,
 }
 
 export const AuthContext = createContext<IAuthContext>({} as IAuthContext);
 
 const AuthProvider = ({ children }: PropsWithChildren) => {
-  const [users, setUsers] = useState<IAuth[]>([]);
+  const [users, setUsers] = useState();
 
   const getUsers = async () => {
     try {
-      const {
-        data: { allusers },
-      } = await axios.get(
-        "http://localhost:8008/auth"
-      );
-      console.log("Hotels",allusers);
-      setUsers(allusers);
+      const {data} = await axios.get(
+        "http://localhost:8008/auth")
+        setUsers(data.getUsers)
+        // console.log("users",data.getUsers)
     } catch (error: any) {
       console.log("ERR", error);
     }
   };
 
-  // useEffect(() => {
-  //   getUsers();
-  // }, []);
+  const deleteUser = async (userId : any) => {
+    try {
+      const data = await axios.delete(`http://localhost:8008/auth/${userId}`, {
+      })
+      console.log("delete",data)
+    } catch (error) {
+      console.log("delete error", error)
+    }
+  }
+
+  useEffect(() => {
+    getUsers();
+  }, []);
 
   return (
     <AuthContext.Provider 
-         value={{ users }}>
+         value={{ users ,deleteUser}}>
         {children}
     </AuthContext.Provider>
   );

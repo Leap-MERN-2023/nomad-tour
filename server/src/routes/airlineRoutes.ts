@@ -4,8 +4,8 @@ const router = Router();
 
 router.route("/").get(getAirlines).post(CreateAirline);
 
-// router.route("/:airportId")
-// .get(getoneAirport)
+router.route("/:airportId")
 // .delete(deleteAirport)
+// .get(getoneAirport)
 // .put(updateAirport)
 export default router;

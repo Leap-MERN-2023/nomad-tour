@@ -14,11 +14,11 @@ export default function slider({hotel}:any) {
         modules={[Pagination]}
         className="w-full h-48 absolute"
       >
-        {hotel.Images.map((images : any) => (
-          <SwiperSlide key={images}>
+        {hotel?.images.map((image : any) => (
+          <SwiperSlide key={image}>
             <img
               className="w-full h-48 rounded-btn object-cover"
-              src={images}
+              src={image}
               alt=""
             />
           </SwiperSlide>

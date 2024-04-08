@@ -29,16 +29,16 @@ const flightSchema = new Schema({
   },
   departureAirportId: {
     type: Schema.ObjectId,
-    ref: "Airport",
+    ref: "departureAirport",
     required: true,
   },
   arrivalAirportId: {
     type: Schema.ObjectId,
-    ref: "Airport",
+    ref: "arrivalAirport",
     required: true,
   },
   availableSeats: {
-    type: Number,
+    type: String,
     required: true,
   },
   createdAt: {
