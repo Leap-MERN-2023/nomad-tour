@@ -5,7 +5,7 @@ import AirportModal from "@/components/modals/airportModal"
 
 
 const index = () => {
-    const {airports} = useContext(AirPortContext);
+    const {airports,deleteAirport} = useContext(AirPortContext);
     const [open, setOpen] = useState(true);
 
     // useEffect(() => {
@@ -25,14 +25,14 @@ const index = () => {
             </div>
                  {airports?.map((airport : any) => {
                    return  <div key={airport._id}
-                     className="flex my-6 items-center w-[52%] gap-[250px] text-center">
+                     className="flex my-6 items-center  gap-[250px]">
                         <div className="py-4 px-6 border-b border-grey-light w-48">{airport.country.name}</div>
                         <div className="py-4 px-6 border-b border-grey-light w-96">{airport.name}
                         
                         </div>
                         <div className='flex gap-2'>
                              <button className="btn btn-active btn-primary w-20 text-white">Put</button>
-                             <button className="btn btn-error w-20 text-white">Del</button>
+                             <button className="btn btn-error w-20 text-white" onClick={()=> {deleteAirport(airport._id)}}>Del</button>
                         </div>
                      </div>
                       })}

@@ -6,7 +6,7 @@ const hotelSchema = new Schema({
   images: [
     {
       type: String,
-      required: true,
+      // required: true,
     },
   ],
   description: {
@@ -18,7 +18,7 @@ const hotelSchema = new Schema({
     required: true,
   },
 
-  stars: Number,
+  stars: String,
   country: {
     type: Schema.ObjectId,
     ref: Country,
