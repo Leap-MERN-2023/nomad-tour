@@ -11,7 +11,6 @@ interface Country {
 }
 
 const Explore = ({ country }: { country: Country }) => {
-  const { hotels } = useContext(HotelContext);
   const backgroundStyle = {
     backgroundImage: `url(${country?.images[0]})`,
     backgroundSize: "cover",

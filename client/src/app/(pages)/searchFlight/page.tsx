@@ -17,19 +17,19 @@ const pageSearchFlights = ({ searchParams }: any) => {
     setSelectedArrivalAirport,
     setSelectedDepartureAirport,
   } = useContext(AirPortContext);
-
+  useEffect(() => {
+    setSelectedArrivalAirport(searchParams.arr);
+    setSelectedDepartureAirport(searchParams.dep);
+  }, []);
   useEffect(() => {
     router.push(
       `?dep=${selectedDepartureAirport}&arr=${selectedArrivalAirport}`,
       { scroll: false }
     );
   }, [selectedArrivalAirport, selectedDepartureAirport]);
-  useEffect(() => {
-    setSelectedArrivalAirport(searchParams.arr);
-    setSelectedDepartureAirport(searchParams.dep);
-  }, []);
+
   return (
-    <div className="relative bg-white w-full flex flex-col items-center">
+    <div className="relative bg-white w-full flex flex-col items-center pb-10">
       <div className="w-full flex justify-center items-center relative z-10 sm:px-16 px-6 pt-32">
         <Tabs />
       </div>
