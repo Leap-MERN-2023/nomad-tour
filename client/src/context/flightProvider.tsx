@@ -16,10 +16,15 @@ interface IFLightContext {
   getSearchedFlights: () => void;
   foundFlights: IFlight[] | undefined;
   foundTickets: ITicket[] | undefined;
+  refreshSearch: boolean;
+  setRefreshSearch: any;
+  ticketLoading: boolean;
 }
 export const FlightContext = createContext({} as IFLightContext);
 
 const FlightProvider = ({ children }: PropsWithChildren) => {
+  const [refreshSearch, setRefreshSearch] = useState(false);
+  const [ticketLoading, setTicketLoading] = useState(false);
   const [foundFlights, setFoundFlights] = useState();
   const [foundTickets, setFoundTickets] = useState();
   const { selectedDepartureAirport, selectedArrivalAirport } =
@@ -34,15 +39,23 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
     }
   };
   const getSearchedFlights = async () => {
+    setTicketLoading(true);
     try {
       const { data } = await axios.post("http://localhost:8008/flight/search", {
         depId: selectedDepartureAirport,
         arrId: selectedArrivalAirport,
       });
-      setFoundFlights(data.foundFlights);
-      data.foundFlights.map((flight: IFlight) => {
-        getSearchedTickets(flight._id);
-      });
+
+      if (data.foundFlights.length === 0) {
+        console.log("Flights not found", data);
+        setFoundTickets(undefined);
+        setTicketLoading(false);
+      } else {
+        setFoundFlights(data.foundFlights);
+        data.foundFlights.map((flight: IFlight) => {
+          getSearchedTickets(flight._id);
+        });
+      }
     } catch (error) {
       console.log("ERROR IN GET SEARCHED FLIGHTS");
     }
@@ -53,13 +66,22 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
         `http://localhost:8008/tickets/${flightId}`
       );
       setFoundTickets(data.searchedTickets);
+      setTicketLoading(false);
     } catch (error) {
       console.log("FAILED TO SEARCH TICKETS");
     }
   };
   return (
     <FlightContext.Provider
-      value={{ flights, getSearchedFlights, foundFlights, foundTickets }}
+      value={{
+        flights,
+        getSearchedFlights,
+        foundFlights,
+        foundTickets,
+        setRefreshSearch,
+        refreshSearch,
+        ticketLoading,
+      }}
     >
       {children}
     </FlightContext.Provider>
