@@ -25,25 +25,25 @@ const DrawerData = ({
 
   const price = hotelPrice();
 
-  const initialMinPrice = price.length > 0 ? Math.min(...price) : 0;
-  const initialMaxPrice = price.length > 0 ? Math.max(...price) : 100;
+  const initialMinPrice = Math.min(...price);
+  const initialMaxPrice = Math.max(...price);
 
   const [value, setValue] = React.useState<number[]>([
     initialMinPrice,
     initialMaxPrice,
   ]);
 
+  const [changeValue, setChangeValue] = useState();
   const handleChange = (event: Event, newValue: number | number[]) => {
-    console.log("New Value", newValue);
     setValue(newValue as number[]);
     if (Array.isArray(newValue)) {
       const filteredHotel = searchedHotel.filter(
         (hotel: any) =>
           hotel?.price >= newValue[0] && hotel?.price <= newValue[1]
       );
-      setSearchedHotel(filteredHotel);
+      setChangeValue(filteredHotel);
     } else {
-      getSearchedHotels(selectedCountry);
+      setSearchedHotel(changeValue);
     }
   };
   //Price Range end
@@ -56,7 +56,6 @@ const DrawerData = ({
       setSearchedHotel(filteredHotel);
     } else {
       getSearchedHotels(selectedCountry);
-      setSearchedHotel(filteredHotel);
     }
   };
 

@@ -28,14 +28,6 @@ const SearchHotelCard = ({ hotels }: any) => {
       modal.showModal();
     }
   };
-  const hotelId = hotels?._id;
-
-  const hotelClick = () => {
-    if (hotelId) {
-      showModal();
-      getHotel(hotelId);
-    }
-  };
 
   const openGoogleMaps = () => {
     const location = encodeURI(
@@ -45,6 +37,18 @@ const SearchHotelCard = ({ hotels }: any) => {
       `https://www.google.com/maps/search/?api=1&query=${location}`,
       "_blank"
     );
+  };
+
+  const hotelId = hotels?._id;
+
+  const hotelClick = () => {
+    if (hotelId) {
+      showModal();
+      getHotel(hotelId);
+    }
+  };
+  const mapClick = () => {
+    showModal();
   };
 
   const countryName =
@@ -86,6 +90,7 @@ const SearchHotelCard = ({ hotels }: any) => {
           </p>
         </div>
       </div>
+
       <HotelModal hotel={hotel} />
     </div>
   );
