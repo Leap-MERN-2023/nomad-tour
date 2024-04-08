@@ -16,7 +16,7 @@ const CardThird = () => {
       <p className="text-black">(Includes taxes and surcharges 1m)</p>
     </div>
     </div>
-    <button className="bg-blue-300 text-black w-full rounded-xl p-2 lg:w-[500px] lg:ml-5">Order </button>
+    <button className="bg-[#0281B0] text-black w-full rounded-xl p-2 lg:w-[500px] lg:ml-5">Order </button>
     </div>
   );
 };
