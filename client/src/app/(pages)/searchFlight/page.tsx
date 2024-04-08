@@ -1,6 +1,7 @@
 "use client";
 import FlightFilter from "@/components/flightSearch/FlightFilter";
 import FlightInfo from "@/components/flightSearch/FlightInfo";
+import NotFoundFlight from "@/components/flightSearch/NotFoundFlight";
 import Tabs from "@/components/heroSection/Tabs";
 import { AirPortContext } from "@/context/airportProvider";
 import { FlightContext } from "@/context/flightProvider";
@@ -11,6 +12,8 @@ type Props = {};
 
 const pageSearchFlights = ({ searchParams }: any) => {
   const router = useRouter();
+  const { getSearchedFlights, refreshSearch, foundTickets } =
+    useContext(FlightContext);
   const {
     selectedArrivalAirport,
     selectedDepartureAirport,
@@ -18,14 +21,15 @@ const pageSearchFlights = ({ searchParams }: any) => {
     setSelectedDepartureAirport,
   } = useContext(AirPortContext);
   useEffect(() => {
-    setSelectedArrivalAirport(searchParams.arr);
-    setSelectedDepartureAirport(searchParams.dep);
-  }, []);
+    setSelectedArrivalAirport(localStorage.getItem("arri"));
+    setSelectedDepartureAirport(localStorage.getItem("dep"));
+  }, [refreshSearch]);
   useEffect(() => {
     router.push(
       `?dep=${selectedDepartureAirport}&arr=${selectedArrivalAirport}`,
       { scroll: false }
     );
+    getSearchedFlights();
   }, [selectedArrivalAirport, selectedDepartureAirport]);
 
   return (

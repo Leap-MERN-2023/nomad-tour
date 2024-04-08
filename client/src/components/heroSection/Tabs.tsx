@@ -9,6 +9,8 @@ import { MdOutlineBed } from "react-icons/md";
 import { CountryContext } from "@/context/CountryProvider";
 import { ICountry } from "@/types";
 import Link from "next/link";
+import { useFlightsContext } from "@/context/flightProvider";
+import { useUserContext } from "@/context/UserProvider";
 
 function classNames(...classes: any) {
   return classes.filter(Boolean).join(" ");
@@ -16,7 +18,7 @@ function classNames(...classes: any) {
 
 export default function Tabs() {
   const { countries, handleSelectCountry } = useContext(CountryContext);
-  const [selectedItem, setSelectedItem] = useState("Country");
+  const { selectedItem, setSelectedItem } = useUserContext();
   let [categories] = useState([
     {
       name: "Country",
@@ -96,7 +98,7 @@ export default function Tabs() {
         </Tab.List>
         <Tab.Panels className="mt-2">
           {categories.map((category, idx) => {
-            switch (category.name) {
+            switch (selectedItem) {
               case "Country":
                 return (
                   <Tab.Panel
@@ -109,7 +111,7 @@ export default function Tabs() {
                         <select
                           defaultValue=""
                           onChange={handleSelectCountry}
-                          className="select bg-zinc-100 w-full"
+                          className="select bg-zinc-100 text-zinc-700 w-full"
                           name="hotelCountry"
                           id=""
                         >
