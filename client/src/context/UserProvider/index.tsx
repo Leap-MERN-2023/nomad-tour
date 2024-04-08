@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import  {
+import {
   useState,
   useEffect,
   createContext,
@@ -25,11 +25,15 @@ export interface IUserContext {
   token: string | null;
   login: (email: string, password: string) => void;
   handleChangeUser: any;
+  isUserLoggedIn: boolean,
+  logOut: () => void
+  // change: any
   signup: (
     email: string,
     password: string,
     phoneNumber: string,
-    name: string
+    name: string,
+    // change:any
   ) => void;
 }
 
@@ -41,9 +45,12 @@ export const UserContext = createContext<IUserContext>({
     password: "",
   },
   token: "",
-  login: function () {},
-  handleChangeUser() {},
-  signup: function () {},
+  login: function () { },
+  logOut: function () { },
+  isUserLoggedIn: false,
+  handleChangeUser() { },
+  signup: function () { },
+  // change: function (){}
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
@@ -57,6 +64,13 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     password: "",
   });
 
+  console.log('this is the user ', user)
+
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false)
+
+  console.log('this is the user logged in ', isUserLoggedIn)
+
+
   const handleChangeUser = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -67,8 +81,15 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
+    const user = localStorage.getItem('user')
+    console.log(user)
     if (storedToken) {
       setToken(storedToken);
+    }
+    if (user !== null) {
+      console.log('this is null')
+      // setIsUserLoggedIn(true)
+      // setUser(JSON.parse(user))
     }
   }, []);
 
@@ -80,16 +101,23 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         password: password,
       });
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data.user._doc));
       setUser(data.user);
-      setUser(data.token);
+      setIsUserLoggedIn(true)
+      // setUser(data.token);
       router.push("/");
       swal("Good job", "Login successfully", "success");
-      // alert("amjilttai nevterlee");
+      setUser(data.user._doc)
     } catch (error) {
       swal("failed", " login failed ", "error");
     }
   };
+
+  const logOut = () => {
+    localStorage.setItem("token", JSON.stringify(''));
+    localStorage.setItem("user", JSON.stringify(undefined));
+    setIsUserLoggedIn(false)
+  }
 
   const signup = async (
     email: string,
@@ -107,20 +135,22 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       });
       console.log("DATA: ", data);
       localStorage.setItem("token", data.token);
-      localStorage.setItem("user", JSON.stringify(data.user));
+      localStorage.setItem("user", JSON.stringify(data.user._doc));
       setUser(data.user);
       setUser(data.token);
       router.push("/");
       swal("Successfully", "Signup successfully", "success")
-      
+
     } catch (error: any) {
       swal("Failed", "Signup failed", "error")
     }
   };
 
+
+
   return (
     <UserContext.Provider
-      value={{ login, user, token, handleChangeUser, signup }}
+      value={{ login, user, logOut, token, handleChangeUser, signup, isUserLoggedIn }}
     >
       {children}
     </UserContext.Provider>
