@@ -11,20 +11,20 @@ const flightSchema = new Schema({
     ref: "Airline",
     required: true,
   },
-  // isRounded: {
-  //   type: Boolean,
-  //   // required: true,
-  // },
-  // roundFlight: {
-  //   type: Schema.ObjectId,
-  //   ref: "Flight",
-  // },
+  isRounded: {
+    type: Boolean,
+    required: true,
+  },
+  roundFlight: {
+    type: Schema.ObjectId,
+    ref: "Flight",
+  },
   departureDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   arrivalDate: {
-    type: String,
+    type: Date,
     required: true,
   },
   departureAirportId: {
