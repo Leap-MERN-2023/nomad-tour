@@ -1,13 +1,14 @@
 "use client"
 import React,{useContext,useEffect} from 'react'
 import { CountryContext } from '@/context/countryProvider'
-import CountryModal from "@/components/modals/countryModal"
+import CountryModal from "@/components/modals/countryModal";
+import { CldUploadWidget } from 'next-cloudinary';
 
 const index = () => {
-  const {countries, getCountries} = useContext(CountryContext);
-  //   useEffect(() => {
-  //   getCountries();
-  // }, []);
+  const {countries, getCountries,deleteCountry} = useContext(CountryContext);
+ 
+  function setResource(info: any) {
+  }
 
   return (
     <div className='w-full'>
@@ -22,7 +23,7 @@ const index = () => {
            <td className="w-[900px]">{country.description}</td>
            <div className='flex gap-2'>
                <button className="btn btn-active btn-primary w-20 text-white">Put</button>
-               <button className="btn btn-error w-20 text-white">Del</button>
+               <button className="btn btn-error w-20 text-white" onClick={()=>{deleteCountry(country._id)}}>Del</button>
            </div>
         </div> 
       })}

@@ -13,6 +13,7 @@ interface IairPortContext {
   getAllairPort: () => void;
   createAirport: () => void;
   handleAirportForm: (e: any) => void;
+  deleteAirport: (e : any) => void;
   newAirport: {
     name: string;
   };
@@ -34,7 +35,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
       const { airport } = await axios
         .get("http://localhost:8008/airport")
         .then((res) => res.data);
-      console.log("airport", airport);
+      // console.log("airport", airport);
       setAirPorts(airport);
     } catch (error) {
       console.log("error", error);
@@ -61,6 +62,15 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  const deleteAirport = async (airportId : any) => {
+    try {
+      const data = await axios.delete(`http://localhost:8008/airport/${airportId}`, {
+      })
+      console.log("delete",data)
+    } catch (error) {
+      console.log("delete error", error)
+    }
+  }
   return (
     <AirPortContext.Provider
       value={{
@@ -69,6 +79,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
         createAirport,
         handleAirportForm,
         newAirport,
+        deleteAirport
       }}
     >
       {children}

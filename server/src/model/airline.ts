@@ -6,10 +6,10 @@ interface IAirline extends Document {
 }
 
 const AirlineSchema: Schema<IAirline> = new Schema<IAirline>({
-  logo: {
+  logo: [{
     type: String,
     required: true,
-  },
+  }],
   name: {
     type: String,
     unique: true,

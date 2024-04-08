@@ -5,7 +5,9 @@ import AuthProvider from "@/context/authProvider";
 import FlightProvider from "@/context/flightProvider";
 import HotelProvider from "@/context/hotelProvider";
 import CountryProvider from "@/context/countryProvider";
-import { ChakraProvider } from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react';
+import  AirlinesProvider  from "@/context/airlines";
+import TicketProvider from "@/context/ticket";
 const font = Font({ subsets: ["latin"] });
 
 export const metadata = {
@@ -23,7 +25,11 @@ export default function RootLayout({ children }) {
 				      <AuthProvider>
 					  <ChakraProvider>
 				        <AirPortProvider>
+						 <AirlinesProvider>
+							<TicketProvider>
 				           {children}
+						   </TicketProvider>
+						 </AirlinesProvider>
 				        </AirPortProvider>
 						</ChakraProvider>
 				      </AuthProvider>
