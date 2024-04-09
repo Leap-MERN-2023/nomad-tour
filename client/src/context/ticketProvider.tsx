@@ -11,6 +11,7 @@ import {
 
 interface ITicketContext {
   tickets: ITicket[] | undefined;
+  getTickets: () => void;
 }
 
 export const ticketContext = createContext({} as ITicketContext);
@@ -18,12 +19,12 @@ const TicketProvider = ({ children }: PropsWithChildren) => {
   const [tickets, setTickets] = useState<ITicket[]>();
   const getTickets = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8008/tickets");
+      const { data } = await axios.get("http://localhost:8008/ticket");
       setTickets(data.tickets);
     } catch (error) {}
   };
   return (
-    <ticketContext.Provider value={{ tickets }}>
+    <ticketContext.Provider value={{ tickets, getTickets }}>
       {children}
     </ticketContext.Provider>
   );

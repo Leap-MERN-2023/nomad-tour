@@ -58,17 +58,19 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
       }
     } catch (error) {
       console.log("ERROR IN GET SEARCHED FLIGHTS");
+    } finally {
+      setTicketLoading(false);
     }
   };
   const getSearchedTickets = async (flightId: string) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8008/tickets/${flightId}`
+        `http://localhost:8008/ticket/${flightId}`
       );
       setFoundTickets(data.searchedTickets);
       setTicketLoading(false);
     } catch (error) {
-      console.log("FAILED TO SEARCH TICKETS");
+      console.log("FAILED TO SEARCH TICKETS", error);
     }
   };
   return (

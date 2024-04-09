@@ -6,11 +6,13 @@ import { priceCalculator } from "@/utils/priceCalc";
 import { useFlightsContext } from "@/context/flightProvider";
 import TicketSkeleton from "./TicketSkeleton";
 import NotFoundFlight from "./NotFoundFlight";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const FlightInfo = (props: Props) => {
   const { foundTickets, ticketLoading } = useFlightsContext();
+  const router = useRouter();
   return (
     <div className="xl:w-2/3 flex flex-col items-center">
       <button className="btn w-full mt-5 btn-outline xl:hidden">
@@ -86,7 +88,10 @@ const FlightInfo = (props: Props) => {
                     $
                   </p>
                 </div>
-                <button className="btn bg-[#0281B0] text-white border-0">
+                <button
+                  onClick={() => router.push(`/flightOrder/${ticket._id}`)}
+                  className="btn bg-[#0281B0] text-white border-0"
+                >
                   Check out
                 </button>
               </div>
