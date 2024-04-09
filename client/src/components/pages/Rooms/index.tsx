@@ -8,12 +8,14 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useRouter } from "next/navigation";
 
 import { RoomContext } from "@/context/RoomProvider";
 import { IRoom } from "@/types";
 type Swiper = /*unresolved*/ any;
 
 const Room = () => {
+  const router = useRouter()
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const { rooms } = useContext(RoomContext);
   console.log("RRRRR", rooms);
@@ -69,11 +71,11 @@ const Room = () => {
                 })}
               </Swiper>
             </div>
-            <div className="flex flex-col justify-center items-center ml-3">
+            <div className="flex flex-col justify-center items-center ml-3 my-3">
               <div className="font-bold text-lg  text-black">{room?.name}</div>
               <div>{room?.price?.USD}$</div>
               <div className="text-sm">{room?.description}</div>
-              <button className="btn btn-outline btn-accent">Accent</button>
+              <button className="btn btn-outline" onClick={() => router.push("/hotels/rooms/order")}>Order</button>
             </div>
           </div>
         );
