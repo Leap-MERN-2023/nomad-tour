@@ -28,6 +28,8 @@ export const HotelContext = createContext<IHotelContext>({} as IHotelContext);
 
 const HotelProvider = ({ children }: PropsWithChildren) => {
   const [hotels, setHotels] = useState<IHotel[]>([]);
+  const [loading,setLoading]= useState(false);
+  const [refresh, setrefresh] = useState(false);
   const [newHotel, setNewHotel] = useState({
     name:"",
     description: "",
@@ -49,13 +51,17 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   };
   const createHotel = async () => {
     try {
+      setLoading(true)
       const data = await axios.post(
         "http://localhost:8008/hotels",
         newHotel
       );
+      setrefresh(!refresh)
       console.log("newHotel",newHotel)
     } catch (error: any) {
       console.log("create hotel error", error);
+    }finally{
+      setLoading(false)
     }
   };
   const handleHotelForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -64,11 +70,15 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   };
   const deleteHotel = async (hotelId : any) => {
     try {
-      const data = await axios.delete(`http://localhost:8008/hotel/${hotelId}`, {
+      setLoading(true)
+      const data = await axios.delete(`http://localhost:8008/hotels/${hotelId}`, {
       })
       console.log("delete hotel",data)
+      setrefresh(!refresh)
     } catch (error) {
       console.log("delete error", error)
+    }finally{
+      setLoading(false)
     }
   };
   const addImage = (imgUrl: string) => {
@@ -77,7 +87,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     getHotels();
-  }, []);
+  }, [refresh]);
 
   return (
     <HotelContext.Provider value={{ hotels ,getHotels,createHotel,handleHotelForm,deleteHotel,addImage}}>{children}</HotelContext.Provider>

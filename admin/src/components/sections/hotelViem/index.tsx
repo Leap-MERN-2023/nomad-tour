@@ -1,10 +1,10 @@
 "use client"
-import React, {useContext,useEffect} from 'react'
-import { HotelContext } from '@/context/hotelProvider'
-import HotelCard from './hotelcard'
-import HotelModal from "@/components/modals/hotelModal"
+import React, {useContext} from 'react';
+import { HotelContext } from '@/context/hotelProvider';
+import HotelCard from './hotelcard';
+import HotelModal from "@/components/modals/hotelModal";
 
-const index = () => {
+const Hotel = () => {
   const {hotels} = useContext(HotelContext);
   return (
     <div>
@@ -21,4 +21,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Hotel;

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, FormControl, FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, Select, Flex, Box } from '@chakra-ui/react'
 import { AirPortContext } from '@/context/airportProvider';
 import { CountryContext } from '@/context/countryProvider';
@@ -10,7 +10,7 @@ function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const {airports} = React.useContext(AirPortContext);
   const { countries } = React.useContext(CountryContext);
-  const {airlines} = React.useContext(AirlinesContext)
+  const {airlines,getAirlines} = React.useContext(AirlinesContext)
   const {createFlight,handleFlightForm,flights} = React.useContext(FlightContext);
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
@@ -18,6 +18,10 @@ function Index() {
   const handleSave = () => {
     onClose(), createFlight();
   };
+  const rounds = [
+   "true",
+   "false",
+  ]
   return (
     <>
       <Button onClick={onOpen} colorScheme='blue'>New flight +</Button>
@@ -37,7 +41,7 @@ function Index() {
               <FormLabel>Select Country</FormLabel>
                 <Select variant='outline'
                  placeholder='Select Country' 
-                 name='Country'
+                 name='countryId'
                  onChange={handleFlightForm}>
                   {countries.map(country => (
                     <option key={country._id} value={country._id}>{country.name}</option>
@@ -47,8 +51,8 @@ function Index() {
             <FormControl mt={4}>
               <FormLabel>Select Airline</FormLabel>
                 <Select variant='outline'
-                 placeholder='Select Country' 
-                 name='Airline'
+                 placeholder='Select Airline' 
+                 name='airline'
                  onChange={handleFlightForm}>
                   {airlines.map((airline :any) => (
                     <option key={airline._id} value={airline._id}>{airline.name}</option>
@@ -59,7 +63,7 @@ function Index() {
               <FormLabel>Select Departure Airport</FormLabel>
                 <Select variant='outline' 
                 placeholder='Select Airport' 
-                name='departureAirport'
+                name='departureAirportId'
                 onChange={handleFlightForm}>
                   {airports.map((airport: any) => (
                     <option key={airport._id} value={airport._id}>{airport.name}</option>
@@ -70,7 +74,7 @@ function Index() {
               <FormLabel>Select Arrival Airport</FormLabel>
                 <Select variant='outline' 
                 placeholder='Select Airport' 
-                name='arrivalAirport'
+                name='arrivalAirportId'
                 onChange={handleFlightForm}>
                   {airports.map((airport: any) => (
                     <option key={airport._id} value={airport._id}>{airport.name}</option>
@@ -80,23 +84,34 @@ function Index() {
             <FormControl mt={4}>
               <FormLabel>Seats</FormLabel>
                 <Input 
-                name='Seats'
+                name='availableSeats'
                 onChange={handleFlightForm}
                 placeholder='Seats'/>
+            </FormControl>
+            <FormLabel>Is rounded</FormLabel>
+            <FormControl>
+                <Select variant='outline' 
+                placeholder='Select Round' 
+                name='isRounded'
+                onChange={handleFlightForm}>
+                  {rounds.map((round: any) => (
+                    <option key={round} value={round}>{round}</option>
+                    ))}
+                </Select>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Departure Date</FormLabel>
                 <Input
                 name='departureDate'
                 onChange={handleFlightForm} 
-                placeholder='2000-12-31'/>
+                placeholder='2024-05-10T17:00:00Z'/>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Arrival Date</FormLabel>
                 <Input
                 name='arrivalDate'
                 onChange={handleFlightForm} 
-                placeholder='2000-12-31'/>
+                placeholder='2024-05-10T21:00:00Z'/>
             </FormControl>
           </ModalBody>
           <ModalFooter>
