@@ -25,6 +25,8 @@ export const AirPortContext = createContext<IairPortContext>(
 
 const AirPortProvider = ({ children }: PropsWithChildren) => {
   const [airports, setAirPorts] = useState();
+  const [loading,setLoading]= useState(false);
+  const [refresh, setrefresh] = useState(false);
   const [newAirport, setNewAirport] = useState({
     country: "",
     name: "",
@@ -43,7 +45,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   };
   useEffect(() => {
     getAllairPort();
-  }, []);
+  }, [refresh]);
 
   const handleAirportForm = (e: ChangeEvent<HTMLInputElement>) => {
     setNewAirport({ ...newAirport, [e.target.name]: e.target.value });
@@ -51,24 +53,32 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   };
   const createAirport = async () => {
     try {
+      setLoading(true)
       const formData = new FormData();
       formData.set("name", newAirport.name);
       const data = await axios.post(
         "http://localhost:8008/airport",
         newAirport
       );
+      setrefresh(!refresh);
     } catch (error: any) {
       console.log("create airport error", error);
+    }finally{
+      setLoading(false)
     }
   };
 
   const deleteAirport = async (airportId : any) => {
     try {
+      setLoading(true);
       const data = await axios.delete(`http://localhost:8008/airport/${airportId}`, {
       })
       console.log("delete",data)
+      setrefresh(!refresh)
     } catch (error) {
       console.log("delete error", error)
+    }finally{
+      setLoading(false)
     }
   }
   return (

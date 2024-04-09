@@ -16,7 +16,7 @@ function SideBar() {
 					href={"/admin"}
 					className="flex items-center place-content-center gap-5 py-4 hover:bg-tripit hover:rounded-2xl hover:cursor-pointer"
 				>
-					<img className="w-26 h-20 rounded-full" src="/assets/nomad.png"/>
+					<Image width={20} height={16} className="w-20 h-18 rounded-full" src="/assets/nomad.png" alt="logo"/>
 					<div className="font-bold text-2xl">Nomad Tour</div>
 				</Link>
 				<div className="py-4">

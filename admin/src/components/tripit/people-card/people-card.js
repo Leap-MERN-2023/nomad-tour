@@ -14,13 +14,6 @@ function PeopleCard() {
 			</div>
 			<div className="flex justify-between text-sm text-[#27292C]">
 				<div className="flex items-center gap-2">
-					<Image
-						priority
-						src={"/assets/avatar-concated.svg"}
-						height={32}
-						width={56}
-						alt=""
-					/>
 					<div>Marta, Artur</div>
 				</div>
 				<div className="text-2xl border rounded-full px-[9px]">+</div>

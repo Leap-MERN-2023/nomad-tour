@@ -19,12 +19,15 @@ interface IAirlinesContext {
   createAirline: () => void;
   handleAirlineForm:(e:any) => void;
   addImage: (images: string) => void;
+  loading: boolean;
 }
 
 export const AirlinesContext = createContext<IAirlinesContext>({} as IAirlinesContext);
 
 const AirlinesProvider = ({ children }: PropsWithChildren) => {
-  const [airlines,setAirlines] = useState()
+  const [airlines,setAirlines] = useState();
+  const [loading,setLoading] = useState(false);
+  const [refresh,setRefresh] = useState(false);
   const [newAirline,setNewAirline] = useState<any>({
     logo: "",
     name: "",
@@ -39,27 +42,39 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
       setAirlines(data.airline);
     } catch (error) {
       console.log("error", error);
+    } finally{
+      setLoading(false)
     }
   };
   const deleteAirline = async (airlinetId : any) => {
+    setLoading(true)
     try {
       const data = await axios.delete(`http://localhost:8008/airport/${airlinetId}`, {
       })
       console.log("delete airline",data)
+      setRefresh(!refresh)
     } catch (error) {
       console.log("delete airline error", error)
+    }finally{
+      setLoading(false)
     }
   };
+
   const createAirline = async () => {
     try {
+      setLoading(true)
         const data = await axios.post(
         "http://localhost:8008/Airlines",
         newAirline
       );
       console.log("newAirline",data)
+      setRefresh(!refresh)
     }
      catch (error: any) {
       console.log("create airport error", error);
+    }
+    finally{
+      setLoading(false)
     }
   };
   const handleAirlineForm = (e: ChangeEvent<HTMLInputElement>) => {
@@ -71,10 +86,10 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
   }
   useEffect(() => {
     getAirlines();
-  }, []);
+  }, [refresh]);
     
   return (
-    <AirlinesContext.Provider value={{handleAirlineForm,getAirlines,airlines,deleteAirline,createAirline,addImage}}>
+    <AirlinesContext.Provider value={{handleAirlineForm,getAirlines,airlines,deleteAirline,createAirline,addImage,loading}}>
       {children}
     </AirlinesContext.Provider>
   );

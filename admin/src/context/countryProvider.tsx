@@ -36,6 +36,8 @@ export const CountryContext = createContext<ICountryContext>(
 const CountryProvider = ({ children }: PropsWithChildren) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [file, setFile] = useState<any>(null);
+  const [loading,setLoading]= useState(false);
+  const [refresh, setrefresh] = useState(false);
   const [newCountry, setNewCountry] = useState<any>({
     name: "",
     description: "",
@@ -63,23 +65,32 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
   };
   const createCountry = async () => {
     try {
+      setLoading(true)
         const data = await axios.post(
         "http://localhost:8008/country",
         newCountry
       );
+      setrefresh(!refresh)
       console.log("newCountry",newCountry)
     }
      catch (error: any) {
       console.log("create airport error", error);
     }
+    finally{
+      setLoading(false)
+    }
   };
   const deleteCountry = async (countryId : any) => {
     try {
+      setLoading(true)
       const data = await axios.delete(`http://localhost:8008/country/${countryId}`, {
       })
+      setrefresh(!refresh)
       console.log("delete country",data)
     } catch (error) {
       console.log("delete error", error)
+    }finally{
+      setLoading(false)
     }
   };
   const addImage = (imgUrl: string) => {
@@ -88,7 +99,7 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
 
   useEffect(() => {
     getCountries();
-  }, []);
+  }, [refresh]);
 
   return (
     <CountryContext.Provider value={{ countries, getCountries,handleCountryForm,handleFile,createCountry,deleteCountry,addImage}}>
