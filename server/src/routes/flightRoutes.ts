@@ -4,6 +4,7 @@ import {
   deleteFlight,
   getFlight,
   getFlights,
+  getSearchedFlight,
   updateFlight,
 } from "../controller/flightController";
 
@@ -15,5 +16,5 @@ router
   .get(getFlight)
   .put(updateFlight)
   .delete(deleteFlight);
-
+router.route("/search/").post(getSearchedFlight);
 export default router;

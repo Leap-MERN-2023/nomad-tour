@@ -19,7 +19,7 @@ const hotelSection = (props: Props) => {
         </div>
         <div className="flex my-12 flex-wrap gap-12">
           {allHotel?.map((hotel: any) => (
-            <HotelCard hotels={hotel} />
+            <HotelCard key={hotel._id} hotels={hotel} />
           ))}
         </div>
         <div className="flex items-center justify-center">

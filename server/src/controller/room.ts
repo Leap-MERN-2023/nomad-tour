@@ -9,6 +9,7 @@ export const createRoom = async (
 ) => {
   try {
     const newRoom = await Room.create({ ...req.body });
+    console.log("NEwroom", newRoom);
 
     res.status(200).json({ message: "Succesfully created new room", newRoom });
   } catch (error) {
@@ -25,9 +26,13 @@ export const getRooms = async (
   next: NextFunction
 ) => {
   try {
-    const allRoom = await Room.find();
+    const hotelId = req.params.hotelId;
+    console.log("HotelId", hotelId);
 
-    res.status(200).json({ message: "Succesfully to get rooms.", allRoom });
+    const allRooms = await Room.find({ hotel: hotelId });
+    console.log("Rooms", allRooms);
+
+    res.status(200).json({ message: "Succesfully to get rooms.", allRooms });
   } catch (error) {
     console.log("Err_All", error);
     res.status(400).json({ message: "Failed to get rooms." });

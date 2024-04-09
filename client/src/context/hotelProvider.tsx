@@ -34,12 +34,10 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
 
   //Get All hotel with high rank
   const getAllHotel = async () => {
-    console.log("Working");
     try {
       const {
         data: { allHotel },
       } = await axios.get("http://localhost:8008/hotels");
-      console.log("Hotels", allHotel);
       setAllHotel(allHotel);
     } catch (error: any) {
       console.log("ERR", error);
@@ -69,7 +67,6 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { hotel },
       } = await axios.get(`http://localhost:8008/hotels/${hotelId}`);
-      console.log("HOTEl", hotel);
       setHotel(hotel);
     } catch (error) {
       console.log("ERR", error);

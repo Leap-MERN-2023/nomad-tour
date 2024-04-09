@@ -1,57 +1,61 @@
 "use client";
-import React, { useEffect, useRef } from "react";
-import { Loader } from "@googlemaps/js-api-loader";
+// import React from "react";
+// import { createRoot } from "react-dom/client";
+// import { APIProvider, Map } from "@vis.gl/react-google-maps";
 
-const GoogleMaps = () => {
-  const mapRef = useRef<HTMLDivElement>(null);
+// export const GoogleMaps = () => (
+//   <APIProvider apiKey={"AIzaSyBL9rc48p-BO9lSkvBNdp-UD7e3SiGoT9w"}>
+//     <Map
+//       style={{ width: "300px", height: "300px" }}
+//       defaultCenter={{ lat: 22.54992, lng: 0 }}
+//       defaultZoom={3}
+//       gestureHandling={"greedy"}
+//       disableDefaultUI={true}
+//     />
+//   </APIProvider>
+// );
+// const rootElement = document.querySelector("#hotels");
+// if (rootElement) {
+//   const root = createRoot(rootElement);
+//   root.render(
+//     <React.StrictMode>
+//       <GoogleMaps />
+//     </React.StrictMode>
+//   );
+// } else {
+//   console.error("Root element '#hotels' not found in the DOM.");
+// }
 
-  useEffect(() => {
-    const initMap = async () => {
-      const loader = new Loader({
-        apiKey: " AIzaSyBL9rc48p-BO9lSkvBNdp-UD7e3SiGoT9w",
-        version: "weekly",
-      });
+import React, { useState } from "react";
+import {
+  AdvancedMarker,
+  InfoWindow,
+  useAdvancedMarkerRef,
+} from "@vis.gl/react-google-maps";
 
-      const { Map } = await loader.importLibrary("maps");
-
-      //init marker
-      const { Marker } = (await loader.importLibrary(
-        "marker"
-      )) as google.maps.MarkerLibrary;
-
-      const position = {
-        lat: 47.9221,
-        lng: 106.9155,
-      };
-
-      const mapOptions: google.maps.MapOptions = {
-        center: position,
-        zoom: 12,
-      };
-
-      const map = new Map(mapRef.current as HTMLDivElement, mapOptions);
-
-      const marker = new Marker({
-        map: map,
-        position: position,
-      });
-    };
-    initMap();
-  }, []);
+export const GoogleMaps = () => {
+  const [infowindowOpen, setInfowindowOpen] = useState(true);
+  const [markerRef, marker] = useAdvancedMarkerRef();
 
   return (
-    // <dialog id="my_modal_3" className="modal">
-    //   <div className="modal-box">
-    //     <form method="dialog">
-    //       <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
-    //         ✕
-    //       </button>
-    //     </form>
-    <div
-      ref={mapRef}
-      style={{ height: "300px", width: "310px", borderRadius: "10px" }}
-    />
+    <>
+      <AdvancedMarker
+        ref={markerRef}
+        onClick={() => setInfowindowOpen(true)}
+        position={{ lat: 28, lng: -82 }}
+        title={"AdvancedMarker that opens an Infowindow when clicked."}
+      />
+      {infowindowOpen && (
+        <InfoWindow
+          anchor={marker}
+          maxWidth={200}
+          onCloseClick={() => setInfowindowOpen(false)}
+        >
+          This is an example for the{" "}
+          <code style={{ whiteSpace: "nowrap" }}>&lt;AdvancedMarker /&gt;</code>{" "}
+          combined with an Infowindow.
+        </InfoWindow>
+      )}
+    </>
   );
 };
-
-export default GoogleMaps;

@@ -19,7 +19,6 @@ export const getFlights = async (req: Request, res: Response) => {
       "countryId",
       "departureAirportId",
     ]);
-    console.log("first", allFlights);
     res
       .status(200)
       .json({ message: "Succesfully get all flights", allFlights });
@@ -54,5 +53,20 @@ export const deleteFlight = async (req: Request, res: Response) => {
     res.status(200).json({ message: "Succesfully deleted flight", flight });
   } catch (error) {
     res.status(500).json({ message: "failed to delete flight", error });
+  }
+};
+
+export const getSearchedFlight = async (req: Request, res: Response) => {
+  try {
+    const { depId, arrId } = req.body;
+    const foundFlights = await Flight.find({
+      departureAirportId: depId,
+      arrivalAirportId: arrId,
+    });
+    res
+      .status(200)
+      .json({ message: "Succesfully get searched flights", foundFlights });
+  } catch (error) {
+    res.status(500).json({ message: "failed to get searched flight", error });
   }
 };

@@ -1,5 +1,5 @@
 'use client'
-import { EmailContext } from "@/context/email";
+import { EmailContext } from "../../context/email";
 import React from "react";
 import { useState, useContext } from "react";
 

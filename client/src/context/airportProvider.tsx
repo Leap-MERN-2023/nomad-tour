@@ -10,6 +10,12 @@ import React, {
 interface IairPortContext {
   airport: any;
   getairPort: () => void;
+  selectedDepartureAirport: string | undefined;
+  selectedArrivalAirport: string | undefined;
+  setSelectedDepartureAirport: any;
+  setSelectedArrivalAirport: any;
+  handleDeparture: (e: any) => void;
+  handleArrival: (e: any) => void;
 }
 
 export const AirPortContext = createContext<IairPortContext>(
@@ -18,7 +24,18 @@ export const AirPortContext = createContext<IairPortContext>(
 
 const AirPortProvider = ({ children }: PropsWithChildren) => {
   const [airport, setAirPort] = useState();
-
+  const [selectedDepartureAirport, setSelectedDepartureAirport] =
+    useState<string>();
+  const handleDeparture = (e: any) => {
+    setSelectedDepartureAirport(e.target.value);
+    localStorage.setItem("dep", e.target.value);
+  };
+  const [selectedArrivalAirport, setSelectedArrivalAirport] =
+    useState<string>();
+  const handleArrival = (e: any) => {
+    setSelectedArrivalAirport(e.target.value);
+    localStorage.setItem("arri", e.target.value);
+  };
   const getairPort = async () => {
     try {
       const { airport } = await axios
@@ -33,7 +50,18 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
     getairPort();
   }, []);
   return (
-    <AirPortContext.Provider value={{ airport, getairPort }}>
+    <AirPortContext.Provider
+      value={{
+        airport,
+        getairPort,
+        selectedArrivalAirport,
+        selectedDepartureAirport,
+        handleArrival,
+        handleDeparture,
+        setSelectedArrivalAirport,
+        setSelectedDepartureAirport,
+      }}
+    >
       {children}
     </AirPortContext.Provider>
   );

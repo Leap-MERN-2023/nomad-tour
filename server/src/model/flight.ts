@@ -38,7 +38,7 @@ const flightSchema = new Schema({
     required: true,
   },
   availableSeats: {
-    type: Number,
+    type: String,
     required: true,
   },
   createdAt: {

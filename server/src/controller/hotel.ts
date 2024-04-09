@@ -110,4 +110,5 @@ export const deleteHotel = async (
   } catch (error) {
     next(error);
   }
-};
+}
+

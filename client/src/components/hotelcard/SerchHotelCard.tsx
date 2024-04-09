@@ -8,7 +8,9 @@ import { TiWiFi } from "react-icons/ti";
 import { FaCar } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { GiKnifeFork } from "react-icons/gi";
-import GoogleMaps from "../GoogleMaps";
+
+import { FaLocationDot } from "react-icons/fa6";
+import { BsHeart } from "react-icons/bs";
 
 import { CountryContext } from "@/context/CountryProvider";
 
@@ -75,23 +77,26 @@ const SearchHotelCard = ({ hotels }: any) => {
           <h2 className="text-2xl font-bold text-black">{hotels.price}$</h2>
         </div>
         <div className="flex justify-between w-36">
-          <TiWiFi style={{ height: 16, width: 16 }} />
-          <FaCar style={{ height: 16, width: 16 }} />
-          <BiSolidPhoneCall style={{ height: 16, width: 16 }} />
-          <GiKnifeFork style={{ height: 16, width: 16 }} />
+          <TiWiFi style={{ height: 18, width: 18 }} />
+          <FaCar style={{ height: 18, width: 18 }} />
+          <BiSolidPhoneCall style={{ height: 18, width: 18 }} />
+          <GiKnifeFork style={{ height: 18, width: 18 }} />
         </div>
         <div
-          className="flex justify-center items-center gap-1 font-bold"
+          className="flex justify-between items-center gap-2 font-bold"
           onClick={openGoogleMaps}
         >
-          <img src="location.png" />
-          <p>
-            {countryName}, {hotels.name}
-          </p>
+          <div className="flex gap-3">
+            <FaLocationDot style={{ height: 20, width: 20 }} />
+            <p className="text-md font-bold">
+              {countryName}, {hotels.name}
+            </p>
+          </div>
+          <BsHeart style={{ height: 30, width: 30 }} />
         </div>
       </div>
 
-      <HotelModal hotel={hotel} />
+      <HotelModal countryName={countryName} hotels={hotels} hotel={hotel} />
     </div>
   );
 };

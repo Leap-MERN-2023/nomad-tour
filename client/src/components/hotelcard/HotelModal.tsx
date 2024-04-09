@@ -8,19 +8,23 @@ import { TiWiFi } from "react-icons/ti";
 import { FaCar } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { GiKnifeFork } from "react-icons/gi";
+import { FaLocationDot } from "react-icons/fa6";
+import { BsHeart } from "react-icons/bs";
+import { useRouter } from "next/navigation";
 
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 type Swiper = /*unresolved*/ any;
 
-const HotelModal = ({ hotel }: any) => {
+const HotelModal = ({ hotel, hotels, countryName }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const stars = Array.from({ length: hotel?.stars }, (_, index) => index + 1);
+  const router = useRouter();
 
   return (
     <dialog id="my_modal_3" className="modal">
-      <div className="modal-box">
+      <div className="modal-box ">
         <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-5 top-6">
@@ -84,14 +88,33 @@ const HotelModal = ({ hotel }: any) => {
             ))}
           </div>
         </div>
-        <div className="flex justify-between w-36">
-          <TiWiFi style={{ height: 16, width: 16 }} />
-          <FaCar style={{ height: 16, width: 16 }} />
-          <BiSolidPhoneCall style={{ height: 16, width: 16 }} />
-          <GiKnifeFork style={{ height: 16, width: 16 }} />
+        <div className="flex justify-between w-1/2">
+          <TiWiFi style={{ height: 20, width: 20 }} />
+          <FaCar style={{ height: 20, width: 20 }} />
+          <BiSolidPhoneCall style={{ height: 20, width: 20 }} />
+          <GiKnifeFork style={{ height: 20, width: 20 }} />
+          ...
         </div>
-        <div className="shadow-2xl rounded-2xl p-2 bg-opacity-100 my-3">
+        <div
+          className="flex gap-3 font-bold mt-3"
+          // onClick={openGoogleMaps}
+        >
+          <FaLocationDot style={{ height: 25, width: 25 }} />
+          <p className="font-bold text-lg">
+            {countryName}, {hotels?.name}
+          </p>
+        </div>
+        <div className="shadow-sm rounded-2xl font-semibold p-2 bg-opacity-100 my-3">
           {hotel?.description}
+        </div>
+        <div className="flex justify-between items-center">
+          <button
+            className="btn btn-outline font-extrabold "
+            onClick={() => router.push("/hotels/rooms")}
+          >
+            See availability
+          </button>
+          <BsHeart style={{ height: 40, width: 40 }} />
         </div>
       </div>
     </dialog>

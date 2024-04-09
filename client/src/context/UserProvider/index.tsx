@@ -1,6 +1,6 @@
 "use client";
 import axios from "axios";
-import  {
+import {
   useState,
   useEffect,
   createContext,
@@ -31,24 +31,15 @@ export interface IUserContext {
     phoneNumber: string,
     name: string
   ) => void;
+  selectedItem: string;
+  setSelectedItem: any;
 }
 
-export const UserContext = createContext<IUserContext>({
-  user: {
-    name: "",
-    email: "",
-    phoneNumber: "",
-    password: "",
-  },
-  token: "",
-  login: function () {},
-  handleChangeUser() {},
-  signup: function () {},
-});
+export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
-
+  const [selectedItem, setSelectedItem] = useState("Country");
 
   const [user, setUser] = useState<IUser>({
     name: "",
@@ -97,7 +88,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     name: string,
     phoneNumber: string
   ) => {
-    console.log("AAA", email, password, name, phoneNumber)
+    console.log("AAA", email, password, name, phoneNumber);
     try {
       const { data } = await axios.post("http://localhost:8008/auth", {
         email: email,
@@ -111,18 +102,30 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      swal("Successfully", "Signup successfully", "success")
-      
+      swal("Successfully", "Signup successfully", "success");
     } catch (error: any) {
-      swal("Failed", "Signup failed", "error")
+      swal("Failed", "Signup failed", "error");
     }
   };
 
   return (
     <UserContext.Provider
-      value={{ login, user, token, handleChangeUser, signup }}
+      value={{
+        login,
+        user,
+        token,
+        handleChangeUser,
+        signup,
+        selectedItem,
+        setSelectedItem,
+      }}
     >
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUserContext = () => {
+  const context = useContext(UserContext);
+  return context;
 };

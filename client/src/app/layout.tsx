@@ -1,4 +1,3 @@
-
 import React from "react";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -12,9 +11,10 @@ import Navbar from "../components/heroSection/navbar";
 import Footer from "../components/Footer";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import TicketProvider from "@/context/ticketProvider";
-import { EmailProvider } from "@/context/email";
+import TicketProvider from "../context/ticketProvider";
+import { EmailProvider } from "../context/email";
 import swal from "sweetalert";
+import AirlineProvider from "@/context/AirlineProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,16 +36,18 @@ export default function RootLayout({
           <CountryProvider>
             <HotelProvider>
               <AirPortProvider>
-                <FlightProvider>
-                  <EmailProvider>
-                    <TicketProvider>
-                      <Navbar />
-                      {children}
-                      <Footer />
-                    </TicketProvider>
-                    <ToastContainer />
-                  </EmailProvider>
-                </FlightProvider>
+                <AirlineProvider>
+                  <FlightProvider>
+                    <EmailProvider>
+                      <TicketProvider>
+                        <Navbar />
+                        {children}
+                        <Footer />
+                      </TicketProvider>
+                      <ToastContainer />
+                    </EmailProvider>
+                  </FlightProvider>
+                </AirlineProvider>
               </AirPortProvider>
             </HotelProvider>
           </CountryProvider>

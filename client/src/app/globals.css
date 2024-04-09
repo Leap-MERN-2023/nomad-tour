@@ -6,17 +6,25 @@
   scroll-behavior: smooth;
 }
 
-.slider {
-  width: 100%;
-  height: 10px;
-  background-color:  #42A5F5;
+.skeletonFlight {
+  border-radius: var(--rounded-box, 1rem /* 16px */);
+  --tw-bg-opacity: 1;
+  will-change: background-position;
+  animation: skeleton 1.8s ease-in-out infinite;
+  background-image: linear-gradient(
+    105deg,
+    transparent 0%,
+    transparent 40%,
+    var(--fallback-b1, oklch(var(--in) / 0.2)) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  background-size: 200% auto;
+  background-repeat: no-repeat;
+  background-position-x: -50%;
 }
-
-.slider .thumb {
-  width: 23px;
-  height: 23px;
-  cursor: pointer;
-  background: #fff;
-  border-radius: 50%;
-  border: 2px solid black;
+@media (prefers-reduced-motion) {
+  .skeleton {
+    animation-duration: 15s;
+  }
 }

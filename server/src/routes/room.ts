@@ -10,7 +10,8 @@ import {
 
 const router = Router();
 
-router.route("/").post(createRoom).get(getRooms);
+router.route("").post(createRoom);
+router.route("/id/:hotelId").get(getRooms);
 router.route("/:roomId").get(getRoom).put(updateRoom).delete(deleteRoom);
 
 export default router;

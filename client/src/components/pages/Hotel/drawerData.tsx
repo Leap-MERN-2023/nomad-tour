@@ -1,6 +1,6 @@
 "use client";
 import React, { useContext, useState } from "react";
-import GoogleMaps from "@/components/GoogleMaps";
+import { GoogleMaps } from "@/components/GoogleMaps";
 import { IHotel } from "@/types";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";

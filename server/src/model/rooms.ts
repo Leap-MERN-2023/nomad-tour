@@ -22,6 +22,7 @@ const roomSchema = new Schema({
     ref: Hotel,
     required: true,
   },
+  description: String,
 });
 
 export const Room = model("Room", roomSchema);
