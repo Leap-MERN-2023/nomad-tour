@@ -12,10 +12,10 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 type Swiper = /*unresolved*/ any;
 const roomInfo = (room: any) => {
+  console.log("Roommmmmm,", room);
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   return (
-    <div>
-      {" "}
+    <div className="border ">
       <Swiper
         style={{
           height: 400,

@@ -1,48 +1,32 @@
 "use client";
-// import React from "react";
-// import { createRoot } from "react-dom/client";
-// import { APIProvider, Map } from "@vis.gl/react-google-maps";
-
-// export const GoogleMaps = () => (
-//   <APIProvider apiKey={"AIzaSyBL9rc48p-BO9lSkvBNdp-UD7e3SiGoT9w"}>
-//     <Map
-//       style={{ width: "300px", height: "300px" }}
-//       defaultCenter={{ lat: 22.54992, lng: 0 }}
-//       defaultZoom={3}
-//       gestureHandling={"greedy"}
-//       disableDefaultUI={true}
-//     />
-//   </APIProvider>
-// );
-// const rootElement = document.querySelector("#hotels");
-// if (rootElement) {
-//   const root = createRoot(rootElement);
-//   root.render(
-//     <React.StrictMode>
-//       <GoogleMaps />
-//     </React.StrictMode>
-//   );
-// } else {
-//   console.error("Root element '#hotels' not found in the DOM.");
-// }
 
 import React, { useState } from "react";
 import {
+  APIProvider,
+  Map,
   AdvancedMarker,
   InfoWindow,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
-
-export const GoogleMaps = () => {
+export const GoogleMaps = ({ lat, lng }: { lat: number; lng: number }) => {
   const [infowindowOpen, setInfowindowOpen] = useState(true);
   const [markerRef, marker] = useAdvancedMarkerRef();
 
   return (
     <>
+      <APIProvider apiKey={"AIzaSyBL9rc48p-BO9lSkvBNdp-UD7e3SiGoT9w"}>
+        <Map
+          style={{ width: "300px", height: "300px" }}
+          defaultCenter={{ lat: 22.54992, lng: 0 }}
+          defaultZoom={3}
+          gestureHandling={"greedy"}
+          disableDefaultUI={true}
+        />
+      </APIProvider>
       <AdvancedMarker
         ref={markerRef}
         onClick={() => setInfowindowOpen(true)}
-        position={{ lat: 28, lng: -82 }}
+        position={{ lat: lat, lng: lng }}
         title={"AdvancedMarker that opens an Infowindow when clicked."}
       />
       {infowindowOpen && (

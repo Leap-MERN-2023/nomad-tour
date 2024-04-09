@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { HotelContext } from "@/context/hotelProvider";
 import { CountryContext } from "@/context/CountryProvider";
-import HotelCard from "@/components/hotelcard/SerchHotelCard";
+import { SearchHotelCard } from "@/components/hotelcard/SerchHotelCard";
 
 import { HotelModal } from "./drawer";
 import DrawerData from "./drawerData";
@@ -43,7 +43,7 @@ const Hotel = () => {
 
         <div className="flex flex-col w-full lg:w-7/12  gap-5 xl:w-8/12 2xl:w-8/12  ">
           {searchedHotel?.map((e, i) => (
-            <HotelCard key={i} hotels={e} />
+            <SearchHotelCard key={i} hotels={e} />
           ))}
         </div>
       </div>

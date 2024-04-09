@@ -29,7 +29,10 @@ export const getRooms = async (
     const hotelId = req.params.hotelId;
     console.log("HotelId", hotelId);
 
-    const findRooms = await Room.find({ hotel: hotelId });
+    const Rooms = await Room.find();
+    console.log("ALLL", Rooms);
+
+    const findRooms = Rooms.filter((room) => room.hotel.toString() === hotelId);
     console.log("Rooms", findRooms);
 
     res.status(200).json({ message: "Succesfully to get rooms.", findRooms });

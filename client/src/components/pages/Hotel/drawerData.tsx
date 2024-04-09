@@ -65,7 +65,7 @@ const DrawerData = ({
         <div>
           <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         </div>
-        <GoogleMaps />
+        <GoogleMaps lat={47.92123} lng={106.918556} />
         <div className=" shadow-2xl rounded-2xl border mt-6 border-slate-400 p-3">
           <h1 className="font-bold text-2xl my-2 ">Price & Rank</h1>
           <div className="p-1 flex flex-col gap-1 ">
