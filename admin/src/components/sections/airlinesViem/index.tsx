@@ -13,20 +13,20 @@ const index = () => {
         </div>
         <div className='flex justify-center w-[80%] flex-col items-center'>
         {airlines?.map((airline : any) => {
-                   return  <div key={airline._id}
-                     className="flex my-6 items-center gap-[250px]">
-                        <img className="py-4 px-6 border-b border-grey-light w-28" src={airline.logo}/>
-                        <div className="py-4 px-6 border-b border-grey-light w-[400px]">{airline.name}
-                        
+                      return  <div key={airline._id}
+                        className="flex my-6 items-center gap-[250px]">
+                            <img className="py-4 px-6 border-b border-grey-light w-28" src={airline.logo}/>
+                            <div className="py-4 px-6 border-b border-grey-light w-[400px]">{airline.name}
+                            
+                            </div>
+                            <div className='flex gap-2 w-[200px]'>
+                                <button className="btn btn-active btn-primary w-20 text-white">Put</button>
+                                <button className="btn btn-error w-20 text-white" 
+                                onClick={()=> {deleteAirline(airline._id)}}
+                                >Del</button>
+                            </div>
                         </div>
-                        <div className='flex gap-2 w-[200px]'>
-                             <button className="btn btn-active btn-primary w-20 text-white">Put</button>
-                             <button className="btn btn-error w-20 text-white" 
-                             onClick={()=> {deleteAirline(airline._id)}}
-                             >Del</button>
-                        </div>
-                     </div>
-                      })}
+                          })}
         </div>
     </section>
   )

@@ -29,10 +29,10 @@ export const getRooms = async (
     const hotelId = req.params.hotelId;
     console.log("HotelId", hotelId);
 
-    const allRooms = await Room.find({ hotel: hotelId });
-    console.log("Rooms", allRooms);
+    const findRooms = await Room.find({ hotel: hotelId });
+    console.log("Rooms", findRooms);
 
-    res.status(200).json({ message: "Succesfully to get rooms.", allRooms });
+    res.status(200).json({ message: "Succesfully to get rooms.", findRooms });
   } catch (error) {
     console.log("Err_All", error);
     res.status(400).json({ message: "Failed to get rooms." });

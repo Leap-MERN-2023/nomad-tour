@@ -47,3 +47,10 @@ export interface ITicket {
   seatNumber: number;
   _id: string;
 }
+
+export interface IRoom {
+  name: string,
+  description: string,
+  images: []
+  price: number
+}

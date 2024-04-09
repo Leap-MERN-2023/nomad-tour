@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { RoomContext } from "@/context/RoomProvider";
 
 type Swiper = /*unresolved*/ any;
 
@@ -21,6 +22,12 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const stars = Array.from({ length: hotel?.stars }, (_, index) => index + 1);
   const router = useRouter();
+  const {getRoomByHotelId} = useContext(RoomContext)
+   
+  const handleGetRoom = () => {
+    getRoomByHotelId(hotel?._id as string);
+    router.push("/hotels/rooms");
+  };
 
   return (
     <dialog id="my_modal_3" className="modal">
@@ -110,7 +117,7 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
         <div className="flex justify-between items-center">
           <button
             className="btn btn-outline font-extrabold "
-            onClick={() => router.push("/hotels/rooms")}
+            onClick={handleGetRoom}
           >
             See availability
           </button>
