@@ -39,7 +39,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     try {
       const {
         data: { allHotel },
-      } = await axios.get("http://localhost:8008/hotels");
+      } = await axios.get("https://nomad-tour-backend.vercel.app/hotels");
       setAllHotel(allHotel.slice(0, 6));
     } catch (error: any) {
       console.log("ERR", error);
@@ -52,7 +52,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { findHotel },
       } = await axios.get(
-        "http://localhost:8008/hotels/search/" + selectedCountry
+        "https://nomad-tour-backend.vercel.app/hotels/search/" + selectedCountry
       );
       setSearchedHotel(findHotel);
     } catch (error: any) {
@@ -65,7 +65,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { ratingRoom },
       } = await axios.post(
-        "http://localhost:8008/room/country/" + selectedCountry,
+        "https://nomad-tour-backend.vercel.app/room/country/" + selectedCountry,
         { rating }
       );
       setSearchedHotel(ratingRoom);
@@ -80,7 +80,9 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     try {
       const {
         data: { hotel },
-      } = await axios.get(`http://localhost:8008/hotels/${hotelId}`);
+      } = await axios.get(
+        `https://nomad-tour-backend.vercel.app/hotels/${hotelId}`
+      );
       setHotel(hotel);
     } catch (error) {
       console.log("ERR", error);

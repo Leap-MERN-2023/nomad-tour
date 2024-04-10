@@ -112,7 +112,6 @@ export default function Tabs() {
                       <div>
                         <h2>{category.value.title}</h2>
                         <select
-                          defaultValue=""
                           onChange={handleSelectCountry}
                           className="select bg-zinc-100 text-zinc-700 w-full"
                           name="hotelCountry"

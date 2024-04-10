@@ -20,7 +20,9 @@ const AirlineProvider = ({ children }: PropsWithChildren) => {
   const [airlines, setAirlines] = useState<IAirline[]>();
   const getAirlines = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8008/airline");
+      const { data } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/airlines"
+      );
       setAirlines(data.airline);
     } catch (error) {
       console.log("error in get airlines", error);

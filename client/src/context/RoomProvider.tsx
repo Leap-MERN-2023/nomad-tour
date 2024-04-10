@@ -32,7 +32,9 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
     try {
       const {
         data: { findRooms },
-      } = await axios.get("http://localhost:8008/room/id/" + hotelId);
+      } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/room/id/" + hotelId
+      );
       setRooms(findRooms);
     } catch (error) {
       console.log("Err", error);
