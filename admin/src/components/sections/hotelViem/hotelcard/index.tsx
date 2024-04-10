@@ -1,18 +1,37 @@
 import React from "react";
-import Slider from "./slider";
 import "swiper/css";
 import "swiper/css/pagination";
 import { HotelContext } from "@/context/hotelProvider";
 import Image from "next/image";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure } from "@chakra-ui/react";
 
 const HotelCard = ({hotel}: any) => {
+  console.log("hotel card", hotel.images)
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {deleteHotel} = React.useContext(HotelContext)
   return (
-    <div className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex m-auto w-[300px]">
+    <div className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[400px] cursor-pointer sm:flex m-auto w-[300px]">
       <figure className="relative">
-        <Slider />
+      <Swiper
+        spaceBetween={30}
+        pagination={{
+          clickable: true,
+        }}
+        modules={[Pagination]}
+        className="w-full h-48 absolute"
+      >
+        {hotel.images.map((image : any) => (
+          <SwiperSlide key={image}>
+            <img
+              className="w-full h-48 rounded-btn object-cover"
+              src={image}
+              alt="image"
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
         <div className="flex justify-center items-center absolute z-10 bg-neutral-600 px-2 right-4 top-4 text-white gap-1 rounded-xl">
           <div className="w-4 h-4"><Image width={4} height={4} className="w-full h-full bg-neutral-600" src="/assets/star.png" alt="star"/></div>
           <h1>{hotel.stars}</h1>
