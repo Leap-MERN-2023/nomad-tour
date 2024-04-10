@@ -32,7 +32,9 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const [flights, setFlights] = useState([]);
   const getFlights = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8008/flight");
+      const { data } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/flight"
+      );
       setFlights(data.allFlights);
     } catch (error) {
       console.log("ERROR IN GET FLIGHTS", error);
@@ -41,10 +43,13 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedFlights = async () => {
     setTicketLoading(true);
     try {
-      const { data } = await axios.post("http://localhost:8008/flight/search", {
-        depId: selectedDepartureAirport,
-        arrId: selectedArrivalAirport,
-      });
+      const { data } = await axios.post(
+        "https://nomad-tour-backend.vercel.app/flight/search",
+        {
+          depId: selectedDepartureAirport,
+          arrId: selectedArrivalAirport,
+        }
+      );
 
       if (data.foundFlights.length === 0) {
         console.log("Flights not found", data);
@@ -65,7 +70,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedTickets = async (flightId: string) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8008/ticket/${flightId}`
+        `https://nomad-tour-backend.vercel.app/ticket/${flightId}`
       );
       setFoundTickets(data.searchedTickets);
       setTicketLoading(false);

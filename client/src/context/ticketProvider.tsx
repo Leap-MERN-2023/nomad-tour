@@ -19,7 +19,9 @@ const TicketProvider = ({ children }: PropsWithChildren) => {
   const [tickets, setTickets] = useState<ITicket[]>();
   const getTickets = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8008/ticket");
+      const { data } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/ticket"
+      );
       setTickets(data.tickets);
     } catch (error) {}
   };

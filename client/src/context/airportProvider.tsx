@@ -39,7 +39,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   const getairPort = async () => {
     try {
       const { airport } = await axios
-        .get("http://localhost:8008/airport")
+        .get("https://nomad-tour-backend.vercel.app/airport")
         .then((res) => res.data);
       setAirPort(airport);
     } catch (error) {
