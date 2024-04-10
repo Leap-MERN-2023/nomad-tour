@@ -1,18 +1,16 @@
 "use client";
 import React, { useContext } from "react";
-import MySelect from "./MySelect";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
-import { MdFlightClass } from "react-icons/md";
 import { CountryContext } from "@/context/CountryProvider";
 import { AirPortContext } from "@/context/airportProvider";
-
-import { flightClasses } from "@/constants";
 import Link from "next/link";
-import { FlightContext } from "@/context/flightProvider";
+import { useFlightsContext } from "@/context/flightProvider";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const FlightSearch = (props: Props) => {
+  const router = useRouter();
   const {
     airport,
     handleArrival,
@@ -20,8 +18,8 @@ const FlightSearch = (props: Props) => {
     selectedArrivalAirport,
     selectedDepartureAirport,
   } = useContext(AirPortContext);
-  const { getSearchedFlights } = useContext(FlightContext);
   const { handleSelectCountry, selectedCountry } = useContext(CountryContext);
+  const { setRefreshSearch, refreshSearch } = useFlightsContext();
   return (
     <div className="w-full ">
       <div className="flex items-center flex-wrap gap-4">
@@ -30,7 +28,7 @@ const FlightSearch = (props: Props) => {
           <select
             value={selectedDepartureAirport}
             onChange={handleDeparture}
-            className="select bg-zinc-100 w-full"
+            className="select bg-zinc-100 text-zinc-700 w-full"
             name="departureAirport"
             id=""
           >
@@ -50,7 +48,7 @@ const FlightSearch = (props: Props) => {
           <select
             value={selectedArrivalAirport}
             onChange={handleArrival}
-            className="select bg-zinc-100 w-full"
+            className="select bg-zinc-100 text-zinc-700 w-full"
             name="arrivalAirport"
             id=""
           >
@@ -85,8 +83,13 @@ const FlightSearch = (props: Props) => {
             ))}
           </select> */}
         </div>
-        <Link onClick={getSearchedFlights} href={"/searchFlight"}>
-          <button className="btn bg-[#0281B0] mt-4 border-0 text-white hover:bg-blue-300">
+        <Link href={"/searchFlight"}>
+          <button
+            onClick={() => {
+              setRefreshSearch(!refreshSearch);
+            }}
+            className="btn bg-[#0281B0] mt-4 border-0 text-white hover:bg-blue-300"
+          >
             Search
           </button>
         </Link>

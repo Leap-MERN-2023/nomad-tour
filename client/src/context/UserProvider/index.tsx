@@ -1,5 +1,6 @@
 "use client";
 import axios from "axios";
+
 import {
   useState,
   useEffect,
@@ -35,6 +36,8 @@ export interface IUserContext {
     name: string,
     // change:any
   ) => void;
+  selectedItem: string;
+  setSelectedItem: any;
 }
 
 export const UserContext = createContext<IUserContext>({
@@ -50,12 +53,13 @@ export const UserContext = createContext<IUserContext>({
   isUserLoggedIn: false,
   handleChangeUser() { },
   signup: function () { },
-  // change: function (){}
+  selectedItem: "",
+  setSelectedItem: undefined
 });
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const router = useRouter();
-
+  const [selectedItem, setSelectedItem] = useState("Country");
 
   const [user, setUser] = useState<IUser>({
     name: "",
@@ -125,7 +129,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     name: string,
     phoneNumber: string
   ) => {
-    console.log("AAA", email, password, name, phoneNumber)
+    console.log("AAA", email, password, name, phoneNumber);
     try {
       const { data } = await axios.post("http://localhost:8008/auth", {
         email: email,
@@ -142,7 +146,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       swal("Successfully", "Signup successfully", "success")
 
     } catch (error: any) {
-      swal("Failed", "Signup failed", "error")
+      swal("Failed", "Signup failed", "error");
     }
   };
 
@@ -150,9 +154,14 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <UserContext.Provider
-      value={{ login, user, logOut, token, handleChangeUser, signup, isUserLoggedIn }}
+      value={{ login, user, logOut, token, handleChangeUser, signup, isUserLoggedIn, selectedItem, setSelectedItem }}
     >
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUserContext = () => {
+  const context = useContext(UserContext);
+  return context;
 };

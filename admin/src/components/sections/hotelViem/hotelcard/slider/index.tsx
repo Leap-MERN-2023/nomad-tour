@@ -2,6 +2,7 @@
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
+import Image from "next/image";
 
 export default function slider({hotel}:any) {
   return (
@@ -16,10 +17,10 @@ export default function slider({hotel}:any) {
       >
         {hotel?.images.map((image : any) => (
           <SwiperSlide key={image}>
-            <img
+            <Image
               className="w-full h-48 rounded-btn object-cover"
               src={image}
-              alt=""
+              alt="image"
             />
           </SwiperSlide>
         ))}

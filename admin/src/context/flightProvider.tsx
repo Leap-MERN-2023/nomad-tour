@@ -8,19 +8,15 @@ interface IFLightContext {
   getFlights : ()=> void;
   handleFlightForm: (e: any) => void;
   createFlight: () => void;
+  deleteFlight: (e:any) => void
 }
 export const FlightContext = createContext({} as IFLightContext);
 
 const FlightProvider = ({ children }: PropsWithChildren) => {
   const [flights, setFlights] = useState([]);
+  const [loading,setLoading]= useState(false);
+  const [refresh, setrefresh] = useState(false);
   const [newFlight, setNewFlight] = useState({
-    country: "",
-    airline:"",
-    departureAirport:"",
-    arrivalAirport:"",
-    Seats:"",
-    departureDate:"",
-    arrivalDate:"",
   })
 
   const getFlights = async () => {
@@ -38,20 +34,37 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   };
   const createFlight = async () => {
     try {
+      setLoading(true)
       const data = await axios.post(
         "http://localhost:8008/flight",
         newFlight
       );
+      setrefresh(!refresh)
       console.log("newflight",data)
     } catch (error: any) {
       console.log("create airport error", error);
+    }finally{
+      setLoading(false)
+    }
+  };
+  const deleteFlight = async (flightId : any) => {
+    try {
+      setLoading(true)
+      const data = await axios.delete(`http://localhost:8008/flight/${flightId}`, {
+      })
+      setrefresh(!refresh)
+      console.log("delete flight",data)
+    } catch (error) {
+      console.log("flight error", error)
+    }finally{
+      setLoading(false)
     }
   };
   useEffect(() => {
     getFlights();
-  }, []);
+  }, [refresh]);
   return (
-    <FlightContext.Provider value={{ flights, getFlights, handleFlightForm , createFlight }}>
+    <FlightContext.Provider value={{ flights, getFlights, handleFlightForm , createFlight,deleteFlight }}>
       {children}
     </FlightContext.Provider>
   );

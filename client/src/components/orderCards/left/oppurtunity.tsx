@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 
-
-
 const Oppurtunity = () => {
   return (
     <div className="bg-white rounded-xl p-6 lg:w-[900px]">
@@ -27,8 +25,4 @@ const Oppurtunity = () => {
   );
 };
 
-
 export default Oppurtunity;
-
-
-

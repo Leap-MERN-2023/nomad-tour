@@ -28,11 +28,13 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
     useState<string>();
   const handleDeparture = (e: any) => {
     setSelectedDepartureAirport(e.target.value);
+    localStorage.setItem("dep", e.target.value);
   };
   const [selectedArrivalAirport, setSelectedArrivalAirport] =
     useState<string>();
   const handleArrival = (e: any) => {
     setSelectedArrivalAirport(e.target.value);
+    localStorage.setItem("arri", e.target.value);
   };
   const getairPort = async () => {
     try {

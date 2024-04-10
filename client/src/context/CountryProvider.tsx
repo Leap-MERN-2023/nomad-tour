@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
+import { useUserContext } from "./UserProvider";
 
 interface ICountry {
   _id: string;
@@ -30,9 +31,10 @@ export const CountryContext = createContext<ICountryContext>(
 const CountryProvider = ({ children }: PropsWithChildren) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [selectedCountry, setSelectedCountry] = useState<string>();
+  const { setSelectedItem } = useUserContext();
   const handleSelectCountry = (e: any) => {
-    console.log("SELECTED COUNTRY ID", e.target.value);
     setSelectedCountry(e.target.value);
+    setSelectedItem("Flight");
   };
 
   const getCountries = async () => {

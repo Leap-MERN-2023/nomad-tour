@@ -10,8 +10,9 @@ import hotel from "./routes/hotel";
 import room from "./routes/room";
 import email from "./routes/email";
 import airlinesRoutes from "./routes/airlineRoutes";
-import ticketRoutes from './routes/ticketsRoutes';
- 
+import ticketRoutes from "./routes/ticketsRoutes";
+import flighOrderRoutes from "./routes/flightOrderRoutes";
+
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
 dotenv.config();
@@ -34,10 +35,9 @@ app.use("/upload", upload);
 app.use("/hotels", hotel);
 app.use("/room", room);
 app.use("/email", email);
-app.use("/airlines",airlinesRoutes);
-app.use("/ticket",ticketRoutes);
-
-
+app.use("/airlines", airlinesRoutes);
+app.use("/ticket", ticketRoutes);
+app.use("/flightOrder", flighOrderRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello");
