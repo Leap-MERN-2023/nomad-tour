@@ -7,15 +7,18 @@ import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { UserContext } from "@/context/UserProvider";
 
+
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const { user, isUserLoggedIn, logOut } = useContext(UserContext);
+
   const [open, setOpen] = useState(false);
   const openForm = () => {
-    setOpen(() => true);
+    setOpen(true);
   };
   const closeForm = () => {
-    setOpen(() => false);
+    setOpen(false);
   };
 
   const [toggle, setToggle] = useState(false);
@@ -49,51 +52,48 @@ const Navbar = (props: Props) => {
             {toggle ? <IoClose size="30px" /> : <CiMenuBurger size="30px" />}
           </div>
           <div
-            className={`${
-              toggle ? "flex" : "hidden"
-            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
+            className={`${toggle ? "flex" : "hidden"
+              } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {navItems.map((nav) => (
                 <li
                   key={nav.name}
-                  className={`${
-                    active === nav.name ? "text-black" : "text-gray-700"
-                  } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
+                  className={`${active === nav.name ? "text-black" : "text-gray-700"
+                    } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
                   onClick={() => {
                     setActive(nav.name);
                     setToggle(!toggle);
                   }}
                 >
-                  {nav.url === "login" ? (
-                    <button
-                      className="bg-blue-400 text-white"
-                      onClick={openForm}
-                    >
-                      Login / Signup
-                    </button>
-                  ) : (
-                    <a href={`${nav.url}`}>{nav.name}</a>
-                  )}
                 </li>
               ))}
             </ul>
           </div>
           <ul className="list-none hidden sm:flex items-center flex-row gap-10 font-extralight">
-            {navItems.map((item) => (
-              <li key={item.name}>
-                {item.url === "login" ? (
-                  <button
-                    className="btn border-0 hover:bg-blue-500 bg-[#0281B0] text-white"
-                    onClick={openForm}
-                  >
-                    Login / Signup
-                  </button>
-                ) : (
-                  <a href={item.url}>{item.name}</a>
-                )}
-              </li>
-            ))}
+            {navItems.map((item) => {
+              return (
+                <>
+                  <li key={item.name}>
+                    <a href={item.url}>{item.name}</a>
+                  </li>
+                </>
+              )
+            })}
+            {!isUserLoggedIn ? (
+              <button
+                className="btn border-0 hover:bg-blue-500 bg-[#0281B0] text-white"
+                onClick={openForm}
+              >
+                Login / Signup
+              </button>
+            ) : (
+              <>
+                <p className="text-black">{user?.name}</p>
+                <button onClick={logOut}>logOut</button>
+              </>
+            )}
+
           </ul>
           <LoginForm open={open} closeForm={closeForm} />
         </div>
