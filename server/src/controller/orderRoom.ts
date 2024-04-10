@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import Order from "../model/order/room";
+import Order from "../model/order/order";
 import User from "../model/user";
 
 export const createOrderRoom = async (

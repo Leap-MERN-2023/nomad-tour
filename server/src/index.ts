@@ -11,11 +11,8 @@ import room from "./routes/room";
 import email from "./routes/email";
 import airlinesRoutes from "./routes/airlineRoutes";
 import ticketRoutes from "./routes/ticketsRoutes";
-<<<<<<< HEAD
 import orderRoute from "./routes/order";
-=======
 import flighOrderRoutes from "./routes/flightOrderRoutes";
->>>>>>> main
 
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
@@ -41,11 +38,8 @@ app.use("/room", room);
 app.use("/email", email);
 app.use("/airlines", airlinesRoutes);
 app.use("/ticket", ticketRoutes);
-<<<<<<< HEAD
 app.use("/order", orderRoute);
-=======
 app.use("/flightOrder", flighOrderRoutes);
->>>>>>> main
 
 app.get("/", (req, res) => {
   res.send("Hello");

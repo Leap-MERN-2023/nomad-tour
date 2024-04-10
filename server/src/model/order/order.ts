@@ -1,6 +1,6 @@
 import { Schema, model } from "mongoose";
 
-const RoomSchema = new Schema({
+const OrderSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -26,5 +26,5 @@ const RoomSchema = new Schema({
   },
 });
 
-const Room = model("Room", RoomSchema);
-export default Room;
+const Order = model("Order", OrderSchema);
+export default Order;
