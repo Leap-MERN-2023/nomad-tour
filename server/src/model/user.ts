@@ -6,9 +6,14 @@ interface IIuser extends Document {
   email: string;
   password: string;
   phoneNumber: number;
+  googleId:object
 }
 
 const userSchema: Schema<IIuser> = new Schema({
+  googleId: {
+    type: String,
+    default: null,
+  },
   name: {
     type: String,
     required: [true, "Нэрээ заавал оруулна уу"],

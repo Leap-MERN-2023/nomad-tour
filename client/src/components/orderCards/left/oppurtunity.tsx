@@ -25,4 +25,8 @@ const Oppurtunity = () => {
   );
 };
 
+
 export default Oppurtunity;
+
+
+
