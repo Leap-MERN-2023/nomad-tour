@@ -1,27 +1,34 @@
 "use client";
 
 import axios from "axios";
-import { ChangeEvent, PropsWithChildren, createContext, useEffect, useState } from "react";
+import {
+  ChangeEvent,
+  PropsWithChildren,
+  createContext,
+  useEffect,
+  useState,
+} from "react";
 
 interface IFLightContext {
   flights: any;
-  getFlights : ()=> void;
+  getFlights: () => void;
   handleFlightForm: (e: any) => void;
   createFlight: () => void;
-  deleteFlight: (e:any) => void
+  deleteFlight: (e: any) => void;
 }
 export const FlightContext = createContext({} as IFLightContext);
 
 const FlightProvider = ({ children }: PropsWithChildren) => {
   const [flights, setFlights] = useState([]);
-  const [loading,setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   const [refresh, setrefresh] = useState(false);
-  const [newFlight, setNewFlight] = useState({
-  })
+  const [newFlight, setNewFlight] = useState({});
 
   const getFlights = async () => {
     try {
-      const { data } = await axios.get("http://localhost:8008/flight");
+      const { data } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/flight"
+      );
       // console.log("FLIGHT DATA", data);
       setFlights(data.allFlights);
     } catch (error) {
@@ -34,37 +41,47 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   };
   const createFlight = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const data = await axios.post(
-        "http://localhost:8008/flight",
+        "https://nomad-tour-backend.vercel.app/flight",
         newFlight
       );
-      setrefresh(!refresh)
-      console.log("newflight",data)
+      setrefresh(!refresh);
+      console.log("newflight", data);
     } catch (error: any) {
       console.log("create airport error", error);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
-  const deleteFlight = async (flightId : any) => {
+  const deleteFlight = async (flightId: any) => {
     try {
-      setLoading(true)
-      const data = await axios.delete(`http://localhost:8008/flight/${flightId}`, {
-      })
-      setrefresh(!refresh)
-      console.log("delete flight",data)
+      setLoading(true);
+      const data = await axios.delete(
+        `https://nomad-tour-backend.vercel.app/flight/${flightId}`,
+        {}
+      );
+      setrefresh(!refresh);
+      console.log("delete flight", data);
     } catch (error) {
-      console.log("flight error", error)
-    }finally{
-      setLoading(false)
+      console.log("flight error", error);
+    } finally {
+      setLoading(false);
     }
   };
   useEffect(() => {
     getFlights();
   }, [refresh]);
   return (
-    <FlightContext.Provider value={{ flights, getFlights, handleFlightForm , createFlight,deleteFlight }}>
+    <FlightContext.Provider
+      value={{
+        flights,
+        getFlights,
+        handleFlightForm,
+        createFlight,
+        deleteFlight,
+      }}
+    >
       {children}
     </FlightContext.Provider>
   );
