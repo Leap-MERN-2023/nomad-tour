@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Document } from "mongoose";
 
 const OrderSchema = new Schema({
   user: {
@@ -6,14 +6,17 @@ const OrderSchema = new Schema({
     ref: "User",
     required: true,
   },
-  hotel: {
-    type: Schema.Types.ObjectId,
-    ref: "Hotel",
-    required: true,
-  },
   room: {
     type: Schema.Types.ObjectId,
     ref: "Room",
+    required: true,
+  },
+  name: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
     required: true,
   },
   checkInDate: {
@@ -23,6 +26,15 @@ const OrderSchema = new Schema({
   checkOutDate: {
     type: String,
     required: true,
+  },
+  totalPrice: {
+    type: Number,
+    required: true,
+  },
+  isPaid: {
+    type: String,
+    enum: ["paid", "notPaid"],
+    default: "notPaid",
   },
 });
 
