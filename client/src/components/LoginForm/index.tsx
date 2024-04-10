@@ -4,6 +4,7 @@ import { useContext } from "react";
 import * as yup from "yup";
 import { useRouter } from "next/navigation";
 import { useFormik } from "formik";
+import Pass from "@/app/(pages)/forgot-pass/page";
 
 
 const validationSchema = yup.object({
@@ -31,10 +32,10 @@ const SignupvalidationSchema = yup.object({
     .min(6, "Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой."),
   phoneNumber: yup
     .string()
-    .required("Utasnii dugaar oruulna uu"),
+    .required("Утасны дугаар оруулна уу"),
   name: yup
     .string()
-    .required("ner zaaval oruulna uu")
+    .required("Нэр заавал оруулна уу")
 });
 
 export const LoginForm = ({ open, closeForm }: any) => {
@@ -96,7 +97,7 @@ const Login = ({ closeForm }: any) => {
     validationSchema,
   });
 
-
+  const router = useRouter();
   return (
     <div>
       <div className="flex flex-col gap-4">
@@ -108,7 +109,7 @@ const Login = ({ closeForm }: any) => {
           onChange={formik.handleChange}
           className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
         />
-        {formik.errors["email"] && <p className="text-red-400">{formik.errors["email"]}</p>}
+        {formik.errors["email"] && <p className="text-red-400 text-xs">{formik.errors["email"]}</p>}
 
         <input
           type="password"
@@ -119,9 +120,10 @@ const Login = ({ closeForm }: any) => {
 
         />
 
-        {formik.errors["password"] && <p className="text-red-400">{formik.errors["password"]}</p>}
+        {formik.errors["password"] && <p className="text-red-400 text-xs">{formik.errors["password"]}</p>}
         <div className="flex justify-end">
           <button className="btn btn-outline btn-success "
+          onClick={()=>router.push("/forgot-pass")}
           >
             Forget password
           </button>
@@ -137,28 +139,6 @@ const Login = ({ closeForm }: any) => {
           }}
         >
           Continue
-        </button>
-      </div>
-
-      <div className="divider divider-neutral text-black  sm:mx-6">OR</div>
-      <div className="flex sm:gap-5  gap-8">
-        <button className="border-[1px] sm:w-24 w-20 p-3 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://cdn.icon-icons.com/icons2/730/PNG/512/gmail_icon-icons.com_62758.png"
-            className="w-6 rounded-full "
-          />
-        </button>
-        <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://www.cabriniclinic.org/wp-content/uploads/2014/02/facebook-icon.png"
-            className="w-6 rounded-full"
-          />
-        </button>
-        <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://static.vecteezy.com/system/resources/previews/018/930/695/original/twitter-logo-twitter-icon-transparent-free-free-png.png"
-            className="w-8 rounded-full"
-          />
         </button>
       </div>
     </div>
@@ -191,6 +171,7 @@ const Signup = ({ closeForm }: any) => {
           name="name"
           onChange={formik.handleChange}
         />
+         {formik.errors["name"] && <p className="text-red-400 text-xs">{formik.errors["name"]}</p>}
         <input
           type="text"
           placeholder="email"
@@ -199,7 +180,7 @@ const Signup = ({ closeForm }: any) => {
           onChange={formik.handleChange}
           className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
         />
-        {formik.errors["email"] && <p className="text-red-400">{formik.errors["email"]}</p>}
+        {formik.errors["email"] && <p className="text-red-400 text-xs">{formik.errors["email"]}</p>}
 
         <input
           type="text"
@@ -209,7 +190,7 @@ const Signup = ({ closeForm }: any) => {
           onChange={formik.handleChange}
         />
 
-        {formik.errors["password"] && <p className="text-red-400">{formik.errors["password"]}</p>}
+        {formik.errors["password"] && <p className="text-red-400 text-xs">{formik.errors["password"]}</p>}
 
         <input
           type="text"
@@ -218,9 +199,7 @@ const Signup = ({ closeForm }: any) => {
           name="phoneNumber"
           onChange={formik.handleChange}
         />
-
-
-
+         {formik.errors["phoneNumber"] && <p className="text-red-400 text-xs">{formik.errors["phoneNumber"]}</p>}
         <button
           className="btn btn-neutral w-[320px]"
           //  onClick={login}
@@ -228,28 +207,6 @@ const Signup = ({ closeForm }: any) => {
           onClick={() => { formik.handleSubmit() }}
         >
           Signup
-        </button>
-      </div>
-
-      <div className="divider divider-neutral text-black  sm:mx-6">OR</div>
-      <div className="flex sm:gap-5  gap-8">
-        <button className="border-[1px] sm:w-24 w-20 p-3 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://cdn.icon-icons.com/icons2/730/PNG/512/gmail_icon-icons.com_62758.png"
-            className="w-6 rounded-full "
-          />
-        </button>
-        <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://www.cabriniclinic.org/wp-content/uploads/2014/02/facebook-icon.png"
-            className="w-6 rounded-full"
-          />
-        </button>
-        <button className="border-[1px] w-20 p-3 sm:w-24 hover:bg-gray-200 rounded-md flex justify-center">
-          <img
-            src="https://static.vecteezy.com/system/resources/previews/018/930/695/original/twitter-logo-twitter-icon-transparent-free-free-png.png"
-            className="w-8 rounded-full"
-          />
         </button>
       </div>
     </div>

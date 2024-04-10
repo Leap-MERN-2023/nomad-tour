@@ -9,6 +9,7 @@ import hotel from "./routes/hotel";
 import room from "./routes/room";
 import email from "./routes/email";
 import airlinesRoutes from "./routes/airlineRoutes";
+import verifyRoute from "./routes/verifyRoute";
 import ticketRoutes from "./routes/ticketsRoutes";
 import flighOrderRoutes from "./routes/flightOrderRoutes";
 import { Application } from "express";
@@ -30,7 +31,7 @@ app.use(express.json());
 
 
 
-
+app.use("/verify", verifyRoute);
 app.use("/airport", airportRoutes);
 app.use("/flight", flightRoutes);
 app.use("/auth", authRoutes);
