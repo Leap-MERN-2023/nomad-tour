@@ -59,8 +59,8 @@ export const LoginForm = ({ open, closeForm }: any) => {
       <div className="modal-box flex flex-col gap-4  bg-white  h-[480px] md:w-[420px] absolute z-50 w-[100] items-center">
         <div className="flex gap-36 fle-col">
           <div className="">
-            <button className="text-blue-900 font-bold" name="login" onClick={handleForm}>Нэвтрэх </button>
-            <button className="text-blue-900 font-bold" name="signup" onClick={handleForm}>/ Бүртгүүлэх </button>
+            <button className="text-blue-900 font-bold" name="login" onClick={handleForm}>Login</button>
+            <button className="text-blue-900 font-bold" name="signup" onClick={handleForm}>/ Signup </button>
 
           </div>
           <button
@@ -111,17 +111,19 @@ const Login = ({ closeForm }: any) => {
         {formik.errors["email"] && <p className="text-red-400">{formik.errors["email"]}</p>}
 
         <input
-          type="text"
+          type="password"
           placeholder="password"
           className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
           name="password"
           onChange={formik.handleChange}
+
         />
 
         {formik.errors["password"] && <p className="text-red-400">{formik.errors["password"]}</p>}
         <div className="flex justify-end">
-          <button className="btn btn-outline btn-success ">
-            Нууц үг мартсан
+          <button className="btn btn-outline btn-success "
+          >
+            Forget password
           </button>
         </div>
         <button
@@ -134,7 +136,7 @@ const Login = ({ closeForm }: any) => {
 
           }}
         >
-          Үргэлжлүүлэх
+          Continue
         </button>
       </div>
 
@@ -225,7 +227,7 @@ const Signup = ({ closeForm }: any) => {
           type="button"
           onClick={() => { formik.handleSubmit() }}
         >
-          Бүртгүүлэх
+          Signup
         </button>
       </div>
 

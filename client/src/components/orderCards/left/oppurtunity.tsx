@@ -22,7 +22,7 @@ const Oppurtunity = () => {
         <p className="text-black">All information, software, bookings, etc. posted on the Nomad-tour reservation system offered by us are prohibited to be sold through others without permission, copied or traded using other links.</p>
        </ul>
        <p className="text-black">Rights and obligations of the client</p>
-       <input className="rounded-full w-2 bg-white border-2 h-2 p-2" checked/>
+       <input type="checkbox" defaultChecked className="checkbox" />
     </div>
   );
 };
