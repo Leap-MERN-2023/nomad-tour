@@ -1,14 +1,6 @@
 import { Schema, model } from "mongoose";
 
-interface IRoom {
-  user: string;
-  hotel: string;
-  room: string;
-  checkInDate: string;
-  checkOutDate: string;
-}
-
-const RoomSchema: Schema<IRoom> = new Schema<IRoom>({
+const RoomSchema = new Schema({
   user: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -20,7 +12,7 @@ const RoomSchema: Schema<IRoom> = new Schema<IRoom>({
     required: true,
   },
   room: {
-    type: Schema.Types.ObjectId ,
+    type: Schema.Types.ObjectId,
     ref: "Room",
     required: true,
   },
@@ -34,5 +26,5 @@ const RoomSchema: Schema<IRoom> = new Schema<IRoom>({
   },
 });
 
-const Room = model<IRoom>("Room", RoomSchema);
+const Room = model("Room", RoomSchema);
 export default Room;

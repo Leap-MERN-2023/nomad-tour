@@ -33,7 +33,6 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { findRooms },
       } = await axios.get("http://localhost:8008/room/id/" + hotelId);
-      console.log("FINDDDDDROMMMMM", findRooms);
       setRooms(findRooms);
     } catch (error) {
       console.log("Err", error);
@@ -41,9 +40,8 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-    // Fetch data when the component mounts
     getRoomByHotelId("hotelId");
-  }, []); // Add any dependencies if needed
+  }, []);
 
   return (
     <RoomContext.Provider value={{ rooms, getRoomByHotelId }}>

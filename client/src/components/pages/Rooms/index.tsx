@@ -15,7 +15,7 @@ import { IRoom } from "@/types";
 type Swiper = /*unresolved*/ any;
 
 const Room = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const { rooms } = useContext(RoomContext);
   console.log("RRRRR", rooms);
@@ -25,7 +25,7 @@ const Room = () => {
 
       {rooms?.map((room, i) => {
         return (
-          <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl 2xl:flex-row border border-black 2xl:w-9/12 mb-10">
+          <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl 2xl:flex-row border border-black rounded-xl bg-zinc-100 2xl:w-9/12 mb-10">
             <div className="flex flex-col justify-between w-1/2 items-center h-60 2xl:h-72  p-2">
               <Swiper
                 onSwiper={setThumbsSwiper}
@@ -62,7 +62,7 @@ const Room = () => {
                   return (
                     <SwiperSlide>
                       <img
-                        className=" w-full h-full lg:my-2"
+                        className=" w-full h-full lg:my-2 object-cover"
                         src={image}
                         key={image}
                       />
@@ -71,11 +71,20 @@ const Room = () => {
                 })}
               </Swiper>
             </div>
-            <div className="flex flex-col justify-center items-center ml-3 my-3">
-              <div className="font-bold text-lg  text-black">{room?.name}</div>
-              <div>{room?.price?.USD}$</div>
-              <div className="text-sm">{room?.description}</div>
-              <button className="btn btn-outline" onClick={() => router.push("/hotels/rooms/order")}>Order</button>
+            <div className="flex flex-col justify-around ">
+              <div className="font-bold text-lg  2xl:text-3xl text-black">
+                {room?.name}
+              </div>
+              <div className=" text-xl 2xl:text-3xl text-green-900">
+                {room?.price?.USD}$
+              </div>
+              <div className="text-sm 2xl:text-lg">{room?.description}</div>
+              <button
+                className="btn btn-outline w-11/12"
+                onClick={() => router.push("/hotels/rooms/order")}
+              >
+                Order
+              </button>
             </div>
           </div>
         );

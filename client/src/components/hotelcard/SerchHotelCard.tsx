@@ -65,15 +65,7 @@ export const SearchHotelCard = ({ hotels }: any) => {
           <BiSolidPhoneCall style={{ height: 18, width: 18 }} />
           <GiKnifeFork style={{ height: 18, width: 18 }} />
         </div>
-        <div
-          className="flex justify-between items-center gap-2 font-bold"
-          onClick={() =>
-            GoogleMaps({
-              lat: hotels?.location?.latitude || 0,
-              lng: hotels.location?.longitude || 0,
-            })
-          }
-        >
+        <div className="flex justify-between items-center gap-2 font-bold">
           <div className="flex gap-3">
             <FaLocationDot style={{ height: 20, width: 20 }} />
             <p className="text-md font-bold">

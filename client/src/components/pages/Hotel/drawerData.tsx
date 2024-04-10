@@ -5,10 +5,13 @@ import { IHotel } from "@/types";
 import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import { FaArrowRightArrowLeft } from "react-icons/fa6";
+import { HotelContext } from "@/context/hotelProvider";
 
 // const filterHotels = (minPrice, maxPrice, rating) => {};
 
 const DrawerData = ({
+  ratingRoom,
+  getRoomByRating,
   searchedHotel,
   setSearchedHotel,
   getSearchedHotels,
@@ -33,7 +36,6 @@ const DrawerData = ({
     initialMaxPrice,
   ]);
 
-  const [changeValue, setChangeValue] = useState();
   const handleChange = (event: Event, newValue: number | number[]) => {
     setValue(newValue as number[]);
     if (Array.isArray(newValue)) {
@@ -41,21 +43,7 @@ const DrawerData = ({
         (hotel: any) =>
           hotel?.price >= newValue[0] && hotel?.price <= newValue[1]
       );
-      setChangeValue(filteredHotel);
-    } else {
-      setSearchedHotel(changeValue);
-    }
-  };
-  //Price Range end
-
-  const handleButtonClick = (rating: number) => {
-    const filteredHotel = searchedHotel?.filter(
-      (hotel: any) => hotel?.stars === rating
-    );
-    if (filteredHotel?.length > 0) {
       setSearchedHotel(filteredHotel);
-    } else {
-      getSearchedHotels(selectedCountry);
     }
   };
 
@@ -78,7 +66,7 @@ const DrawerData = ({
                     (hotel: any) =>
                       hotel.stars === rating ? "bg-yellow-500" : ""
                   )}`}
-                  onClick={() => handleButtonClick(rating)}
+                  onClick={() => getRoomByRating(selectedCountry, rating)}
                 >
                   <input
                     type="radio"

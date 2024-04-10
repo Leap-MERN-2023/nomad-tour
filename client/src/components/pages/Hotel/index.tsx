@@ -8,8 +8,13 @@ import { HotelModal } from "./drawer";
 import DrawerData from "./drawerData";
 
 const Hotel = () => {
-  const { searchedHotel, setSearchedHotel, getSearchedHotels } =
-    useContext(HotelContext);
+  const {
+    searchedHotel,
+    setSearchedHotel,
+    getSearchedHotels,
+    ratingRoom,
+    getRoomByRating,
+  } = useContext(HotelContext);
   const { selectedCountry } = useContext(CountryContext);
 
   const [openModal, setOpenModal] = useState(false);
@@ -34,6 +39,8 @@ const Hotel = () => {
       <div className="flex justify-between gap-3">
         <div className="hidden lg:flex lg:border-[1px] lg:rounded-xl ">
           <DrawerData
+            ratingRoom={ratingRoom}
+            getRoomByRating={getRoomByRating}
             searchedHotel={searchedHotel}
             setSearchedHotel={setSearchedHotel}
             getSearchedHotels={getSearchedHotels}

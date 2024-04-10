@@ -19,7 +19,9 @@ interface IHotelContext {
   hotel: IHotel[];
   allHotel: IHotel[];
   searchedHotel: IHotel[];
+  ratingRoom: IHotel[];
   setSearchedHotel: (hotels: IHotel[]) => void;
+  getRoomByRating: (selectedCountry: string, rating: string) => void;
   // getHotels: () => void;
 }
 
@@ -29,6 +31,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   const [hotel, setHotel] = useState<IHotel[]>([]);
   const [allHotel, setAllHotel] = useState<IHotel[]>([]);
   const [searchedHotel, setSearchedHotel] = useState<IHotel[]>([]);
+  const [ratingRoom, setRatingRoom] = useState<IHotel[]>([]);
   const [ref, setRef] = useState(false);
 
   //Get All hotel with high rank
@@ -37,7 +40,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allHotel },
       } = await axios.get("http://localhost:8008/hotels");
-      setAllHotel(allHotel);
+      setAllHotel(allHotel.slice(0, 6));
     } catch (error: any) {
       console.log("ERR", error);
     }
@@ -46,7 +49,6 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   // searched hotels of country
   const getSearchedHotels = async (selectedCountry: string) => {
     try {
-      console.log("SelectedCountryID_Get", selectedCountry);
       const {
         data: { findHotel },
       } = await axios.get(
@@ -58,10 +60,23 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  const getRoomByRating = async (selectedCountry: string, rating: string) => {
+    try {
+      const {
+        data: { ratingRoom },
+      } = await axios.post(
+        "http://localhost:8008/room/country/" + selectedCountry,
+        { rating }
+      );
+      setSearchedHotel(ratingRoom);
+    } catch (error) {
+      console.log("Err", error);
+    }
+  };
+
   //Get hotel
 
   const getHotel = async (hotelId: string) => {
-    console.log("HotelId", hotelId);
     try {
       const {
         data: { hotel },
@@ -85,6 +100,8 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
         searchedHotel,
         allHotel,
         setSearchedHotel,
+        ratingRoom,
+        getRoomByRating,
       }}
     >
       {children}
