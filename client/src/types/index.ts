@@ -31,6 +31,7 @@ export interface IHotel {
   name: string;
   desc: string;
   star: number;
+  price: number;
 }
 
 export interface IAirline {
@@ -45,4 +46,11 @@ export interface ITicket {
   seatClass: string;
   seatNumber: number;
   _id: string;
+}
+
+export interface IRoom {
+  name: string,
+  description: string,
+  images: []
+  price: number
 }

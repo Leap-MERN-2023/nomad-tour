@@ -40,12 +40,14 @@ const HotelCard = ({ hotels }: any) => {
       </figure>
       <div className="card-body bg-white rounded-b-2xl">
         <div className="flex justify-between">
-          <h2 className="text-2xl font-bold text-black">{hotels.name}</h2>
+          <h2 className="text-2xl font-bold text-black max-w-[80%] truncate">
+            {hotels.name}
+          </h2>
           <h2 className="text-2xl font-bold text-black">{hotels.price}$</h2>
         </div>
         <div className="flex justify-center items-center gap-1">
           <img src="location.png" />
-          <p>Rio de Janiero, Brazil</p>
+          <p></p>
         </div>
       </div>
       <HotelModal hotel={hotel} />

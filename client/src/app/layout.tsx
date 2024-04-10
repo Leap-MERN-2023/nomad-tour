@@ -15,6 +15,7 @@ import TicketProvider from "../context/ticketProvider";
 import { EmailProvider } from "../context/email";
 import swal from "sweetalert";
 import AirlineProvider from "@/context/AirlineProvider";
+import RoomProvider from "@/context/RoomProvider";
 import FlightOrderProvider from "@/context/FlightOrderProvider";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,9 +43,11 @@ export default function RootLayout({
                     <EmailProvider>
                       <TicketProvider>
                         <FlightOrderProvider>
-                          <Navbar />
-                          {children}
-                          <Footer />
+                          <RoomProvider>
+                            <Navbar />
+                            {children}
+                            <Footer />
+                          </RoomProvider>
                         </FlightOrderProvider>
                       </TicketProvider>
                       <ToastContainer />

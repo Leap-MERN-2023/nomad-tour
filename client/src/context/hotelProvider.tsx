@@ -1,34 +1,37 @@
 "use client";
-
 import React, {
   PropsWithChildren,
   createContext,
+  useContext,
   useEffect,
   useState,
 } from "react";
 import axios from "axios";
-
 interface IHotel {
   name: string;
   desc: string;
-  star: number;
+  stars: number;
 }
 
 interface IHotelContext {
-  allHotel: IHotel[];
-  searchedHotels: IHotel[];
   getSearchedHotels: (countryId: string) => void;
   getHotel: (hotel: string) => void;
   hotel: IHotel[];
+  allHotel: IHotel[];
+  searchedHotel: IHotel[];
+  ratingRoom: IHotel[];
+  setSearchedHotel: (hotels: IHotel[]) => void;
+  getRoomByRating: (selectedCountry: string, rating: string) => void;
   // getHotels: () => void;
 }
 
 export const HotelContext = createContext<IHotelContext>({} as IHotelContext);
 
 const HotelProvider = ({ children }: PropsWithChildren) => {
-  const [allHotel, setAllHotel] = useState<IHotel[]>([]);
-  const [searchedHotels, setSearchedHotels] = useState<IHotel[]>([]);
   const [hotel, setHotel] = useState<IHotel[]>([]);
+  const [allHotel, setAllHotel] = useState<IHotel[]>([]);
+  const [searchedHotel, setSearchedHotel] = useState<IHotel[]>([]);
+  const [ratingRoom, setRatingRoom] = useState<IHotel[]>([]);
   const [ref, setRef] = useState(false);
 
   //Get All hotel with high rank
@@ -37,35 +40,49 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       const {
         data: { allHotel },
       } = await axios.get("https://nomad-tour-backend.vercel.app/hotels");
-      setAllHotel(allHotel);
+      setAllHotel(allHotel.slice(0, 6));
     } catch (error: any) {
       console.log("ERR", error);
     }
   };
 
-  //Get hotels of country searched
-  const getSearchedHotels = async (countryId: string) => {
+  // searched hotels of country
+  const getSearchedHotels = async (selectedCountry: string) => {
     try {
       const {
-        data: { filteredHotels },
+        data: { findHotel },
       } = await axios.get(
-        "https://nomad-tour-backend.vercel.app/hotels/" +
-          "65f9aca67a1a0f2424ab74c6"
+        "https://nomad-tour-backend.vercel.app/hotels/search/" + selectedCountry
       );
-      setSearchedHotels(filteredHotels);
+      setSearchedHotel(findHotel);
     } catch (error: any) {
       console.log("ERR", error);
+    }
+  };
+
+  const getRoomByRating = async (selectedCountry: string, rating: string) => {
+    try {
+      const {
+        data: { ratingRoom },
+      } = await axios.post(
+        "https://nomad-tour-backend.vercel.app/room/country/" + selectedCountry,
+        { rating }
+      );
+      setSearchedHotel(ratingRoom);
+    } catch (error) {
+      console.log("Err", error);
     }
   };
 
   //Get hotel
 
   const getHotel = async (hotelId: string) => {
-    console.log("HotelId", hotelId);
     try {
       const {
         data: { hotel },
-      } = await axios.get(`http://localhost:8008/hotels/${hotelId}`);
+      } = await axios.get(
+        `https://nomad-tour-backend.vercel.app/hotels/${hotelId}`
+      );
       setHotel(hotel);
     } catch (error) {
       console.log("ERR", error);
@@ -78,7 +95,16 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <HotelContext.Provider
-      value={{ allHotel, searchedHotels, getSearchedHotels, getHotel, hotel }}
+      value={{
+        getSearchedHotels,
+        getHotel,
+        hotel,
+        searchedHotel,
+        allHotel,
+        setSearchedHotel,
+        ratingRoom,
+        getRoomByRating,
+      }}
     >
       {children}
     </HotelContext.Provider>

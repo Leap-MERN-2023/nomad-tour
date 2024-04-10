@@ -17,6 +17,10 @@ const hotelSchema = new Schema({
     type: Number,
     required: true,
   },
+  location: {
+    latitude: Number,
+    longitude: Number,
+  },
 
   stars: String,
   country: {
