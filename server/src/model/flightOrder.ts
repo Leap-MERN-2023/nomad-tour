@@ -32,6 +32,11 @@ const flightOrderSchema = new Schema({
     type: Number,
     required: true,
   },
+  isPaid: {
+    type: String,
+    enum: ["paid", "notpaid"],
+    default: "notpaid",
+  },
 });
 
 const FlightOrder = model("flighOrder", flightOrderSchema);
