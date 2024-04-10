@@ -41,7 +41,7 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
     try {
       const {
         data: { allCountry },
-      } = await axios.get("http://localhost:8008/country");
+      } = await axios.get("https://nomad-tour-backend.vercel.app/country");
 
       setCountries(allCountry);
     } catch (error: any) {

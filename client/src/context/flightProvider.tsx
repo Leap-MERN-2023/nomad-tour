@@ -65,7 +65,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedTickets = async (flightId: string) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8008/ticket/${flightId}`
+        `https://nomad-tour-backend.vercel.app/ticket/${flightId}`
       );
       setFoundTickets(data.searchedTickets);
       setTicketLoading(false);
