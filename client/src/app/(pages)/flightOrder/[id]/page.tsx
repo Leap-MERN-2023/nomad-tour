@@ -1,9 +1,11 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import LeftCardOne from "@/components/orderCards/left/leftCardOne";
 import RightCardOne from "@/components/orderCards/right/rightCardOne";
 import * as yup from "yup";
 import { useFormik } from "formik";
+import { useFlightOrder } from "@/context/FlightOrderProvider";
+import { useRouter } from "next/navigation";
 
 const touristValidation = yup.object({
   name: yup.string().required("required name"),
@@ -28,9 +30,20 @@ const touristValidation = yup.object({
     .email("please include '@'"),
 });
 const Order = ({ params }: { params: { id: string } }) => {
+  const { createFlightOrder } = useFlightOrder();
+  const [isAgree, setIsAgree] = useState(false);
+  const [agreeMessage, setAgreeMessage] = useState("");
+  const router = useRouter();
   const formik = useFormik({
     onSubmit: async (values) => {
-      console.log(values);
+      if (isAgree) {
+        createFlightOrder(values);
+        router.push("/flightOrder/pay");
+        console.log(values);
+      } else {
+        console.log("NOT AGREED");
+        setAgreeMessage("You should agree  before order");
+      }
     },
     initialValues: {
       name: "",
@@ -47,13 +60,18 @@ const Order = ({ params }: { params: { id: string } }) => {
       userCitizen: "",
       userEmail: "",
     },
-    validateOnChange: true,
+    validateOnChange: false,
     validateOnBlur: false,
     validationSchema: touristValidation,
   });
   return (
     <div className=" bg-gray-200  lg:flex lg:justify-center pt-16">
-      <LeftCardOne formik={formik} />
+      <LeftCardOne
+        isAgree={isAgree}
+        setIsAgree={setIsAgree}
+        agreeMessage={agreeMessage}
+        formik={formik}
+      />
       <RightCardOne formik={formik} id={params.id} />
     </div>
   );

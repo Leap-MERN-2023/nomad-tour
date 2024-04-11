@@ -18,13 +18,13 @@ const UserCard = ({ formik }: any) => {
               name="userName"
               onChange={formik.handleChange}
               value={formik.values.userName}
-              className="rounded-xl p-2 border-[1px]  bg-white w-full lg:h-10 lg:w-[250px]"
+              className="rounded-xl p-2 border-[1px]  bg-white w-full lg:h-10 text-black lg:w-[250px]"
             />
           </div>
           <div>
             <p className="text-black">Second name</p>
             <span className="text-red-400">{formik.errors["userName"]}</span>
-            <input className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[250px]" />
+            <input className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 text-black lg:w-[250px]" />
           </div>
           <div>
             <p className="text-black">Date of birth</p>
@@ -33,37 +33,40 @@ const UserCard = ({ formik }: any) => {
               onChange={formik.handleChange}
               value={formik.values.userBirthDate}
               type="date"
-              className="rounded-xl   border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[250px]"
+              className="rounded-xl   border-[1px] p-2  bg-white w-full lg:h-10 text-black lg:w-[250px]"
             />
           </div>
         </div>
 
         <p className="text-black">Phone</p>
+        <span className="text-red-400">{formik.errors["userPhone"]}</span>
         <div className="flex justify-between ">
           <input
             name="userPhone"
             onChange={formik.handleChange}
             value={formik.values.userPhone}
-            className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
+            className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 text-black lg:w-[400px]"
           />
         </div>
         <div className="lg:flex lg:justify-between">
           <div className="">
             <p className="text-black">Citizen</p>
+            <span className="text-red-400">{formik.errors["userCitizen"]}</span>
             <input
               name="userCitizen"
               onChange={formik.handleChange}
               value={formik.values.userCitizen}
-              className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
+              className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 text-black lg:w-[400px]"
             />
           </div>
           <div>
             <p className="text-black">Email</p>
+            <span className="text-red-400">{formik.errors["userEmail"]}</span>
             <input
               name="userEmail"
               onChange={formik.handleChange}
               value={formik.values.userEmail}
-              className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
+              className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 text-black lg:w-[400px]"
             />
           </div>
         </div>

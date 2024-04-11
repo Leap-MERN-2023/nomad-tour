@@ -68,8 +68,11 @@ const TicketCard = ({ ticket }: Props) => {
           </p>
         </div>
         <button
-          onClick={() => router.push(`/flightOrder/${ticket?._id}`)}
-          className="btn bg-[#0281B0] text-white border-0"
+          onClick={() => {
+            router.push(`/flightOrder/${ticket._id}`);
+            console.log("GOING TICKET ORDER");
+          }}
+          className="btn bg-[#0281B0] text-white border-0 hover:bg-blue-400"
         >
           Check out
         </button>

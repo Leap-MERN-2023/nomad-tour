@@ -20,22 +20,23 @@ const Tourist = ({ formik }: any) => {
               name="name"
               onChange={formik.handleChange}
               value={formik.values.name}
-              className="rounded-xl p-2 border-[1px]  bg-white lg:w-[250px] w-full lg:h-10 "
+              className="rounded-xl p-2 border-[1px]  bg-white lg:w-[250px] w-full lg:h-10 text-black "
             />
           </div>
           <div>
             <p className="text-black">Second name</p>
             <span className="text-red-400">{formik.errors["name"]}</span>
-            <input className="rounded-xl  border-[1px] p-2  bg-white w-full lg:w-[250px] lg:h-10" />
+            <input className="rounded-xl  border-[1px] p-2  bg-white w-full lg:w-[250px] lg:h-10 text-black" />
           </div>
           <div>
             <p className="text-black">Date of birth </p>
             <span className="text-red-400">{formik.errors["birthDate"]}</span>
             <input
+              type="date"
               name="birthDate"
               onChange={formik.handleChange}
               value={formik.values.birthDate}
-              className="rounded-xl   border-[1px] p-2  bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl   border-[1px] p-2  bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
         </div>
@@ -44,9 +45,10 @@ const Tourist = ({ formik }: any) => {
             <p className="text-black">Gender </p>
             <span className="text-red-400">{formik.errors["gender"]}</span>
             <select
+              name="gender"
               onChange={formik.handleChange}
               value={formik.values.gender}
-              className="rounded-xl  p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl  p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10 text-black"
             >
               <option disabled selected>
                 Select your gender
@@ -62,7 +64,7 @@ const Tourist = ({ formik }: any) => {
               name="citizen"
               onChange={formik.handleChange}
               value={formik.values.citizen}
-              className="rounded-xl  p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl  p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
           <div>
@@ -73,7 +75,7 @@ const Tourist = ({ formik }: any) => {
               onChange={formik.handleChange}
               value={formik.values.passportId}
               placeholder="E1234567"
-              className="rounded-xl p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
         </div>
@@ -88,7 +90,7 @@ const Tourist = ({ formik }: any) => {
               onChange={formik.handleChange}
               value={formik.values.passportDate}
               type="date"
-              className="rounded-xl - p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl - p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
           <div>
@@ -101,7 +103,7 @@ const Tourist = ({ formik }: any) => {
               onChange={formik.handleChange}
               value={formik.values.passportValidity}
               type="date"
-              className="rounded-xl  p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl  p-2  border-[1px]  bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
           <div>
@@ -113,7 +115,7 @@ const Tourist = ({ formik }: any) => {
               name="email"
               onChange={formik.handleChange}
               value={formik.values.email}
-              className="rounded-xl  p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10"
+              className="rounded-xl  p-2  border-[1px] bg-white w-full lg:w-[250px] lg:h-10 text-black"
             />
           </div>
         </div>

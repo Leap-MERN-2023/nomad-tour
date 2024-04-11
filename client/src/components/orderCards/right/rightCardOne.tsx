@@ -35,7 +35,7 @@ const RightCardOne = ({ id, formik }: { id: string; formik: any }) => {
   return (
     <div className="bg-gray-200 w-full p-4 lg:w-[600px] lg:flex lg:flex-col items-center lg:my-24 lg:gap-8">
       <CardOne orderTicket={orderTicket} />
-      <CardThird orderTicket={orderTicket} />
+      <CardThird orderTicket={orderTicket} formik={formik} />
     </div>
   );
 };
