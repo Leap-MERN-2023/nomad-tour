@@ -61,8 +61,7 @@ const Footer = () => {
       <div className="w-full p-7 flex flex-col gap-3 2xl:py-14 ">
         <div className="border-t-[1px] border-white w-full"></div>
         <div className="flex justify-between ">
-          <h1 className="text-[12px] 2xl:text-[18px]">@Nomad Tour 2024</h1>
-          <img className="h-5 w-1/2 md:h-8 2xl:w-2/12 " src="/visaCard.png" />
+          <h1 className="text-xl">@Nomad Tour 2024</h1>
         </div>
       </div>
     </div>

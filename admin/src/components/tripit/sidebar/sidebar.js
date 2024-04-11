@@ -16,14 +16,14 @@ function SideBar() {
 					href={"/admin"}
 					className="flex items-center place-content-center gap-5 py-4 hover:bg-tripit hover:rounded-2xl hover:cursor-pointer"
 				>
-					<Image width={20} height={16} className="w-20 h-18 rounded-full" src="/assets/nomad.png" alt="logo"/>
+					<img className="w-20 h-18 rounded-full" src="/assets/nomad.png" alt="logo"/>
 					<div className="font-bold text-2xl">Nomad Tour</div>
 				</Link>
-				<div className="py-4">
+				{/* <div className="py-4">
 					<div className="text-center text-white font-semibold rounded-2xl bg-[#346AFF] w-60 p-3">
 						New Trip +
 					</div>
-				</div>
+				</div> */}
 				{sidebarMenu.map((item) => (
 					<Link
 						href={item.route}

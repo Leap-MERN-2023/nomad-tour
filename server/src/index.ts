@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Application } from "express";
 import cors from "cors";
 import airportRoutes from "./routes/airportRoutes";
 import flightRoutes from "./routes/flightRoutes";
@@ -13,7 +13,7 @@ import verifyRoute from "./routes/verifyRoute";
 import ticketRoutes from "./routes/ticketsRoutes";
 import orderRoute from "./routes/order";
 import flighOrderRoutes from "./routes/flightOrderRoutes";
-import { Application } from "express";
+
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
 dotenv.config();
@@ -41,6 +41,5 @@ app.use("/airlines", airlinesRoutes);
 app.use("/ticket", ticketRoutes);
 app.use("/order", orderRoute);
 app.use("/flightOrder", flighOrderRoutes);
-
 
 app.listen(PORT, () => console.log("Server is running at " + PORT));

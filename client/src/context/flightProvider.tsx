@@ -15,7 +15,7 @@ interface IFLightContext {
   flights: IFlight[];
   getSearchedFlights: () => void;
   foundFlights: IFlight[] | undefined;
-  foundTickets: ITicket[] | undefined;
+  foundTickets: ITicket[];
   refreshSearch: boolean;
   setRefreshSearch: any;
   ticketLoading: boolean;
@@ -26,7 +26,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const [refreshSearch, setRefreshSearch] = useState(false);
   const [ticketLoading, setTicketLoading] = useState(false);
   const [foundFlights, setFoundFlights] = useState();
-  const [foundTickets, setFoundTickets] = useState();
+  const [foundTickets, setFoundTickets] = useState<ITicket[]>([]);
   const { selectedDepartureAirport, selectedArrivalAirport } =
     useContext(AirPortContext);
   const [flights, setFlights] = useState([]);
@@ -43,19 +43,16 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedFlights = async () => {
     setTicketLoading(true);
     try {
-      const { data } = await axios.post(
-        "https://nomad-tour-backend.vercel.app/flight/search",
-        {
-          depId: selectedDepartureAirport,
-          arrId: selectedArrivalAirport,
-        }
-      );
-
+      setFoundTickets([]);
+      const { data } = await axios.post("http://localhost:8008/flight/search", {
+        depId: selectedDepartureAirport,
+        arrId: selectedArrivalAirport,
+      });
       if (data.foundFlights.length === 0) {
-        console.log("Flights not found", data);
-        setFoundTickets(undefined);
+        setFoundTickets([]);
         setTicketLoading(false);
       } else {
+        console.log("FOUND FLIGHTS", data.foundFlights);
         setFoundFlights(data.foundFlights);
         data.foundFlights.map((flight: IFlight) => {
           getSearchedTickets(flight._id);
@@ -70,9 +67,13 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedTickets = async (flightId: string) => {
     try {
       const { data } = await axios.get(
-        `https://nomad-tour-backend.vercel.app/ticket/${flightId}`
+        `http://localhost:8008/ticket/${flightId}`
       );
-      setFoundTickets(data.searchedTickets);
+      console.log("FOUND TICKET!", data.searchedTickets);
+      data.searchedTickets.map((ticket: ITicket) => {
+        setFoundTickets((foundTickets) => [...foundTickets, ticket]);
+      });
+
       setTicketLoading(false);
     } catch (error) {
       console.log("FAILED TO SEARCH TICKETS", error);
