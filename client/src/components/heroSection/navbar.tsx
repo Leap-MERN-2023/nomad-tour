@@ -6,7 +6,6 @@ import { LoginForm } from "../LoginForm";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { UserContext } from "@/context/UserProvider";
-import profile from "@/app/(pages)/profile/page";
 import { useRouter } from "next/navigation";
 
 type Props = {};

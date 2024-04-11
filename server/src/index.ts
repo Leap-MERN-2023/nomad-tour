@@ -42,5 +42,4 @@ app.use("/ticket", ticketRoutes);
 app.use("/order", orderRoute);
 app.use("/flightOrder", flighOrderRoutes);
 
-
 app.listen(PORT, () => console.log("Server is running at " + PORT));

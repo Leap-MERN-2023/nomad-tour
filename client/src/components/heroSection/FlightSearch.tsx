@@ -32,9 +32,7 @@ const FlightSearch = (props: Props) => {
             name="departureAirport"
             id=""
           >
-            <option disabled selected>
-              Select departure Airport
-            </option>
+            <option disabled>Select departure Airport</option>
             {airport?.map((port: any) => (
               <option key={port._id} value={port._id}>
                 {port.name}
@@ -52,9 +50,7 @@ const FlightSearch = (props: Props) => {
             name="arrivalAirport"
             id=""
           >
-            <option disabled selected>
-              Select arrival Airport
-            </option>
+            <option disabled>Select arrival Airport</option>
             {airport?.map((port: any) => (
               <option key={port._id} value={port._id}>
                 {port.name}
