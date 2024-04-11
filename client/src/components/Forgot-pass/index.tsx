@@ -47,7 +47,14 @@ const MyStepper = () => {
           handleChangeInput={handleChangeInput}
         />
       )}
-      {activeStep === 3 && <StepThree />}
+      {activeStep === 3 && (
+        <StepThree
+          email={user.email}
+          password={user.password}
+          handleNext={handleNext}
+          handleChangeInput={handleChangeInput}
+        />
+      )}
     </div>
   );
 };

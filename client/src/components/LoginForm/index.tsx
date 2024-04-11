@@ -100,6 +100,11 @@ const Login = ({ closeForm }: any) => {
     validationSchema,
   });
 
+  const clickHandler = () => {
+    router.push("/forgot-pass");
+    closeForm(() => true);
+  };
+
   const router = useRouter();
   const [isShowPassword, setIsShowPassword] = useState(false);
   return (
@@ -148,7 +153,7 @@ const Login = ({ closeForm }: any) => {
         <div className="flex justify-end">
           <button
             className="btn btn-outline btn-success "
-            onClick={() => router.push("/forgot-pass")}
+            onClick={clickHandler}
           >
             Forget password
           </button>

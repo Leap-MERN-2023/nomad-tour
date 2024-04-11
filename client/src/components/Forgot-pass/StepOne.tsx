@@ -1,6 +1,8 @@
 import { useFormik } from "formik";
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useContext } from "react";
 import { object, string } from "yup";
+import { useState } from "react";
+import { UserContext } from "@/context/UserProvider";
 
 interface IStepProps {
   email: string;
@@ -9,15 +11,26 @@ interface IStepProps {
 }
 
 const StepOne = ({ email, handleNext, handleChangeInput }: IStepProps) => {
+  // const [user, setUser] = useState({
+  //   email: "",
+  //   password: "",
+  //   otp: "",
+  // });
+
+  const { user } = useContext(UserContext);
+
   return (
     <div className="my-72 flex gap-4 items-center justify-center flex-col">
       <div className="flex flex-col items-center justify-center p-2 m-auto ">
-        <p className="items-center text-4xl font-bold text-black">Reset password</p>
+        <p className="items-center text-4xl font-bold text-black">
+          Reset password
+        </p>
         <input
           placeholder="Имэйл"
           onChange={handleChangeInput}
           name="email"
           className="rounded-xl p-3 mt-4 w-full text-white"
+          value={email}
         />
         <div className="flex flex-row w-[100%] justify-end">
           <button
