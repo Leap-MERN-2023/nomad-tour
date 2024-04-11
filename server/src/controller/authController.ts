@@ -14,10 +14,10 @@ export const signup = async (
     console.log("REQ: ", req.body);
     const newUser = req.body;
     console.log("user-------", newUser);
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedPassword = await bcrypt.hash(newUser.password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newUser.password, salt);
 
-    const user = await User.create({ ...newUser }); ///password: hashedPassword
+    const user = await User.create({ ...newUser, password: hashedPassword }); 
 
     const verifyToken = jwt.sign(
       { email: user.email },
@@ -54,11 +54,12 @@ export const login = async (
     // console.log("Password", userPassword);
 
     const user = await User.findOne({ email: userEmail }).select("+password");
+    console.log(user)
 
     if (!user) {
       throw new MyError(`${userEmail}-тэй хэрэглэгч бүртгэлгүй байна.`, 400);
     }
-    console.log("success", user);
+    // console.log("success", user);
     const isValid = await bcrypt.compare(userPassword, user.password);
     console.log("bcrypted", isValid);
     if (!isValid) {

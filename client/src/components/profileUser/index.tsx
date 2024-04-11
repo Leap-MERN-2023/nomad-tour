@@ -9,18 +9,18 @@ export const ProfileUser = () => {
     <div className="flex flex-col justify-center items-center bg-gray-300 h-screen relative">
       <img src="https://images.unsplash.com/photo-1517429128955-67ff5c1e29da?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"></img>
       <div className="w-[50%] absolute ">
-        <p className="font-bold text-4xl">Profile</p>
+        <p className="font-bold text-4xl text-black">Profile</p>
         <div className="flex items-center gap-4">
-          <p className="items-center text-2xl font-bold">Name:</p>
-          <p className="text-xl">{user.name}</p>
+          <p className="items-center text-2xl font-bold text-black">Name:</p>
+          <p className="text-xl text-black">{user.name}</p>
         </div>
         <div className="flex items-center gap-4">
-          <p className="items-center text-2xl font-bold">Email:</p>
-          <p className="text-xl">{user.email}</p>
+          <p className="items-center text-2xl font-bold text-black">Email:</p>
+          <p className="text-xl text-black">{user.email}</p>
         </div>
         <div className="flex items-center gap-4">
-          <p className="items-center text-2xl font-bold">PhoneNumber:</p>
-          <p className="text-xl">{user.phoneNumber}</p>
+          <p className="items-center text-2xl font-bold text-black">PhoneNumber:</p>
+          <p className="text-xl text-black">{user.phoneNumber}</p>
         </div>
       </div>
     </div>

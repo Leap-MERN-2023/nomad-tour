@@ -112,7 +112,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       swal("Good job", "Login successfully", "success");
       setUser(data.user._doc);
     } catch (error) {
-      swal("failed", " login failed ", "error");
+      swal("failed", " Password is wrong ", "error");
     }
   };
 

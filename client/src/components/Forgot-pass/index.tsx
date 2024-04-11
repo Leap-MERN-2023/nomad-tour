@@ -21,7 +21,7 @@ const MyStepper = () => {
       });
       setActiveStep((prev) => prev + 1);
     } catch (error) {
-      toast.error("Email илгээхэд алдаа гарлааa.");
+      toast.error("Error to send emaill");
       console.log(error);
     }
   };
@@ -47,7 +47,14 @@ const MyStepper = () => {
           handleChangeInput={handleChangeInput}
         />
       )}
-      {activeStep === 3 && <StepThree />}
+      {activeStep === 3 && (
+        <StepThree
+          email={user.email}
+          password={user.password}
+          handleNext={handleNext}
+          handleChangeInput={handleChangeInput}
+        />
+      )}
     </div>
   );
 };

@@ -11,6 +11,6 @@ const router = Router();
 router.route("/user").get(verifyUser);
 router.route("/send-email").post(sendEmailToUser);
 router.route("/otp").post(verifyOtp);
-router.route("/").post(resetPass);
+router.route("/resetPass").post(resetPass);
 
 export default router;
