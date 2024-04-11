@@ -219,7 +219,7 @@ const Signup = ({ closeForm }: any) => {
         <input
           type={isShowPassword ? "password" : "text"}
           placeholder="password"
-          className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
+          className="input input-bordered p-3 max-w-xs relative rounded-md bg-slate-100 text-black w-[400px]"
           name="password"
           onChange={formik.handleChange}
         />
