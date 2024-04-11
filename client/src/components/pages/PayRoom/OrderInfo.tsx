@@ -13,10 +13,10 @@ const OrderInfo = (props: Props) => {
     const {hotel} = useContext(HotelContext)
     const {getRoomByHotelId} = useContext(RoomContext)
     const router =useRouter()
-    const handleGetRoom = () => {
-        getRoomByHotelId(hotel?._id as string);
+    // const handleGetRoom = () => {
+    //     getRoomByHotelId(hotel?._id as string);
        
-      };
+    //   };
   const { order } = useFlightOrder();
   return (
     <div className="text-zinc-700 md:w-1/2">
