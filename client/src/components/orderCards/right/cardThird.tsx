@@ -2,9 +2,11 @@
 import { useFlightOrder } from "@/context/FlightOrderProvider";
 import { ITicket } from "@/types";
 import { priceCalculator } from "@/utils/priceCalc";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const CardThird = ({ orderTicket }: { orderTicket: ITicket | undefined }) => {
+  const router = useRouter();
   const { createFlightOrder } = useFlightOrder();
   return (
     <div className="flex flex-col gap-4">
@@ -30,7 +32,9 @@ const CardThird = ({ orderTicket }: { orderTicket: ITicket | undefined }) => {
         </div>
       </div>
       <button
-        onClick={createFlightOrder}
+        onClick={() => {
+          createFlightOrder(), router.push("/flightOrder/pay");
+        }}
         className="bg-[#0281B0] text-white w-full rounded-xl p-2 lg:w-[500px] lg:ml-5"
       >
         Order

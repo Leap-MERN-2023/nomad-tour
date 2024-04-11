@@ -13,7 +13,7 @@ interface IairPortContext {
   getAllairPort: () => void;
   createAirport: () => void;
   handleAirportForm: (e: any) => void;
-  deleteAirport: (e : any) => void;
+  deleteAirport: (e: any) => void;
   newAirport: {
     name: string;
   };
@@ -25,7 +25,7 @@ export const AirPortContext = createContext<IairPortContext>(
 
 const AirPortProvider = ({ children }: PropsWithChildren) => {
   const [airports, setAirPorts] = useState();
-  const [loading,setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   const [refresh, setrefresh] = useState(false);
   const [newAirport, setNewAirport] = useState({
     country: "",
@@ -35,7 +35,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   const getAllairPort = async () => {
     try {
       const { airport } = await axios
-        .get("http://localhost:8008/airport")
+        .get("https://nomad-tour-backend.vercel.app/airport")
         .then((res) => res.data);
       // console.log("airport", airport);
       setAirPorts(airport);
@@ -53,34 +53,36 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   };
   const createAirport = async () => {
     try {
-      setLoading(true)
+      setLoading(true);
       const formData = new FormData();
       formData.set("name", newAirport.name);
       const data = await axios.post(
-        "http://localhost:8008/airport",
+        "https://nomad-tour-backend.vercel.app/airport",
         newAirport
       );
       setrefresh(!refresh);
     } catch (error: any) {
       console.log("create airport error", error);
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
 
-  const deleteAirport = async (airportId : any) => {
+  const deleteAirport = async (airportId: any) => {
     try {
       setLoading(true);
-      const data = await axios.delete(`http://localhost:8008/airport/${airportId}`, {
-      })
-      console.log("delete",data)
-      setrefresh(!refresh)
+      const data = await axios.delete(
+        `https://nomad-tour-backend.vercel.app/airport/${airportId}`,
+        {}
+      );
+      console.log("delete", data);
+      setrefresh(!refresh);
     } catch (error) {
-      console.log("delete error", error)
-    }finally{
-      setLoading(false)
+      console.log("delete error", error);
+    } finally {
+      setLoading(false);
     }
-  }
+  };
   return (
     <AirPortContext.Provider
       value={{
@@ -89,7 +91,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
         createAirport,
         handleAirportForm,
         newAirport,
-        deleteAirport
+        deleteAirport,
       }}
     >
       {children}

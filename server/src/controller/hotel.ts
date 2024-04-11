@@ -44,14 +44,9 @@ export const getHotelsOfCountry = async (
 ) => {
   try {
     const { countryId } = req.params;
-    const findHotel = await Hotel.find();
+    const findHotel = await Hotel.find({ country: countryId });
 
-    const filteredHotels = findHotel.filter(
-      (el) => el.country.toString() === countryId
-    );
-    res
-      .status(200)
-      .json({ message: "Successfully get hotels.", filteredHotels });
+    res.status(200).json({ message: "Successfully get hotels.", findHotel });
   } catch (error) {
     next(error);
     console.log("ERR_all", error);

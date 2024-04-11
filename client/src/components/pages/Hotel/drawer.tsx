@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { IoFilterOutline } from "react-icons/io5";
 import DrawerData from "./drawerData";
 
-export const HotelModal = () => {
+export const HotelModal = ({
+  searchedHotel,
+  setSearchedHotel,
+  getSearchedHotels,
+  selectedCountry,
+}: any) => {
   return (
     <div className="drawer z-50">
       <input id="my-drawer" type="checkbox" className="drawer-toggle" />
@@ -22,7 +27,12 @@ export const HotelModal = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <DrawerData />
+        <DrawerData
+          searchedHotel={searchedHotel}
+          setSearchedHotel={setSearchedHotel}
+          getSearchedHotels={getSearchedHotels}
+          selectedCountry={selectedCountry}
+        />
       </div>
     </div>
   );

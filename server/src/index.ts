@@ -11,6 +11,7 @@ import email from "./routes/email";
 import airlinesRoutes from "./routes/airlineRoutes";
 import verifyRoute from "./routes/verifyRoute";
 import ticketRoutes from "./routes/ticketsRoutes";
+import orderRoute from "./routes/order";
 import flighOrderRoutes from "./routes/flightOrderRoutes";
 import { Application } from "express";
 import { connectDb } from "./config/db";
@@ -42,6 +43,7 @@ app.use("/room", room);
 app.use("/email", email);
 app.use("/airlines", airlinesRoutes);
 app.use("/ticket", ticketRoutes);
+app.use("/order", orderRoute);
 app.use("/flightOrder", flighOrderRoutes);
 
 app.get("/", (req, res) => {

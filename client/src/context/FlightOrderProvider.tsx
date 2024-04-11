@@ -1,4 +1,5 @@
 "use client";
+import { myAlertFire } from "@/utils/myAlert";
 import axios from "axios";
 import { PropsWithChildren, createContext, useContext, useState } from "react";
 
@@ -9,10 +10,12 @@ interface iFlightOrderContext {
   handleFlightForm: (e: any) => void;
   setFlightForm: any;
   flightForm: any;
+  order: any;
 }
 export const FlightOrderContext = createContext({} as iFlightOrderContext);
 
 const FlightOrderProvider = ({ children }: PropsWithChildren) => {
+  const [order, setOrder] = useState();
   const [tourist, setTourist] = useState({
     name: "",
     birthDate: "",
@@ -52,10 +55,11 @@ const FlightOrderProvider = ({ children }: PropsWithChildren) => {
     try {
       console.log("FLIGHT FORM", flightForm);
       const { data } = await axios.post(
-        "http://localhost:8008/flightOrder",
+        "https://nomad-tour-backend.vercel.app/flightOrder",
         flightForm
       );
-      console.log("Flight order", data);
+      myAlertFire("Order successfully created", "success");
+      setOrder(data.data);
     } catch (error) {
       console.log("ERROR IN CREATE ORDER");
     }
@@ -69,6 +73,7 @@ const FlightOrderProvider = ({ children }: PropsWithChildren) => {
         handleFlightForm,
         setFlightForm,
         flightForm,
+        order,
       }}
     >
       {children}

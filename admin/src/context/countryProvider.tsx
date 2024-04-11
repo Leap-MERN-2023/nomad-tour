@@ -20,14 +20,13 @@ interface ICountry {
 
 interface ICountryContext {
   countries: ICountry[];
-  getCountries:() => void;
-  handleCountryForm:(e: any) => void;
+  getCountries: () => void;
+  handleCountryForm: (e: any) => void;
   handleFile: (e: ChangeEvent<HTMLInputElement>) => void;
-  createCountry: ()=> void;
-  deleteCountry: (e:any)=> void;
+  createCountry: () => void;
+  deleteCountry: (e: any) => void;
   addImage: (images: string) => void;
 }
-
 
 export const CountryContext = createContext<ICountryContext>(
   {} as ICountryContext
@@ -36,19 +35,19 @@ export const CountryContext = createContext<ICountryContext>(
 const CountryProvider = ({ children }: PropsWithChildren) => {
   const [countries, setCountries] = useState<ICountry[]>([]);
   const [file, setFile] = useState<any>(null);
-  const [loading,setLoading]= useState(false);
+  const [loading, setLoading] = useState(false);
   const [refresh, setrefresh] = useState(false);
   const [newCountry, setNewCountry] = useState<any>({
     name: "",
     description: "",
-    images:[],
+    images: [],
   });
 
   const getCountries = async () => {
     try {
       const {
         data: { allCountry },
-      } = await axios.get("http://localhost:8008/country");
+      } = await axios.get("https://nomad-tour-backend.vercel.app/country");
       setCountries(allCountry);
     } catch (error: any) {
       console.log("ERR", error);
@@ -61,48 +60,61 @@ const CountryProvider = ({ children }: PropsWithChildren) => {
 
   const handleFile = (e: ChangeEvent<HTMLInputElement>) => {
     setFile(e.currentTarget.files![0]);
-    console.log("image", e.target.files)
+    console.log("image", e.target.files);
   };
   const createCountry = async () => {
     try {
-      setLoading(true)
-        const data = await axios.post(
-        "http://localhost:8008/country",
+      setLoading(true);
+      const data = await axios.post(
+        "https://nomad-tour-backend.vercel.app/country",
         newCountry
       );
-      setrefresh(!refresh)
-      console.log("newCountry",newCountry)
-    }
-     catch (error: any) {
+      setrefresh(!refresh);
+      console.log("newCountry", newCountry);
+    } catch (error: any) {
       console.log("create airport error", error);
-    }
-    finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
   };
-  const deleteCountry = async (countryId : any) => {
+  const deleteCountry = async (countryId: any) => {
     try {
-      setLoading(true)
-      const data = await axios.delete(`http://localhost:8008/country/${countryId}`, {
-      })
-      setrefresh(!refresh)
-      console.log("delete country",data)
+      setLoading(true);
+      const data = await axios.delete(
+        `https://nomad-tour-backend.vercel.app/country/${countryId}`,
+        {}
+      );
+      setrefresh(!refresh);
+      console.log("delete country", data);
     } catch (error) {
-      console.log("delete error", error)
-    }finally{
-      setLoading(false)
+      console.log("delete error", error);
+    } finally {
+      setLoading(false);
     }
   };
   const addImage = (imgUrl: string) => {
-    setNewCountry((oldCountry : any) => ({...oldCountry, images: [...oldCountry.images , imgUrl]}))
-  }
+    setNewCountry((oldCountry: any) => ({
+      ...oldCountry,
+      images: [...oldCountry.images, imgUrl],
+    }));
+  };
 
   useEffect(() => {
     getCountries();
   }, [refresh]);
 
   return (
-    <CountryContext.Provider value={{ countries, getCountries,handleCountryForm,handleFile,createCountry,deleteCountry,addImage}}>
+    <CountryContext.Provider
+      value={{
+        countries,
+        getCountries,
+        handleCountryForm,
+        handleFile,
+        createCountry,
+        deleteCountry,
+        addImage,
+      }}
+    >
       {children}
     </CountryContext.Provider>
   );
