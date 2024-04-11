@@ -8,6 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { toast } from "react-toastify";
 
 interface IFLightContext {
   flights: any;
@@ -47,8 +48,10 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
         newFlight
       );
       setrefresh(!refresh);
+      toast.success("create complete flight")
       console.log("newflight", data);
     } catch (error: any) {
+      toast.error("create flignt denied")
       console.log("create airport error", error);
     } finally {
       setLoading(false);
@@ -62,8 +65,10 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
         {}
       );
       setrefresh(!refresh);
+      toast.success("flight delete complete")
       console.log("delete flight", data);
     } catch (error) {
+      toast.error("flight delete denied")
       console.log("flight error", error);
     } finally {
       setLoading(false);

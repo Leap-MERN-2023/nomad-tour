@@ -8,9 +8,7 @@ export const createHotel = async (
 ) => {
   try {
     console.log("Req", req.body);
-    const newHotel = { ...req.body };
-
-    const hotel = await Hotel.create(newHotel);
+    const hotel = await Hotel.create({...req.body});
 
     res.status(200).json({ message: "Succesfully created hotel", hotel });
   } catch (error) {

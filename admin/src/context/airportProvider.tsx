@@ -7,6 +7,7 @@ import React, {
   useState,
   ChangeEvent,
 } from "react";
+import { toast } from "react-toastify";
 
 interface IairPortContext {
   airports: any;
@@ -39,8 +40,10 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
         .then((res) => res.data);
       // console.log("airport", airport);
       setAirPorts(airport);
+      // toast.success("airport add complete")
     } catch (error) {
       console.log("error", error);
+      toast.error("airport denied")
     }
   };
   useEffect(() => {
@@ -61,7 +64,9 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
         newAirport
       );
       setrefresh(!refresh);
+      toast.success("airport add complete")
     } catch (error: any) {
+      toast.error("airport denied")
       console.log("create airport error", error);
     } finally {
       setLoading(false);
@@ -77,7 +82,26 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
       );
       console.log("delete", data);
       setrefresh(!refresh);
+      toast.success("airport delete complete")
     } catch (error) {
+      toast.error("airport denied")
+      console.log("delete error", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const updateAirport = async (airportId: any) => {
+    try {
+      setLoading(true);
+      const data = await axios.put(
+        `https://nomad-tour-backend.vercel.app/airport/${airportId}`,
+        {}
+      );
+      console.log("put", data);
+      setrefresh(!refresh);
+      toast.success("airport put complete")
+    } catch (error) {
+      toast.error("airport denied")
       console.log("delete error", error);
     } finally {
       setLoading(false);
