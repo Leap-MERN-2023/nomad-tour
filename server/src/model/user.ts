@@ -6,7 +6,9 @@ interface IIuser extends Document {
   email: string;
   password: string;
   phoneNumber: number;
-  googleId:object
+  googleId: object;
+  otp: any;
+  isVerified: any;
 }
 
 const userSchema: Schema<IIuser> = new Schema({
@@ -32,6 +34,10 @@ const userSchema: Schema<IIuser> = new Schema({
   phoneNumber: {
     type: Number,
     required: [true, "Утасны дугаар оруулна уу"],
+  },
+  otp: {
+    type: Number,
+    required: false,
   },
 });
 

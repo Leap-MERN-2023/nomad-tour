@@ -1,13 +1,9 @@
 import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 import MyError from "../utils/myError";
-
-// import { customAlphabet } from "nanoid";
 import bcrypt from "bcrypt";
 import { sendEmail } from "../utils/sendEmail";
 import User from "../model/user";
-
-// const nanoid = customAlphabet("1234567890", 4);
 
 export const sendEmailToUser = async (
   req: Request,
@@ -28,12 +24,11 @@ export const sendEmailToUser = async (
       throw new MyError(`Hereglegch olgdsongui`, 400);
     }
 
-    console.log("OTP", otp);
-    const salt = await bcrypt.genSalt(10);
-
-    findUser.otp = await bcrypt.hash(otp, salt);
-
-    await findUser.save();
+    await User.findOneAndUpdate(
+      { email },
+      { otp: otp.toString() },
+      { new: true }
+    );
 
     await sendEmail({ email, otp }); ///ogogdson emaild otp ilgeene
 
@@ -63,12 +58,10 @@ export const verifyOtp = async (
       throw new MyError(`Hereglegch oldsongui`, 400);
     }
 
-    const validOtp = await bcrypt.compare(otp, findUser?.otp); /// otp shalgah
-
-    if (!validOtp) {
+    if (otp != findUser?.otp) {
       throw new MyError(`kod buruu baina`, 400);
     }
-    console.log("valid", validOtp);
+
     res.status(200).json({ message: "OTP is validated" });
   } catch (error) {
     next(error);
@@ -105,17 +98,19 @@ export const resetPass = async (req: Request, res: Response) => {
   try {
     const { email, newPassword } = req.body;
     const findUser = await User.findOne({ email });
+    console.log("user", email);
     if (!findUser) {
       throw new MyError(`Hereglegch oldsongui`, 400);
     }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
+
     findUser.updateOne({ password: hashedPassword }); ///
 
     findUser.password = hashedPassword;
-    await findUser.save();
 
+    await findUser.save();
     res.status(200).json({ message: "Password амжилттай солигдлоо" });
   } catch (error) {
     console.log(error);

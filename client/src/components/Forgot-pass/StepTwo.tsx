@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import React, { ChangeEvent } from "react";
 import { toast } from "react-toastify";
@@ -25,16 +24,9 @@ const StepTwo = ({ email, otp, handleNext, handleChangeInput }: IStepProps) => {
   };
 
   return (
-    <div>
-      <div
-         className="flex flex-col items-center justify-center p-2 m-auto" 
-      
-      >
-        <p
-          className="items-center text-4xl font-bold"
-        >
-          Нууц үг сэргээх
-        </p>
+    <div className="my-72">
+      <div className="flex flex-col items-center justify-center p-2 m-auto">
+        <p className="items-center text-4xl font-bold">Нууц үг сэргээх</p>
         <p className="font-semibold text-xl ">
           Таны <span style={{ color: "#18BA51" }}>{email}</span> хаяг руу
           сэргээх код илгээлээ.
@@ -46,7 +38,12 @@ const StepTwo = ({ email, otp, handleNext, handleChangeInput }: IStepProps) => {
             onChange={handleChangeInput}
             className="rounded-xl p-3 mt-4 w-full"
           />
-          <button onClick={handleSendOtp} className="rounded-xl p-4 bg-blue-900 w-full mt-4">Үргэлжлүүлэх</button>
+          <button
+            onClick={handleSendOtp}
+            className="rounded-xl p-4 bg-blue-900 w-full mt-4"
+          >
+            Үргэлжлүүлэх
+          </button>
         </div>
       </div>
     </div>

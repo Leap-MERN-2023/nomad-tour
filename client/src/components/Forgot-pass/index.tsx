@@ -1,11 +1,7 @@
 "use client";
-
 import { ChangeEvent, useState } from "react";
-
-import { Container, Stack } from "@mui/material";
 import axios from "axios";
 import { toast } from "react-toastify";
-
 import StepOne from "./StepOne";
 import StepTwo from "./StepTwo";
 import StepThree from "./StepThree";
@@ -25,7 +21,7 @@ const MyStepper = () => {
       });
       setActiveStep((prev) => prev + 1);
     } catch (error) {
-      toast.error("Email илгээхэд алдаа гарлаа.");
+      toast.error("Email илгээхэд алдаа гарлааa.");
       console.log(error);
     }
   };
@@ -35,7 +31,7 @@ const MyStepper = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center ">
+    <div className="flex flex-col justify-center items-center bg-slate-300">
       {activeStep === 1 && (
         <StepOne
           email={user.email}
