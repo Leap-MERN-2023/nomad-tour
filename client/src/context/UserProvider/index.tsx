@@ -19,6 +19,7 @@ export interface IUser {
   email: string;
   password: string;
   phoneNumber: string;
+  _id: string
 }
 
 export interface IUserContext {
@@ -46,6 +47,7 @@ export const UserContext = createContext<IUserContext>({
     email: "",
     phoneNumber: "",
     password: "",
+    _id: "",
   },
   token: "",
   login: function () {},
@@ -66,6 +68,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     email: "",
     phoneNumber: "",
     password: "",
+    _id: "",
   });
 
   console.log("this is the user ", user);

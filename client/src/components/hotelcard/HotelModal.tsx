@@ -9,12 +9,12 @@ import { FaCar } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { GiKnifeFork } from "react-icons/gi";
 import { FaLocationDot } from "react-icons/fa6";
-import { BsHeart } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { RoomContext } from "@/context/RoomProvider";
+import { GoogleMaps } from "../GoogleMaps";
 
 type Swiper = /*unresolved*/ any;
 
@@ -22,16 +22,18 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const stars = Array.from({ length: hotel?.stars }, (_, index) => index + 1);
   const router = useRouter();
-  const {getRoomByHotelId} = useContext(RoomContext)
-   
+  const { getRoomByHotelId } = useContext(RoomContext);
+
   const handleGetRoom = () => {
     getRoomByHotelId(hotel?._id as string);
     router.push("/hotels/rooms");
   };
 
+  console.log("LAT,", hotel?.location?.latitude, hotel?.location?.longitude);
+
   return (
     <dialog id="my_modal_3" className="modal">
-      <div className="modal-box ">
+      <div className="modal-box bg-white">
         <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-5 top-6">
@@ -114,6 +116,12 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
         <div className="shadow-sm rounded-2xl font-semibold p-2 bg-opacity-100 my-3">
           {hotel?.description}
         </div>
+        {/* <div>
+          <GoogleMaps
+            lat={hotel?.location?.latitude}
+            lng={hotel?.location?.longitude}
+          />
+        </div> */}
         <div className="flex justify-between items-center">
           <button
             className="btn btn-outline font-extrabold "
@@ -121,7 +129,6 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
           >
             See availability
           </button>
-          <BsHeart style={{ height: 40, width: 40 }} />
         </div>
       </div>
     </dialog>

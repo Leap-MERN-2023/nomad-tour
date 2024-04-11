@@ -17,13 +17,16 @@ type Swiper = /*unresolved*/ any;
 const Room = () => {
   const router = useRouter();
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
-  const { rooms } = useContext(RoomContext);
+  const { rooms, selectedRoom, getRoomById } = useContext(RoomContext);
+  console.log("SlectedRoom", selectedRoom);
+
   console.log("RRRRR", rooms);
   return (
     <section className="w-full  relative bg-white pb-10 ">
       <Carousel />
 
       {rooms?.map((room, i) => {
+        console.log("Room_id", room);
         return (
           <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl 2xl:flex-row border border-black rounded-xl bg-zinc-100 2xl:w-9/12 mb-10">
             <div className="flex flex-col justify-between w-1/2 items-center h-60 2xl:h-72  p-2">
@@ -81,7 +84,10 @@ const Room = () => {
               <div className="text-sm 2xl:text-lg">{room?.description}</div>
               <button
                 className="btn btn-outline w-11/12"
-                onClick={() => router.push("/hotels/rooms/order")}
+                onClick={() => {
+                  getRoomById(room?._id);
+                  router.push("/hotels/rooms/order");
+                }}
               >
                 Order
               </button>

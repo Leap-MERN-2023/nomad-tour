@@ -9,6 +9,7 @@ import axios from "axios";
 
 interface IRoom {
   name: string;
+  _id: string;
   description: string;
   images: string[];
   price: {
@@ -16,17 +17,21 @@ interface IRoom {
     MNT: number;
     CNY: number;
   };
+  totalPrice: string;
 }
 
 interface IRoomContext {
   rooms: IRoom[];
   getRoomByHotelId: (hotelId: string) => void;
+  getRoomById: (roomId: string) => void;
+  selectedRoom: IRoom[];
 }
 
 export const RoomContext = createContext<IRoomContext>({} as IRoomContext);
 
 const RoomProvider = ({ children }: PropsWithChildren) => {
   const [rooms, setRooms] = useState<IRoom[]>([]);
+  const [selectedRoom, setSelectedRoom] = useState<IRoom[]>([]);
 
   const getRoomByHotelId = async (hotelId: string) => {
     try {
@@ -41,12 +46,27 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
+  const getRoomById = async (roomId: string) => {
+    console.log("RoomID", roomId);
+    try {
+      const {
+        data: { findRoom },
+      } = await axios.get("http://localhost:8008/room/selected/" + roomId);
+      console.log("GetroomByID", findRoom);
+      setSelectedRoom(findRoom);
+    } catch (error) {
+      console.log("AtRoomPrivider");
+    }
+  };
+
   useEffect(() => {
     getRoomByHotelId("hotelId");
   }, []);
 
   return (
-    <RoomContext.Provider value={{ rooms, getRoomByHotelId }}>
+    <RoomContext.Provider
+      value={{ rooms, getRoomByHotelId, selectedRoom, getRoomById }}
+    >
       {children}
     </RoomContext.Provider>
   );

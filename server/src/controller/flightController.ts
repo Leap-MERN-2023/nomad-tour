@@ -4,13 +4,8 @@ import Flight from "../model/flight";
 export const CreateFlight = async (req: Request, res: Response) => {
   console.log("req body create", req.body);
   try {
-<<<<<<< HEAD
-    const newFlightForm = { ...req.body };
-    const newFlight = await Flight.create(newFlightForm);
-=======
     const newFlight = await Flight.create({...req.body});
     // console.log("req.body", req.body)
->>>>>>> main
     res.status(201).json({ message: "Succesfully created flight", newFlight });
   } catch (error) {
     console.log("ERROR IN CREATE FLIGHT", error);

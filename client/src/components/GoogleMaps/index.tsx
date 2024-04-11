@@ -8,7 +8,9 @@ import {
   InfoWindow,
   useAdvancedMarkerRef,
 } from "@vis.gl/react-google-maps";
+
 export const GoogleMaps = ({ lat, lng }: { lat: number; lng: number }) => {
+  console.log("Lat,lng", lat, lng);
   const [infowindowOpen, setInfowindowOpen] = useState(true);
   const [markerRef, marker] = useAdvancedMarkerRef();
 
@@ -16,7 +18,7 @@ export const GoogleMaps = ({ lat, lng }: { lat: number; lng: number }) => {
     <>
       <APIProvider apiKey={"AIzaSyBL9rc48p-BO9lSkvBNdp-UD7e3SiGoT9w"}>
         <Map
-          style={{ width: "300px", height: "300px" }}
+          style={{ width: "100%", height: "300px" }}
           defaultCenter={{ lat: 22.54992, lng: 0 }}
           defaultZoom={3}
           gestureHandling={"greedy"}
