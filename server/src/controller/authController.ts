@@ -17,7 +17,7 @@ export const signup = async (
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newUser.password, salt);
 
-    const user = await User.create({ ...newUser, password: hashedPassword });
+    const user = await User.create({ ...newUser, password: hashedPassword }); 
 
     const verifyToken = jwt.sign(
       { email: user.email },
@@ -26,9 +26,11 @@ export const signup = async (
         expiresIn: "1d",
       }
     );
-    sendEmail({ email: user.email, token: verifyToken });
+    await sendEmail({ email: user.email, token: verifyToken });
     console.log("created success");
     res.status(201).json({
+      user,
+      token: verifyToken,
       message:
         "shine email amjilttai burtgelee tanii email ruu batalgaajuulah email ilgeesen",
     });
@@ -52,6 +54,7 @@ export const login = async (
     // console.log("Password", userPassword);
 
     const user = await User.findOne({ email: userEmail }).select("+password");
+    console.log(user)
 
     if (!user) {
       throw new MyError(`${userEmail}-тэй хэрэглэгч бүртгэлгүй байна.`, 400);
@@ -123,10 +126,12 @@ export const deleteUser = async (
     next(error);
   }
 };
-export const getAllusers = async (req:Request, res:Response ) => {
+export const getAllusers = async (req: Request, res: Response) => {
   try {
     const getUsers = await User.find();
-    res.status(200).json({ message: "хэрэглэгчид амжилттай олдлоо ", getUsers });
+    res
+      .status(200)
+      .json({ message: "хэрэглэгчид амжилттай олдлоо ", getUsers });
   } catch (error) {
     console.log("getuser-error", error);
   }

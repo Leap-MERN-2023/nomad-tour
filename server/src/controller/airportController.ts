@@ -22,7 +22,7 @@ export const getAirport = async (req: Request, res: Response) => {
 export const updateAirport = async (req: Request, res: Response) => {
   try {
     const { airportId } = req.params;
-    const updateAirport = req.params;
+    const updateAirport = req.body;
     const airport = await Airport.findByIdAndUpdate(airportId, updateAirport);
 
     res.status(200).json({

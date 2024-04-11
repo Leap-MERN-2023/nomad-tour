@@ -25,7 +25,7 @@ const PaymentSection = (props: Props) => {
         <figure className="flex justify-between items-center mb-3 border-[1px] p-3 rounded-xl">
           <div className="flex items-center gap-3">
             <img className="w-10 h-10" src={paypal.src} alt="" />
-            <p>Qpay</p>
+            <p>PayPal</p>
           </div>
           <input
             type="radio"

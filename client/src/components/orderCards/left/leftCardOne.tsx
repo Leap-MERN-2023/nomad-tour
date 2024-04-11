@@ -3,12 +3,16 @@ import Tourist from "./Tourist";
 import UserCard from "./UserCard";
 import Oppurtunity from "./oppurtunity";
 
-const leftCardOne = () => {
+const leftCardOne = ({ formik, isAgree, setIsAgree, agreeMessage }: any) => {
   return (
     <div className=" p-6 flex flex-col gap-3">
-      <Tourist />
-      <UserCard />
-      <Oppurtunity />
+      <Tourist formik={formik} />
+      <UserCard formik={formik} />
+      <Oppurtunity
+        isAgree={isAgree}
+        setIsAgree={setIsAgree}
+        agreeMessage={agreeMessage}
+      />
     </div>
   );
 };

@@ -9,6 +9,8 @@ import { ChakraProvider } from '@chakra-ui/react';
 import  AirlinesProvider  from "@/context/airlines";
 import TicketProvider from "@/context/ticket";
 const font = Font({ subsets: ["latin"] });
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
 	title: "nomad-tour - travel web",
@@ -28,6 +30,7 @@ export default function RootLayout({ children }) {
 						 <AirlinesProvider>
 							<TicketProvider>
 				           {children}
+						   <ToastContainer/>
 						   </TicketProvider>
 						 </AirlinesProvider>
 				        </AirPortProvider>

@@ -22,7 +22,6 @@ function Index() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { createAirport, handleAirportForm } = React.useContext(AirPortContext);
   const { countries } = React.useContext(CountryContext);
-  const [selectedCountry, setSelectedCountry] = React.useState(null);
   const initialRef = React.useRef(null);
   const finalRef = React.useRef(null);
 

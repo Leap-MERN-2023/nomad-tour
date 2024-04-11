@@ -6,6 +6,10 @@ import HotelModal from "@/components/modals/hotelModal";
 
 const Hotel = () => {
   const {hotels} = useContext(HotelContext);
+  if (!hotels) {
+    return <span className="loading loading-bars loading-lg"></span>;
+  }
+
   return (
     <div>
        <div className='flex justify-between w-[80%] items-center m-auto my-12'>

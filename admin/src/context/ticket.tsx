@@ -36,9 +36,9 @@ const TicketProvider = ({ children }: PropsWithChildren) => {
   const getTickets = async () => {
     try {
       const { data } = await axios.get(
-        "https://nomad-tour-backend.vercel.app/ticket"
+        "http://localhost:8008/ticket"
       );
-      console.log("ticket", data.tickets);
+      // console.log("ticket", data.tickets);
       setTickets(data.tickets);
     } catch (error) {
       console.log("error", error);
@@ -48,7 +48,7 @@ const TicketProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.post(
-        "https://nomad-tour-backend.vercel.app/ticket",
+        "http://localhost:8008/ticket",
         newTickets
       );
       setrefresh(!refresh);
@@ -76,7 +76,7 @@ const TicketProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.delete(
-        `https://nomad-tour-backend.vercel.app/ticket/${ticketId}`,
+        `http://localhost:8008/ticket/${ticketId}`,
         {}
       );
       setrefresh(!refresh);

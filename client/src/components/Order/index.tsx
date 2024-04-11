@@ -21,7 +21,6 @@ const HotelOrderPage = () => {
   const router =useRouter();
   const { user } = useContext(UserContext);
   const { selectedRoom } = useContext(RoomContext);
-  const userId = user;
   const [hotelPrice, setHotelPrice] = useState(0);
 
   useEffect(() => {
@@ -66,7 +65,7 @@ const HotelOrderPage = () => {
       const {
         data: { orderedRoom },
       } = await axios.post(
-        "https://nomad-tour-backend.vercel.app/" + "661762fcadc76ed07a3575c8",
+        "https://nomad-tour-backend.vercel.app/order/" + user._id,
         {
           ...values,
           totalPrice,

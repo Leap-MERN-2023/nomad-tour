@@ -42,19 +42,15 @@ const Explore = ({ country }: { country: Country }) => {
         <div className="flex flex-col xl:flex-row 2xl:text-3xl w-full flex-wrap">
           <div className="md:flex-1 flex-col justify-center items-center sm:justify-normal sm:items-start gap-5 text-xl mt-4 xl:mt-8 2xl:text-2xl w-full">
             <div className="">{country.description}</div>
-            <button className="flex justify-evenly items-center w-24 mt-8  bg-slate-50  text-black border-2 rounded-xl md:hidden p-1 xl:p-2 hover:bg-slate-300 text-sm xl:flex text-center xl:w-28 xl:text-sm">
-              See all
-              <h1>
-                <FaArrowRight />
-              </h1>
-            </button>
           </div>
           <div className=" md:flex-1 w-full md:flex xl:justify-end justify-center md:space-x-10 mt-10 bg-transparent xl:space-x-4 2xl:space-x-5">
             {Array.isArray(country.images) &&
               country.images.slice(1, 4).map((image: string, index: number) => (
                 <div
                   key={index}
-                  className="w-full h-[350px] bg-black mb-10 overflow-hidden rounded-lg  md:w-1/4 "
+                  className={`${
+                    index === 2 && "hidden md:block"
+                  } w-full h-[350px] bg-black mb-10 overflow-hidden rounded-lg  md:w-1/4 `}
                 >
                   <img
                     key={index}

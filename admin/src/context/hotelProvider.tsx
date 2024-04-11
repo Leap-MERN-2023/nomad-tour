@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface IHotel {
   name: string;
@@ -57,8 +58,10 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
         newHotel
       );
       setrefresh(!refresh);
-      console.log("newHotel", newHotel);
+      toast.success("Complete new hotel")
+      // console.log("newHotel", newHotel);
     } catch (error: any) {
+      toast.error("hotel denied")
       console.log("create hotel error", error);
     } finally {
       setLoading(false);
@@ -77,8 +80,10 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       );
       console.log("delete hotel", data);
       setrefresh(!refresh);
+      toast.success("hotel delete complete")
     } catch (error) {
       console.log("delete error", error);
+      toast.error("hotel delete denied")
     } finally {
       setLoading(false);
     }
