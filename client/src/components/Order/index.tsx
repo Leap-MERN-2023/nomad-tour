@@ -66,7 +66,7 @@ const HotelOrderPage = () => {
       const {
         data: { orderedRoom },
       } = await axios.post(
-        "http://localhost:8008/order/" + "661762fcadc76ed07a3575c8",
+        "https://nomad-tour-backend.vercel.app/" + "661762fcadc76ed07a3575c8",
         {
           ...values,
           totalPrice,
