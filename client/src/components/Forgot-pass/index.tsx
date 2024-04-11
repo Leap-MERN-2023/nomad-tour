@@ -16,9 +16,12 @@ const MyStepper = () => {
 
   const handleNext = async () => {
     try {
-      const data = await axios.post("http://localhost:8008/verify/send-email", {
-        email: user.email,
-      });
+      const data = await axios.post(
+        "https://nomad-tour-backend.vercel.app/verify/send-email",
+        {
+          email: user.email,
+        }
+      );
       setActiveStep((prev) => prev + 1);
     } catch (error) {
       toast.error("Error to send emaill");
