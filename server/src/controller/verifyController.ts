@@ -97,23 +97,22 @@ export const verifyUser = async (req: Request, res: Response) => {
 export const resetPass = async (req: Request, res: Response) => {
   try {
     const { email, newPassword } = req.body;
+    console.log("userrr", req.body);
     const findUser = await User.findOne({ email });
-    console.log("user", email);
+    console.log("userdd", email);
     if (!findUser) {
-      throw new MyError(`Hereglegch oldsongui`, 400);
+      throw new MyError(`User not found`, 400);
     }
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
 
-    findUser.updateOne({ password: hashedPassword }); ///
-
-    findUser.password = hashedPassword;
+    findUser.password = hashedPassword; // Update the password directly
 
     await findUser.save();
-    res.status(200).json({ message: "Password амжилттай солигдлоо" });
+    res.status(200).json({ message: "Password successfully changed" });
   } catch (error) {
     console.log(error);
-    res.status(200).json({ message: "Internal error" });
+    res.status(500).json({ message: "Internal server error" });
   }
 };

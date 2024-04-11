@@ -43,4 +43,12 @@ const userSchema: Schema<IIuser> = new Schema({
 
 const User = model("User", userSchema);
 
+userSchema.pre("save", async function async(next) {
+  if (this.isModified("password")) {
+    const salt = await bcrypt.genSalt(10);
+    this.password = await bcrypt.hash(this.password, salt);
+  }
+  next();
+});
+
 export default User;
