@@ -104,14 +104,14 @@ function Index() {
                 <Input
                 name='departureDate'
                 onChange={handleFlightForm} 
-                placeholder='2024-05-10T17:00:00Z'/>
+                placeholder='2024-05-10'/>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Arrival Date</FormLabel>
                 <Input
                 name='arrivalDate'
                 onChange={handleFlightForm} 
-                placeholder='2024-05-10T21:00:00Z'/>
+                placeholder='2024-05-10'/>
             </FormControl>
           </ModalBody>
           <ModalFooter>

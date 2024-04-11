@@ -9,6 +9,7 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 interface IAirlinesContext {
   getAirlines: () => void;
@@ -47,16 +48,18 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
       setLoading(false);
     }
   };
-  const deleteAirline = async (airlinetId: any) => {
+  const deleteAirline = async (airlineId: any) => {
     setLoading(true);
     try {
       const data = await axios.delete(
-        `https://nomad-tour-backend.vercel.app/airport/${airlinetId}`,
+        `https://nomad-tour-backend.vercel.app/airlines/${airlineId}`,
         {}
       );
       console.log("delete airline", data);
       setRefresh(!refresh);
+      toast.success("complete delete airline")
     } catch (error) {
+      toast.error("delete denied")
       console.log("delete airline error", error);
     } finally {
       setLoading(false);
@@ -67,12 +70,14 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.post(
-        "https://nomad-tour-backend.vercel.app/Airlines",
+        "https://nomad-tour-backend.vercel.app/airlines",
         newAirline
       );
       console.log("newAirline", data);
       setRefresh(!refresh);
+      toast.success("complete new airline")
     } catch (error: any) {
+      toast.error("no success")
       console.log("create airport error", error);
     } finally {
       setLoading(false);
