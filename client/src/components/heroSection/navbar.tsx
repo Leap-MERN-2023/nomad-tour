@@ -6,11 +6,13 @@ import { LoginForm } from "../LoginForm";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { UserContext } from "@/context/UserProvider";
-
+import profile from "@/app/(pages)/profile/page";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const router = useRouter();
   const { user, isUserLoggedIn, logOut } = useContext(UserContext);
 
   const [open, setOpen] = useState(false);
@@ -52,21 +54,22 @@ const Navbar = (props: Props) => {
             {toggle ? <IoClose size="30px" /> : <CiMenuBurger size="30px" />}
           </div>
           <div
-            className={`${toggle ? "flex" : "hidden"
-              } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
+            className={`${
+              toggle ? "flex" : "hidden"
+            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {navItems.map((nav) => (
                 <li
                   key={nav.name}
-                  className={`${active === nav.name ? "text-black" : "text-gray-700"
-                    } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
+                  className={`${
+                    active === nav.name ? "text-black" : "text-gray-700"
+                  } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
                   onClick={() => {
                     setActive(nav.name);
                     setToggle(!toggle);
                   }}
-                >
-                </li>
+                ></li>
               ))}
             </ul>
           </div>
@@ -78,7 +81,7 @@ const Navbar = (props: Props) => {
                     <a href={item.url}>{item.name}</a>
                   </li>
                 </>
-              )
+              );
             })}
             {!isUserLoggedIn ? (
               <button
@@ -89,11 +92,22 @@ const Navbar = (props: Props) => {
               </button>
             ) : (
               <>
-                <p className="text-black">{user?.name}</p>
-                <button onClick={logOut}>logOut</button>
+                <p
+                  className="text-black"
+                  onClick={() => {
+                    router.push("/profile");
+                  }}
+                >
+                  {user?.name}
+                </p>
+                <button
+                  onClick={logOut}
+                  className="bg-[#0281B0] hover:bg-blue-500 btn border-0"
+                >
+                  logOut
+                </button>
               </>
             )}
-
           </ul>
           <LoginForm open={open} closeForm={closeForm} />
         </div>
