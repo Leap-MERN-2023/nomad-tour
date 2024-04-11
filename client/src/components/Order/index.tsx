@@ -1,11 +1,14 @@
 "use client";
 
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as yup from "yup";
 import { UserContext } from "@/context/UserProvider";
 import { RoomContext } from "@/context/RoomProvider";
 import { Formik, Field, Form, FormikHelpers } from "formik";
+import { toast } from "react-toastify";
+import { CgLayoutGrid } from "react-icons/cg";
+import { useRouter } from "next/navigation";
 
 interface Values {
   name: string;
@@ -15,10 +18,18 @@ interface Values {
 }
 
 const HotelOrderPage = () => {
+  const router =useRouter();
   const { user } = useContext(UserContext);
   const { selectedRoom } = useContext(RoomContext);
   const userId = user;
-  const [hotelPrice, setHotelPrice] = useState(selectedRoom[0].price.USD);
+  const [hotelPrice, setHotelPrice] = useState(0);
+
+  useEffect(() => {
+    if(selectedRoom) {
+      setHotelPrice(selectedRoom[0]?.price.USD)
+    }
+  }, [selectedRoom])
+ 
 
   const validationSchema = yup.object({
     name: yup.string().required("You must enter your name."),
@@ -44,6 +55,8 @@ const HotelOrderPage = () => {
   };
 
   const createOrder = async (values: Values) => {
+    console.log("VVVV", values)
+    console.log("RoomId", selectedRoom[0]?._id)
     try {
       const totalPrice = calculateTotalPrice(
         values.checkInDate,
@@ -57,11 +70,13 @@ const HotelOrderPage = () => {
         {
           ...values,
           totalPrice,
-          roomId: selectedRoom[0]?._id,
+          room: selectedRoom[0]?._id,
         }
       );
-
-      console.log("Ordered room:", orderedRoom);
+      toast("Succesful created your order")
+      setTimeout(() => {
+        router.push("/hotels/rooms/order/pay")
+      }, 5000);
     } catch (error) {
       console.log("Err", error);
     }
@@ -133,8 +148,7 @@ const HotelOrderPage = () => {
                 />
               </div>
               <div className=" border-black font-bold text-xl my-4">
-                Hotel price by day:
-                {hotelPrice}$
+                Hotel price by day: {hotelPrice}$
               </div>{" "}
               <div className=" border-black font-bold text-xl my-4">
                 Total Price:

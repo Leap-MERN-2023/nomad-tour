@@ -33,7 +33,7 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
 
   return (
     <dialog id="my_modal_3" className="modal">
-      <div className="modal-box bg-slate-50">
+      <div className="modal-box bg-white">
         <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-5 top-6">

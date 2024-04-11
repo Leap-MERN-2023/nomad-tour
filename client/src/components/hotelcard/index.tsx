@@ -3,11 +3,14 @@ import React, { useContext } from "react";
 import Slider from "./slider";
 import "swiper/css";
 import "swiper/css/pagination";
+import { FaLocationDot } from "react-icons/fa6";
 
 import { HotelContext } from "@/context/hotelProvider";
 import HotelModal from "./HotelModal";
+import { CountryContext } from "@/context/CountryProvider";
 
 const HotelCard = ({ hotels }: any) => {
+  const { countries } = useContext(CountryContext);
   const { getHotel, hotel } = useContext(HotelContext);
 
   const showModal = () => {
@@ -26,6 +29,10 @@ const HotelCard = ({ hotels }: any) => {
       getHotel(hotelId);
     }
   };
+
+  const countryName =
+  countries.find((country) => country._id === hotels.country)?.name || "";
+
   return (
     <div
       className="card card-compact 2xl:w-96 bg-base-100 shadow-xl h-[300px] cursor-pointer sm:flex m-auto w-[300px]"
@@ -45,12 +52,16 @@ const HotelCard = ({ hotels }: any) => {
           </h2>
           <h2 className="text-2xl font-bold text-black">{hotels.price}$</h2>
         </div>
-        <div className="flex justify-center items-center gap-1">
-          <img src="location.png" />
-          <p></p>
+        <div className="flex justify-between items-center gap-2 font-bold">
+          <div className="flex gap-3">
+            <FaLocationDot style={{ height: 20, width: 20 }} />
+            <p className="text-md font-bold">
+              {countryName}, {hotels.name}
+            </p>
+          </div>
         </div>
       </div>
-      <HotelModal hotel={hotel} />
+      <HotelModal countryName={countryName} hotels={hotels} hotel={hotel} />
     </div>
   );
 };
