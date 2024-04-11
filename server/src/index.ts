@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Application } from "express";
 import cors from "cors";
 import airportRoutes from "./routes/airportRoutes";
 import flightRoutes from "./routes/flightRoutes";
@@ -14,7 +14,6 @@ import ticketRoutes from "./routes/ticketsRoutes";
 import orderRoute from "./routes/order";
 import flighOrderRoutes from "./routes/flightOrderRoutes";
 
-import { Application } from "express";
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";
 dotenv.config();

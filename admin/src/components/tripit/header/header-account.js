@@ -6,7 +6,7 @@ function HeaderAccount() {
 	return (
 		<div className="flex justify-between">
 			<div className="flex gap-8 items-center">
-				<Image
+				{/* <Image
 					priority
 					src={"/assets/flag-uk.svg"}
 					height={28}
@@ -19,7 +19,7 @@ function HeaderAccount() {
 					height={32}
 					width={32}
 					alt=""
-				/>
+				/> */}
 			</div>
 			<div className="flex items-center gap-5">
 				<div className="text-base text-[#27292C]">Nick McMilan</div>

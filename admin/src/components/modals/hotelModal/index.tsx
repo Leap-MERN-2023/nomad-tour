@@ -58,13 +58,10 @@ function Index() {
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>Price</FormLabel>
-                <Box sx={{'display':'flex', 'gap' : '2' }}>
-                <Select placeholder='$' w={20}></Select>
                 <Input 
                 name='price'
                 onChange={handleHotelForm}
                 placeholder='price'/>
-                </Box>
             </FormControl> 
             <FormControl mt={4}>
               <FormLabel>Rating</FormLabel>

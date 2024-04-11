@@ -4,7 +4,7 @@ import { Button } from "@/components/tripit/ui/button";
 import { datasFromAPI } from "@/lib/datas";
 import { useState } from "react";
 import Link from "next/link";
-import HeaderSearchBar from "@/components/tripit/header/header-search-bar";
+// import HeaderSearchBar from "@/components/tripit/header/header-search-bar";
 import HeaderAccount from "@/components/tripit/header/header-account";
 import Featured from "@/components/tripit/featured/featured";
 import Chart from "@/components/tripit/chart/chart";
@@ -31,9 +31,9 @@ function Admin() {
 		<div className="h-full w-full space-y-5">
 			<div className="flex gap-5">
 				<div className="flex h-fit w-10/12">
-					<div className="flex flex-col justify-center border-b-[1px] border-[#27292c21] w-full h-20">
+					{/* <div className="flex flex-col justify-center border-b-[1px] border-[#27292c21] w-full h-20">
 						<HeaderSearchBar />
-					</div>
+					</div> */}
 				</div>
 				<div className="flex h-fit w-4/12">
 					<div className="flex flex-col justify-center border-b-[1px] border-[#27292c21] w-full h-20">

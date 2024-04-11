@@ -34,30 +34,30 @@ const sidebarMenu = [
 		route: "/admin/flight",
 		icon: IoAirplaneOutline,
 	},
-	{
-		id: 5,
-		name: "Country",
-		route: "/admin/country",
-		icon: IoEarth,
-	},
+	// {
+	// 	id: 5,
+	// 	name: "Country",
+	// 	route: "/admin/country",
+	// 	icon: IoEarth,
+	// },
 	{
 		id: 6,
 		name: "Airlines",
 		route: "/admin/airlines",
 		icon: TbPlaneInflight,
 	},
-	{
-		id: 7,
-		name: "Ticket",
-		route: "/admin/ticket",
-		icon: MdOutlineAirplaneTicket,
-	},
-	{
-		id: 8,
-		name: "Order",
-		route: "/admin/order",
-		icon: MdOutlineBorderColor,
-	},
+	// {
+	// 	id: 7,
+	// 	name: "Ticket",
+	// 	route: "/admin/ticket",
+	// 	icon: MdOutlineAirplaneTicket,
+	// },
+	// {
+	// 	id: 8,
+	// 	name: "Order",
+	// 	route: "/admin/order",
+	// 	icon: MdOutlineBorderColor,
+	// },
 ];
 
 const shortDay = [
