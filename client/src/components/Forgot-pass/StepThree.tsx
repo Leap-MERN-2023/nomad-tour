@@ -7,6 +7,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { ChangeEvent } from "react";
+import { myAlertFire } from "@/utils/myAlert";
 
 interface IStepProps {
   email: string;
@@ -33,8 +34,9 @@ const StepThree = ({
           newPassword: password,
         }
       );
+      router.push("/");
       // setActiveStep((prev) => prev + 1);
-      toast("Password successfully changed");
+      myAlertFire("Password successfully changed", "success");
     } catch (error) {
       toast.error("error to resett.");
       console.log(error);
@@ -52,80 +54,28 @@ const StepThree = ({
 
         <div className="w-[100%] mb-2">
           <div className="flex flex-col w-full">
-            <div className="flex items-center bg-slate-300 relative text-black justify-center">
+            <div className="flex items-center bg-white relative text-black justify-center">
               <input
                 name="password"
                 placeholder="Password"
-                className="rounded-xl p-3 mt-4 w-full "
-                type={isShowPassword ? "password" : "text"}
+                className="rounded-xl p-3 mt-4 w-full bg-zinc-200"
+                type="password"
                 value={password}
                 onChange={handleChangeInput}
               />
-              {isShowPassword == false ? (
-                <IoIosEye
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword(!isShowPassword);
-                  }}
-                  className="absolute right-2 mt-4"
-                />
-              ) : (
-                <IoIosEyeOff
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword(!isShowPassword);
-                  }}
-                  className="absolute right-2"
-                />
-              )}
             </div>
-            <div className="flex items-center bg-slate-300 relative text-black">
+            <div className="flex items-center  relative text-black">
               <input
                 name="password"
                 placeholder="Repeat password"
-                className="rounded-xl p-3 mt-4 w-full "
-                type={isShowPassword ? "password" : "text"}
+                className="rounded-xl p-3 mt-4 w-full bg-zinc-200"
+                type="password"
               />
-
-              {isShowPassword === false ? (
-                <IoIosEye
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword(false);
-                  }}
-                  className="absolute right-2 mt-4"
-                />
-              ) : (
-                <IoIosEye
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword(!isShowPassword);
-                  }}
-                  className="absolute right-2 mt-4"
-                />
-              )}
-              {isShowPassword1 === false ? (
-                <IoIosEye
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword(false);
-                  }}
-                  className="absolute right-2 mt-4"
-                />
-              ) : (
-                <IoIosEye
-                  size={20}
-                  onClick={() => {
-                    setIsShowPassword1(!isShowPassword);
-                  }}
-                  className="absolute right-2 mt-4"
-                />
-              )}
             </div>
           </div>
           <button
             onClick={savePassword}
-            className="rounded-xl p-4 bg-blue-900 w-full mt-4 text-white"
+            className="rounded-xl p-4 bg-blue-400 w-full mt-4 text-white"
           >
             Reset
           </button>

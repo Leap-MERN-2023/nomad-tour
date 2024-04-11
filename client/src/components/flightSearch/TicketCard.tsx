@@ -13,7 +13,6 @@ type Props = {
 
 const TicketCard = ({ ticket }: Props) => {
   const router = useRouter();
-  const { user } = useContext(UserContext);
   return (
     <div
       key={ticket._id}
@@ -72,7 +71,7 @@ const TicketCard = ({ ticket }: Props) => {
         </div>
         <button
           onClick={() => {
-            if (user) {
+            if (localStorage.getItem("user")) {
               router.push(`/flightOrder/${ticket._id}`);
             } else {
               myAlertFire("Need login", "warning");

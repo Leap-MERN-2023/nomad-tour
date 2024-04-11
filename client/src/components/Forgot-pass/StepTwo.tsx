@@ -38,13 +38,13 @@ const StepTwo = ({ email, otp, handleNext, handleChangeInput }: IStepProps) => {
         <div className="w-[100% mb-2]">
           <input
             name="otp"
-            placeholder="Нууц үг сэргээх код"
+            placeholder="OTP code in email"
             onChange={handleChangeInput}
-            className="rounded-xl p-3 mt-4 w-full text-black"
+            className="rounded-xl p-3 mt-4 w-full text-black border-0 bg-zinc-200"
           />
           <button
             onClick={handleSendOtp}
-            className="rounded-xl p-4 bg-blue-900 w-full mt-4 text-white"
+            className="rounded-xl p-4 bg-blue-400 w-full mt-4 text-white"
           >
             Continue
           </button>

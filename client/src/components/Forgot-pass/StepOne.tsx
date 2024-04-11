@@ -26,16 +26,16 @@ const StepOne = ({ email, handleNext, handleChangeInput }: IStepProps) => {
           Reset password
         </p>
         <input
-          placeholder="Имэйл"
+          placeholder="Email"
           onChange={handleChangeInput}
           name="email"
-          className="rounded-xl p-3 mt-4 w-full text-white"
+          className="rounded-xl p-3 mt-4 w-full text-black bg-zinc-200"
           value={email}
         />
         <div className="flex flex-row w-[100%] justify-end">
           <button
             onClick={handleNext}
-            className="rounded-xl p-4 bg-blue-900 w-full mt-4 text-white"
+            className="rounded-xl p-4 bg-blue-400 w-full mt-4 text-white"
           >
             Continue
           </button>

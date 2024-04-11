@@ -101,9 +101,9 @@ const Navbar = (props: Props) => {
                 </p>
                 <button
                   onClick={logOut}
-                  className="bg-[#0281B0] hover:bg-blue-500 btn border-0"
+                  className="bg-[#0281B0] text-white hover:bg-blue-500 btn border-0"
                 >
-                  logOut
+                  logout
                 </button>
               </>
             )}

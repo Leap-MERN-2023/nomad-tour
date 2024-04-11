@@ -126,8 +126,9 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   };
 
   const logOut = () => {
-    localStorage.setItem("token", JSON.stringify(""));
-    localStorage.setItem("user", JSON.stringify(undefined));
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+
     setIsUserLoggedIn(false);
   };
 

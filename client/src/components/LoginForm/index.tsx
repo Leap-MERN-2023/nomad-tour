@@ -229,7 +229,7 @@ const Signup = ({ closeForm }: any) => {
             onClick={() => {
               setIsShowPassword(!isShowPassword);
             }}
-            className="absolute right-2"
+            className="absolute right-14 top-52"
           />
         ) : (
           <IoIosEyeOff
@@ -237,7 +237,7 @@ const Signup = ({ closeForm }: any) => {
             onClick={() => {
               setIsShowPassword(!isShowPassword);
             }}
-            className="absolute right-2"
+            className="absolute right-14 top-52"
           />
         )}
 

@@ -34,7 +34,7 @@ const MyStepper = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center bg-slate-300">
+    <div className="flex flex-col justify-center items-center bg-white ">
       {activeStep === 1 && (
         <StepOne
           email={user.email}
