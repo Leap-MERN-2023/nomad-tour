@@ -71,11 +71,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     _id: "",
   });
 
-  console.log("this is the user ", user);
-
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
-
-  console.log("this is the user logged in ", isUserLoggedIn);
 
   const handleChangeUser = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -96,6 +92,13 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       console.log("this is null");
       // setIsUserLoggedIn(true)
       // setUser(JSON.parse(user))
+    }
+  }, []);
+
+  useEffect(() => {
+    if (localStorage.getItem("user")) {
+      setUser(JSON.parse(localStorage.getItem("user")!));
+      setToken(localStorage.getItem("token"));
     }
   }, []);
 

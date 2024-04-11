@@ -1,8 +1,10 @@
+import { UserContext } from "@/context/UserProvider";
 import { ITicket } from "@/types";
 import { dateFormat, flightTimeCalculator } from "@/utils/dateFormat";
+import { myAlertFire } from "@/utils/myAlert";
 import { priceCalculator } from "@/utils/priceCalc";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useContext } from "react";
 import { MdFlight } from "react-icons/md";
 
 type Props = {
@@ -11,6 +13,7 @@ type Props = {
 
 const TicketCard = ({ ticket }: Props) => {
   const router = useRouter();
+  const { user } = useContext(UserContext);
   return (
     <div
       key={ticket._id}
@@ -69,8 +72,11 @@ const TicketCard = ({ ticket }: Props) => {
         </div>
         <button
           onClick={() => {
-            router.push(`/flightOrder/${ticket._id}`);
-            console.log("GOING TICKET ORDER");
+            if (user) {
+              router.push(`/flightOrder/${ticket._id}`);
+            } else {
+              myAlertFire("Need login", "warning");
+            }
           }}
           className="btn bg-[#0281B0] text-white border-0 hover:bg-blue-400"
         >
