@@ -2,7 +2,7 @@
 import { useFlightOrder } from "@/context/FlightOrderProvider";
 import React from "react";
 
-const UserCard = () => {
+const UserCard = ({ userOrderValidation }: any) => {
   const { handleOrderUser } = useFlightOrder();
   return (
     <div className="bg-white rounded-xl p-6 lg:w-[900px]">

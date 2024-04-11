@@ -55,7 +55,7 @@ const FlightOrderProvider = ({ children }: PropsWithChildren) => {
     try {
       console.log("FLIGHT FORM", flightForm);
       const { data } = await axios.post(
-        "https://nomad-tour-backend.vercel.app/flightOrder",
+        "http://localhost:8008/flightOrder",
         flightForm
       );
       myAlertFire("Order successfully created", "success");

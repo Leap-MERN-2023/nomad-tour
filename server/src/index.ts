@@ -12,10 +12,7 @@ import email from "./routes/email";
 import airlinesRoutes from "./routes/airlineRoutes";
 import ticketRoutes from "./routes/ticketsRoutes";
 import orderRoute from "./routes/order";
-<<<<<<< Updated upstream
 import flighOrderRoutes from "./routes/flightOrderRoutes";
-=======
->>>>>>> Stashed changes
 
 import { connectDb } from "./config/db";
 import dotenv from "dotenv";

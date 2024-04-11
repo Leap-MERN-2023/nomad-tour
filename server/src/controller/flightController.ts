@@ -2,10 +2,13 @@ import { Request, Response } from "express";
 import Flight from "../model/flight";
 
 export const CreateFlight = async (req: Request, res: Response) => {
+  console.log("req body create", req.body);
   try {
-    const newFlight = await Flight.create(...req.body);
+    const newFlightForm = { ...req.body };
+    const newFlight = await Flight.create(newFlightForm);
     res.status(201).json({ message: "Succesfully created flight", newFlight });
   } catch (error) {
+    console.log("ERROR IN CREATE FLIGHT", error);
     res.status(500).json({ message: "failed", error });
   }
 };

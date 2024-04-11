@@ -7,7 +7,6 @@ import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { UserContext } from "@/context/UserProvider";
 
-
 type Props = {};
 
 const Navbar = (props: Props) => {
@@ -52,33 +51,32 @@ const Navbar = (props: Props) => {
             {toggle ? <IoClose size="30px" /> : <CiMenuBurger size="30px" />}
           </div>
           <div
-            className={`${toggle ? "flex" : "hidden"
-              } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
+            className={`${
+              toggle ? "flex" : "hidden"
+            } p-6 absolute top-20 right-0 mx-4 my-2 min-w-[140px] z-10 rounded-xl shadow-lg bg-white`}
           >
             <ul className="list-none flex justify-end items-start flex-col gap-4">
               {navItems.map((nav) => (
                 <li
                   key={nav.name}
-                  className={`${active === nav.name ? "text-black" : "text-gray-700"
-                    } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
+                  className={`${
+                    active === nav.name ? "text-black" : "text-gray-700"
+                  } font-poppins hover:text-white text-[16px] font-medium cursor-pointer`}
                   onClick={() => {
                     setActive(nav.name);
                     setToggle(!toggle);
                   }}
-                >
-                </li>
+                ></li>
               ))}
             </ul>
           </div>
           <ul className="list-none hidden sm:flex items-center flex-row gap-10 font-extralight">
             {navItems.map((item) => {
               return (
-                <>
-                  <li key={item.name}>
-                    <a href={item.url}>{item.name}</a>
-                  </li>
-                </>
-              )
+                <li key={item.name}>
+                  <a href={item.url}>{item.name}</a>
+                </li>
+              );
             })}
             {!isUserLoggedIn ? (
               <button
@@ -93,7 +91,6 @@ const Navbar = (props: Props) => {
                 <button onClick={logOut}>logOut</button>
               </>
             )}
-
           </ul>
           <LoginForm open={open} closeForm={closeForm} />
         </div>

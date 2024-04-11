@@ -8,7 +8,7 @@ import { ITicket } from "@/types";
 import { useFlightOrder } from "@/context/FlightOrderProvider";
 import { priceCalculator } from "@/utils/priceCalc";
 
-const RightCardOne = ({ id }: { id: string }) => {
+const RightCardOne = ({ id, formik }: { id: string; formik: any }) => {
   const [orderTicket, setOrderTicket] = useState<ITicket | undefined>();
   const { tickets, getTickets } = useTicketContext();
   const { setFlightForm, flightForm } = useFlightOrder();

@@ -2,8 +2,9 @@
 import { useFlightOrder } from "@/context/FlightOrderProvider";
 import React from "react";
 
-const Tourist = () => {
+const Tourist = ({ formik }: any) => {
   const { handleTourist } = useFlightOrder();
+
   return (
     <div className="bg-white rounded-xl lg:w-[900px] lg:flex lg:flex-col lg:justify-between p-6">
       <div className="flex justify-between ">
