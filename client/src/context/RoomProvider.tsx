@@ -51,7 +51,9 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
     try {
       const {
         data: { findRoom },
-      } = await axios.get("http://localhost:8008/room/selected/" + roomId);
+      } = await axios.get(
+        "https://nomad-tour-backend.vercel.app/room/selected/" + roomId
+      );
       console.log("GetroomByID", findRoom);
       setSelectedRoom(findRoom);
     } catch (error) {

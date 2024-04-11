@@ -26,10 +26,13 @@ const StepThree = ({
   console.log("pass", password);
   const savePassword = async () => {
     try {
-      const data = await axios.post("http://localhost:8008/verify/resetPass", {
-        email: email,
-        newPassword: password,
-      });
+      const data = await axios.post(
+        "https://nomad-tour-backend.vercel.app/verify/resetPass",
+        {
+          email: email,
+          newPassword: password,
+        }
+      );
       // setActiveStep((prev) => prev + 1);
       toast("Password successfully changed");
     } catch (error) {

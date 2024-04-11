@@ -19,7 +19,7 @@ export interface IUser {
   email: string;
   password: string;
   phoneNumber: string;
-  _id: string
+  _id: string;
 }
 
 export interface IUserContext {
@@ -102,10 +102,13 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   const login = async (email: string, password: string) => {
     console.log("object", email, password);
     try {
-      const { data } = await axios.post("http://localhost:8008/auth/login", {
-        email: email,
-        password: password,
-      });
+      const { data } = await axios.post(
+        "https://nomad-tour-backend.vercel.app/auth/login",
+        {
+          email: email,
+          password: password,
+        }
+      );
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user._doc));
       setUser(data.user);
@@ -133,12 +136,15 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   ) => {
     console.log("AAA", email, password, name, phoneNumber);
     try {
-      const { data } = await axios.post("http://localhost:8008/auth", {
-        email: email,
-        password: password,
-        phoneNumber: phoneNumber,
-        name: name,
-      });
+      const { data } = await axios.post(
+        "https://nomad-tour-backend.vercel.app/auth",
+        {
+          email: email,
+          password: password,
+          phoneNumber: phoneNumber,
+          name: name,
+        }
+      );
       console.log("DATA: ", data);
       localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user._doc));

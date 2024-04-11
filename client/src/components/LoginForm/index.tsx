@@ -106,7 +106,7 @@ const Login = ({ closeForm }: any) => {
   };
 
   const router = useRouter();
-  const [isShowPassword, setIsShowPassword] = useState(false);
+  const [isShowPassword, setIsShowPassword] = useState(true);
   return (
     <div>
       <div className="flex flex-col gap-6">
@@ -175,6 +175,7 @@ const Login = ({ closeForm }: any) => {
 };
 
 const Signup = ({ closeForm }: any) => {
+  const [isShowPassword, setIsShowPassword] = useState(true);
   const { signup } = useContext(UserContext);
   const formik = useFormik({
     onSubmit: async ({ email, password, name, phoneNumber }) => {
@@ -216,12 +217,29 @@ const Signup = ({ closeForm }: any) => {
         )}
 
         <input
-          type="text"
+          type={isShowPassword ? "password" : "text"}
           placeholder="password"
           className="input input-bordered p-3 max-w-xs rounded-md bg-slate-100 text-black w-[400px]"
           name="password"
           onChange={formik.handleChange}
         />
+        {isShowPassword == false ? (
+          <IoIosEye
+            size={20}
+            onClick={() => {
+              setIsShowPassword(!isShowPassword);
+            }}
+            className="absolute right-2"
+          />
+        ) : (
+          <IoIosEyeOff
+            size={20}
+            onClick={() => {
+              setIsShowPassword(!isShowPassword);
+            }}
+            className="absolute right-2"
+          />
+        )}
 
         {formik.errors["password"] && (
           <p className="text-red-400 text-xs">{formik.errors["password"]}</p>

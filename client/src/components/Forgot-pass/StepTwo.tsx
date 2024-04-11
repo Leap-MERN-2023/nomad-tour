@@ -12,10 +12,13 @@ interface IStepProps {
 const StepTwo = ({ email, otp, handleNext, handleChangeInput }: IStepProps) => {
   const handleSendOtp = async () => {
     try {
-      const data = await axios.post("http://localhost:8008/verify/otp", {
-        email,
-        otp,
-      });
+      const data = await axios.post(
+        "https://nomad-tour-backend.vercel.app/verify/otp",
+        {
+          email,
+          otp,
+        }
+      );
       handleNext();
     } catch (error) {
       console.log(error);
@@ -26,9 +29,11 @@ const StepTwo = ({ email, otp, handleNext, handleChangeInput }: IStepProps) => {
   return (
     <div className="my-72">
       <div className="flex flex-col items-center justify-center p-2 m-auto">
-        <p className="items-center text-4xl font-bold text-black">Reset Password</p>
+        <p className="items-center text-4xl font-bold text-black">
+          Reset Password
+        </p>
         <p className="font-semibold text-xl text-gray-600">
-          Sent code to  <span style={{ color: "#18BA51" }}>{email}</span> email
+          Sent code to <span style={{ color: "#18BA51" }}>{email}</span> email
         </p>
         <div className="w-[100% mb-2]">
           <input

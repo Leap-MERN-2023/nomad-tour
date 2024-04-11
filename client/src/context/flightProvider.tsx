@@ -44,10 +44,13 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
     setTicketLoading(true);
     try {
       setFoundTickets([]);
-      const { data } = await axios.post("http://localhost:8008/flight/search", {
-        depId: selectedDepartureAirport,
-        arrId: selectedArrivalAirport,
-      });
+      const { data } = await axios.post(
+        "https://nomad-tour-backend.vercel.app/flight/search",
+        {
+          depId: selectedDepartureAirport,
+          arrId: selectedArrivalAirport,
+        }
+      );
       if (data.foundFlights.length === 0) {
         setFoundTickets([]);
         setTicketLoading(false);
@@ -67,7 +70,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getSearchedTickets = async (flightId: string) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:8008/ticket/${flightId}`
+        `https://nomad-tour-backend.vercel.app/ticket/${flightId}`
       );
       console.log("FOUND TICKET!", data.searchedTickets);
       data.searchedTickets.map((ticket: ITicket) => {
