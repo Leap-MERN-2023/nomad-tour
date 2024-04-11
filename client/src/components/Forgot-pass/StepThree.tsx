@@ -22,9 +22,9 @@ const StepThree = () => {
         email: user.email,
       });
       // setActiveStep((prev) => prev + 1);
-      toast("amjilttai");
+      toast("Password successfully changed");
     } catch (error) {
-      toast.error("Email илгээхэд алдаа гарлааaa.");
+      toast.error("error to resett.");
       console.log(error);
     }
   };
@@ -33,15 +33,15 @@ const StepThree = () => {
   return (
     <div className="my-72">
       <div className="flex flex-col items-center justify-center p-2 m-auto">
-        <p className="items-center text-4xl font-bold">Шинэ нууц үг cэргээх</p>
+        <p className="items-center text-4xl font-bold text-black">Reset password</p>
 
-        <div className="w-[100% mb-2]">
+        <div className="w-[100%] mb-2">
           <div className="flex flex-col w-full">
             <div className="flex items-center bg-slate-300 relative text-black justify-center">
               <input
                 name="password"
-                placeholder="Нууц үг"
-                className="rounded-xl p-3 mt-4 w-full"
+                placeholder="Password"
+                className="rounded-xl p-3 mt-4 w-full text-white"
                 type={isShowPassword ? "password" : "text"}
               />
               {isShowPassword == false ? (
@@ -65,8 +65,8 @@ const StepThree = () => {
             <div className="flex items-center bg-slate-300 relative text-black">
               <input
                 name="password"
-                placeholder="Нууц үг давтах"
-                className="rounded-xl p-3 mt-4 w-full"
+                placeholder="Repeat password"
+                className="rounded-xl p-3 mt-4 w-full text-white"
                 type={isShowPassword ? "password" : "text"}
               />
               {isShowPassword1 == false ? (
@@ -90,9 +90,9 @@ const StepThree = () => {
           </div>
           <button
             onClick={savePassword}
-            className="rounded-xl p-4 bg-blue-900 w-full mt-4"
+            className="rounded-xl p-4 bg-blue-900 w-full mt-4 text-white"
           >
-            Сэргээх
+           Reset
           </button>
         </div>
       </div>

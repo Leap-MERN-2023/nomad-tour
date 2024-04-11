@@ -21,7 +21,7 @@ const MyStepper = () => {
       });
       setActiveStep((prev) => prev + 1);
     } catch (error) {
-      toast.error("Email илгээхэд алдаа гарлааa.");
+      toast.error("Error to send emaill");
       console.log(error);
     }
   };

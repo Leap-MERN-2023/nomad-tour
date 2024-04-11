@@ -93,7 +93,7 @@ const Navbar = (props: Props) => {
             ) : (
               <>
                 <p
-                  className="text-black"
+                  className="text-white font-bold text-xl"
                   onClick={() => {
                     router.push("/profile");
                   }}
