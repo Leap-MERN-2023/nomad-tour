@@ -5,7 +5,7 @@ import HotelOrderPage from "@/components/Order";
 
 const Order = () => {
   return (
-    <div className=" bg-gray-200 flex flex-col 2xl:flex-row justify-center gap-10 items-center 2xl:py-32 ">
+    <div className=" bg-gray-200 flex flex-col 2xl:flex-row justify-center gap-10 items-center lg:py-32 2xl:py-32 ">
       <HotelOrderPage />
       <Oppurtunity />
     </div>

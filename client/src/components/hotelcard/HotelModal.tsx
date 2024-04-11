@@ -15,6 +15,7 @@ import { useRouter } from "next/navigation";
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { RoomContext } from "@/context/RoomProvider";
+import { GoogleMaps } from "../GoogleMaps";
 
 type Swiper = /*unresolved*/ any;
 
@@ -22,12 +23,14 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<null | Swiper>(null);
   const stars = Array.from({ length: hotel?.stars }, (_, index) => index + 1);
   const router = useRouter();
-  const {getRoomByHotelId} = useContext(RoomContext)
-   
+  const { getRoomByHotelId } = useContext(RoomContext);
+
   const handleGetRoom = () => {
     getRoomByHotelId(hotel?._id as string);
     router.push("/hotels/rooms");
   };
+
+  console.log("LAT,", hotel?.location?.latitude, hotel?.location?.longitude);
 
   return (
     <dialog id="my_modal_3" className="modal">
@@ -114,6 +117,12 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
         <div className="shadow-sm rounded-2xl font-semibold p-2 bg-opacity-100 my-3">
           {hotel?.description}
         </div>
+        {/* <div>
+          <GoogleMaps
+            lat={hotel?.location?.latitude}
+            lng={hotel?.location?.longitude}
+          />
+        </div> */}
         <div className="flex justify-between items-center">
           <button
             className="btn btn-outline font-extrabold "

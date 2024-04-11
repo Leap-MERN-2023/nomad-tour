@@ -75,6 +75,23 @@ export const getRooms = async (
   }
 };
 
+export const getRoomByID = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { roomId } = req.params;
+    console.log("ROMMBYID", roomId);
+
+    const rooms = await Room.find();
+
+    const findRoom = rooms.filter((room) => room._id.toString() === roomId);
+    console.log("Findroom", findRoom);
+    res.status(200).json({ message: "Succes get room by ID", findRoom });
+  } catch (error) {}
+};
+
 //getRoom
 export const getRoom = async (
   req: Request,
