@@ -2,7 +2,7 @@
 import { useFlightOrder } from "@/context/FlightOrderProvider";
 import React from "react";
 
-const UserCard = ({ userOrderValidation }: any) => {
+const UserCard = ({ formik }: any) => {
   const { handleOrderUser } = useFlightOrder();
   return (
     <div className="bg-white rounded-xl p-6 lg:w-[900px]">
@@ -13,22 +13,26 @@ const UserCard = ({ userOrderValidation }: any) => {
         <div className=" gap-1 lg:flex lg:justify-between">
           <div>
             <p className="text-black">First name</p>
+            <span className="text-red-400">{formik.errors["userName"]}</span>
             <input
-              name="name"
-              onChange={handleOrderUser}
+              name="userName"
+              onChange={formik.handleChange}
+              value={formik.values.userName}
               className="rounded-xl p-2 border-[1px]  bg-white w-full lg:h-10 lg:w-[250px]"
             />
           </div>
           <div>
             <p className="text-black">Second name</p>
+            <span className="text-red-400">{formik.errors["userName"]}</span>
             <input className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[250px]" />
           </div>
           <div>
             <p className="text-black">Date of birth</p>
             <input
+              name="userBirthDate"
+              onChange={formik.handleChange}
+              value={formik.values.userBirthDate}
               type="date"
-              name="birthDate"
-              onChange={handleOrderUser}
               className="rounded-xl   border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[250px]"
             />
           </div>
@@ -37,8 +41,9 @@ const UserCard = ({ userOrderValidation }: any) => {
         <p className="text-black">Phone</p>
         <div className="flex justify-between ">
           <input
-            name="phone"
-            onChange={handleOrderUser}
+            name="userPhone"
+            onChange={formik.handleChange}
+            value={formik.values.userPhone}
             className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
           />
         </div>
@@ -46,16 +51,18 @@ const UserCard = ({ userOrderValidation }: any) => {
           <div className="">
             <p className="text-black">Citizen</p>
             <input
-              name="citizen"
-              onChange={handleOrderUser}
+              name="userCitizen"
+              onChange={formik.handleChange}
+              value={formik.values.userCitizen}
               className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
             />
           </div>
           <div>
             <p className="text-black">Email</p>
             <input
-              name="email"
-              onChange={handleOrderUser}
+              name="userEmail"
+              onChange={formik.handleChange}
+              value={formik.values.userEmail}
               className="rounded-xl  border-[1px] p-2  bg-white w-full lg:h-10 lg:w-[400px]"
             />
           </div>

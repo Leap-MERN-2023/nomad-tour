@@ -68,7 +68,11 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     password: "",
   });
 
+  console.log("this is the user ", user);
+
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+  console.log("this is the user logged in ", isUserLoggedIn);
 
   const handleChangeUser = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -81,6 +85,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const user = localStorage.getItem("user");
+    console.log(user);
     if (storedToken) {
       setToken(storedToken);
     }

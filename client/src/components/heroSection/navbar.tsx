@@ -6,10 +6,12 @@ import { LoginForm } from "../LoginForm";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
 import { UserContext } from "@/context/UserProvider";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 const Navbar = (props: Props) => {
+  const router = useRouter();
   const { user, isUserLoggedIn, logOut } = useContext(UserContext);
 
   const [open, setOpen] = useState(false);
@@ -73,9 +75,11 @@ const Navbar = (props: Props) => {
           <ul className="list-none hidden sm:flex items-center flex-row gap-10 font-extralight">
             {navItems.map((item) => {
               return (
-                <li key={item.name}>
-                  <a href={item.url}>{item.name}</a>
-                </li>
+                <>
+                  <li key={item.name}>
+                    <a href={item.url}>{item.name}</a>
+                  </li>
+                </>
               );
             })}
             {!isUserLoggedIn ? (
@@ -87,8 +91,20 @@ const Navbar = (props: Props) => {
               </button>
             ) : (
               <>
-                <p className="text-black">{user?.name}</p>
-                <button onClick={logOut}>logOut</button>
+                <p
+                  className="text-black"
+                  onClick={() => {
+                    router.push("/profile");
+                  }}
+                >
+                  {user?.name}
+                </p>
+                <button
+                  onClick={logOut}
+                  className="bg-[#0281B0] hover:bg-blue-500 btn border-0"
+                >
+                  logOut
+                </button>
               </>
             )}
           </ul>
