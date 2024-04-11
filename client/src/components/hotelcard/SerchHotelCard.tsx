@@ -72,7 +72,6 @@ export const SearchHotelCard = ({ hotels }: any) => {
               {countryName}, {hotels.name}
             </p>
           </div>
-          <BsHeart style={{ height: 30, width: 30 }} />
         </div>
       </div>
 

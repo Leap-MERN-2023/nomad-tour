@@ -9,7 +9,6 @@ import { FaCar } from "react-icons/fa";
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { GiKnifeFork } from "react-icons/gi";
 import { FaLocationDot } from "react-icons/fa6";
-import { BsHeart } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
 import { Autoplay, FreeMode, Navigation, Thumbs } from "swiper/modules";
@@ -34,7 +33,7 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
 
   return (
     <dialog id="my_modal_3" className="modal">
-      <div className="modal-box ">
+      <div className="modal-box bg-slate-50">
         <h3 className="font-extrabold text-2xl mb-3">Nomad Tour</h3>
         <form method="dialog">
           <button className="btn btn-sm btn-circle btn-ghost absolute right-5 top-6">
@@ -130,7 +129,6 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
           >
             See availability
           </button>
-          <BsHeart style={{ height: 40, width: 40 }} />
         </div>
       </div>
     </dialog>
