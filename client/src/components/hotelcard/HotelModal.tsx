@@ -29,8 +29,6 @@ const HotelModal = ({ hotel, hotels, countryName }: any) => {
     router.push("/hotels/rooms");
   };
 
-  console.log("LAT,", hotel?.location?.latitude, hotel?.location?.longitude);
-
   return (
     <dialog id="my_modal_3" className="modal">
       <div className="modal-box bg-white">

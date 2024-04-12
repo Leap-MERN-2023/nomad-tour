@@ -10,7 +10,6 @@ import {
 } from "@vis.gl/react-google-maps";
 
 export const GoogleMaps = ({ lat, lng }: { lat: number; lng: number }) => {
-  console.log("Lat,lng", lat, lng);
   const [infowindowOpen, setInfowindowOpen] = useState(true);
   const [markerRef, marker] = useAdvancedMarkerRef();
 

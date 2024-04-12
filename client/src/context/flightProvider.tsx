@@ -55,7 +55,6 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
         setFoundTickets([]);
         setTicketLoading(false);
       } else {
-        console.log("FOUND FLIGHTS", data.foundFlights);
         setFoundFlights(data.foundFlights);
         data.foundFlights.map((flight: IFlight) => {
           getSearchedTickets(flight._id);
@@ -72,7 +71,6 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
       const { data } = await axios.get(
         `https://nomad-tour-backend.vercel.app/ticket/${flightId}`
       );
-      console.log("FOUND TICKET!", data.searchedTickets);
       data.searchedTickets.map((ticket: ITicket) => {
         setFoundTickets((foundTickets) => [...foundTickets, ticket]);
       });

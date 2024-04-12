@@ -75,11 +75,9 @@ const Navbar = (props: Props) => {
           <ul className="list-none hidden sm:flex items-center flex-row gap-10 font-extralight">
             {navItems.map((item) => {
               return (
-                <>
-                  <li key={item.name}>
-                    <a href={item.url}>{item.name}</a>
-                  </li>
-                </>
+                <li key={item.name}>
+                  <a href={item.url}>{item.name}</a>
+                </li>
               );
             })}
             {!isUserLoggedIn ? (

@@ -14,6 +14,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { CgLayoutGrid } from "react-icons/cg";
 import swal from "sweetalert";
+import { myAlertFire } from "@/utils/myAlert";
 export interface IUser {
   name: string;
   email: string;
@@ -103,7 +104,6 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   }, []);
 
   const login = async (email: string, password: string) => {
-    console.log("object", email, password);
     try {
       const { data } = await axios.post(
         "https://nomad-tour-backend.vercel.app/auth/login",
@@ -118,7 +118,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setIsUserLoggedIn(true);
       // setUser(data.token);
       router.push("/");
-      swal("Good job", "Login successfully", "success");
+      myAlertFire("Login success", "success");
       setUser(data.user._doc);
     } catch (error) {
       swal("failed", " Password is wrong ", "error");
@@ -155,7 +155,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       setUser(data.user);
       setUser(data.token);
       router.push("/");
-      swal("Successfully", "Signup successfully", "success");
+      myAlertFire("Signup success, now login", "success");
     } catch (error: any) {
       swal("Failed", "Signup failed", "error");
     }

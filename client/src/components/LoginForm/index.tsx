@@ -64,7 +64,7 @@ export const LoginForm = ({ open, closeForm }: any) => {
               name="signup"
               onClick={handleForm}
             >
-              / Signup{" "}
+              / Signup
             </button>
           </div>
           <button
@@ -121,7 +121,7 @@ const Login = ({ closeForm }: any) => {
         {formik.errors["email"] && (
           <p className="text-red-400 text-xs">{formik.errors["email"]}</p>
         )}
-        <div className="flex items-center bg-slate-300 relative text-black">
+        <div className="flex items-center  relative text-black">
           <input
             type={isShowPassword ? "password" : "text"}
             placeholder="password"
@@ -150,17 +150,16 @@ const Login = ({ closeForm }: any) => {
         {formik.errors["password"] && (
           <p className="text-red-400 text-xs">{formik.errors["password"]}</p>
         )}
-        <div className="flex justify-between">
-          <button className="btn btn-outline btn-success flex items-center justify-center w-[47%]"><a href="https://nomad-tour-admin.vercel.app/">login admin</a></button>
+        <div className="w-full text-right -mt-5">
           <button
-            className="btn btn-outline btn-success w-[47%] hover:text-sky-400"
+            className="text-sm hover:text-blue-400"
             onClick={clickHandler}
           >
             Forget password
           </button>
         </div>
         <button
-          className="btn btn-neutral w-[320px]"
+          className="btn bg-blue-400 hover:bg-blue-500 border-0 text-white w-[320px]"
           //  onClick={login}
           type="button"
           onClick={() => {
@@ -169,6 +168,9 @@ const Login = ({ closeForm }: any) => {
           }}
         >
           Continue
+        </button>
+        <button className="btn btn-outline flex items-center justify-center">
+          <a href="https://nomad-tour-admin.vercel.app/">Go to Admin</a>
         </button>
       </div>
     </div>
@@ -257,7 +259,7 @@ const Signup = ({ closeForm }: any) => {
           <p className="text-red-400 text-xs">{formik.errors["phoneNumber"]}</p>
         )}
         <button
-          className="btn btn-neutral w-[320px]"
+          className="btn bg-blue-400 hover:bg-blue-500 text-white border-0 w-[320px]"
           //  onClick={login}
           type="button"
           onClick={() => {

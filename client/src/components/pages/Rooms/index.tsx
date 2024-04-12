@@ -28,7 +28,7 @@ const Room = () => {
       {rooms?.map((room, i) => {
         console.log("Room_id", room);
         return (
-          <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl 2xl:flex-row border border-black rounded-xl bg-zinc-100 2xl:w-9/12 mb-10">
+          <div className="w-11/12  flex flex-col gap-5 mt-10 justify-between mx-auto max-w-7xl lg:flex-row border border-black rounded-xl bg-zinc-100 2xl:w-9/12 mb-10">
             <div className="flex flex-col justify-between w-1/2 items-center h-60 2xl:h-72  p-2">
               <Swiper
                 onSwiper={setThumbsSwiper}

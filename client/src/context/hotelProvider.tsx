@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react";
 import axios from "axios";
+import { myAlertFire } from "@/utils/myAlert";
 interface IHotel {
   name: string;
   desc: string;
@@ -42,7 +43,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
       } = await axios.get("https://nomad-tour-backend.vercel.app/hotels");
       setAllHotel(allHotel.slice(0, 6));
     } catch (error: any) {
-      console.log("ERR", error);
+      myAlertFire("Failet to load hotel data", "error");
     }
   };
 

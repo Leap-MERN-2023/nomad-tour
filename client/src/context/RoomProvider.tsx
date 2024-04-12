@@ -25,6 +25,8 @@ interface IRoomContext {
   getRoomByHotelId: (hotelId: string) => void;
   getRoomById: (roomId: string) => void;
   selectedRoom: IRoom[];
+  roomOrder: any;
+  setRoomOrder: any;
 }
 
 export const RoomContext = createContext<IRoomContext>({} as IRoomContext);
@@ -32,6 +34,7 @@ export const RoomContext = createContext<IRoomContext>({} as IRoomContext);
 const RoomProvider = ({ children }: PropsWithChildren) => {
   const [rooms, setRooms] = useState<IRoom[]>([]);
   const [selectedRoom, setSelectedRoom] = useState<IRoom[]>([]);
+  const [roomOrder, setRoomOrder] = useState();
 
   const getRoomByHotelId = async (hotelId: string) => {
     try {
@@ -67,7 +70,14 @@ const RoomProvider = ({ children }: PropsWithChildren) => {
 
   return (
     <RoomContext.Provider
-      value={{ rooms, getRoomByHotelId, selectedRoom, getRoomById }}
+      value={{
+        rooms,
+        getRoomByHotelId,
+        selectedRoom,
+        getRoomById,
+        roomOrder,
+        setRoomOrder,
+      }}
     >
       {children}
     </RoomContext.Provider>

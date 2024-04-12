@@ -9,6 +9,7 @@ import { Formik, Field, Form, FormikHelpers } from "formik";
 import { toast } from "react-toastify";
 import { CgLayoutGrid } from "react-icons/cg";
 import { useRouter } from "next/navigation";
+import { myAlertFire } from "@/utils/myAlert";
 
 interface Values {
   name: string;
@@ -18,17 +19,16 @@ interface Values {
 }
 
 const HotelOrderPage = () => {
-  const router =useRouter();
+  const router = useRouter();
   const { user } = useContext(UserContext);
-  const { selectedRoom } = useContext(RoomContext);
+  const { selectedRoom, setRoomOrder } = useContext(RoomContext);
   const [hotelPrice, setHotelPrice] = useState(0);
 
   useEffect(() => {
-    if(selectedRoom) {
-      setHotelPrice(selectedRoom[0]?.price.USD)
+    if (selectedRoom) {
+      setHotelPrice(selectedRoom[0]?.price.USD);
     }
-  }, [selectedRoom])
- 
+  }, [selectedRoom]);
 
   const validationSchema = yup.object({
     name: yup.string().required("You must enter your name."),
@@ -54,14 +54,11 @@ const HotelOrderPage = () => {
   };
 
   const createOrder = async (values: Values) => {
-    console.log("VVVV", values)
-    console.log("RoomId", selectedRoom[0]?._id)
     try {
       const totalPrice = calculateTotalPrice(
         values.checkInDate,
         values.checkOutDate
       );
-      console.log("TotalPrice", totalPrice);
       const {
         data: { orderedRoom },
       } = await axios.post(
@@ -72,12 +69,13 @@ const HotelOrderPage = () => {
           room: selectedRoom[0]?._id,
         }
       );
-      toast("Succesful created your order")
+      setRoomOrder(orderedRoom);
+      myAlertFire("Successfully ordered hotel", "success");
       setTimeout(() => {
-        router.push("/hotels/rooms/order/pay")
-      }, 5000);
+        router.push("/hotels/rooms/order/pay");
+      }, 3000);
     } catch (error) {
-      console.log("Err", error);
+      myAlertFire("Failed to order hotel", "error");
     }
   };
 
