@@ -58,6 +58,11 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
         newHotel
       );
       setrefresh(!refresh);
+      setNewHotel({name: "",
+      description: "",
+      price: "",
+      rating: "",
+      images: [],})
       toast.success("Complete new hotel")
       // console.log("newHotel", newHotel);
     } catch (error: any) {

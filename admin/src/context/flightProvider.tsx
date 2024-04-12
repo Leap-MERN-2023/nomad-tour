@@ -48,6 +48,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
         newFlight
       );
       setrefresh(!refresh);
+      setNewFlight({})
       toast.success("create complete flight")
       console.log("newflight", data);
     } catch (error: any) {

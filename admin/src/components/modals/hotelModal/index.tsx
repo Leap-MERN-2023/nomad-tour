@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, { useState } from 'react';
 import { useDisclosure, Button, Modal, ModalOverlay, ModalContent, ModalHeader, FormControl, FormLabel, Input, ModalBody, ModalCloseButton, ModalFooter, Select, Textarea,Box } from '@chakra-ui/react'
 import { CountryContext } from '@/context/countryProvider';
 import { HotelContext } from '@/context/hotelProvider';
@@ -11,8 +11,11 @@ function Index() {
   const {createHotel,handleHotelForm,addImage} = React.useContext(HotelContext);
   const initialRef = React.useRef(null)
   const finalRef = React.useRef(null)
+  const [photo,setPhoto] = useState(false);
 
-
+  const handleShow = () => {
+    setPhoto(false)
+  }
 
   const handleSave = () => {
     createHotel(),onClose()
@@ -77,14 +80,14 @@ function Index() {
               onChange={handleHotelForm}
               placeholder='description' />
             </FormControl>
-            <FormControl mt={4}>               
+            <FormControl mt={4} sx={{display: "flex"}}>               
               <CldUploadWidget
                     uploadPreset='cloud9'
                     onSuccess={handleSuccess}
                     >
                      {({ open }) => {
                       function handleOnClick() {
-                      open();
+                      open(); setPhoto(true)
                    }
                    return (
                    <button 
@@ -95,6 +98,9 @@ function Index() {
                       );
                     }}
               </CldUploadWidget>
+              <div className='w-12 h-12 rounded-full hidden'>
+                <img className='w-full h-full' src="/assets/correct.jpg" alt="cor " />
+              </div>
             </FormControl>
           </ModalBody>
           <ModalFooter>

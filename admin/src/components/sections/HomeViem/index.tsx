@@ -14,13 +14,13 @@ import {
 const validationSchema = yup.object({
   email: yup
     .string()
-    .max(100, "Имэйл хаяг 100 тэмдэгтээc хэтрэхгүй байна.")
-    .required("Имэйл хаягыг заавал бөглөнө үү.")
-    .email("Хүчинтэй имэйл хаяг байх ёстой"),
+    .max(100, "enter email")
+    .required("enter email")
+    .email("email is not required"),
   password: yup
     .string()
-    .required("Нууц үгээ заавал бөглөнө үү.")
-    .min(6, "Нууц үг хамгийн багадаа 6 тэмдэгт байх ёстой.")
+    .required("enter password")
+    .min(6, "min 6 lenght")
 });
  const Home = () => {
 	const Router = useRouter();
@@ -50,7 +50,8 @@ const validationSchema = yup.object({
       <div className="flex flex-col gap-4 w-1/4 justify-center items-center relative">
         <img className="w-42 h-42 rounded-full mt-12" src="/assets/nomad.png"/>
         <h1 className="text-3xl mt-4"></h1>
-        <div className="bg-black opacity-60 rounded-xl">
+        <div>
+          <div className="bg-black opacity-60 rounded-xl">
         <Input
         textColor={"white"}
         pr='4.5rem'
@@ -60,8 +61,10 @@ const validationSchema = yup.object({
         onChange={handleChange}
         className={errors.email ? "input-error" : ""}
         />
-         {errors["email"] && <p className="text-red-400">{errors["email"]}</p>}
+          </div>
+         {errors["email"] && <p className="text-red-500">{errors["email"]}</p>}
          </div>
+         <div>
          <div className="bg-black opacity-60 rounded-xl">
         <InputGroup size='md'>
          <Input
@@ -81,14 +84,14 @@ const validationSchema = yup.object({
             </InputRightElement>
         </InputGroup>
         </div>
+        {errors["password"] && <p className="text-red-500">{errors["password"]}</p>}
+        </div>
         <button
           className="btn btn-success w-1/4 text-white text-xl mb-12"
           type="button"
           
           onClick={() => {
-            console.log("clicked"),
             handleSubmit()
-            Router.push("/admin")
           }}
         >
           Login

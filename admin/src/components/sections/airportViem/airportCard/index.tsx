@@ -14,7 +14,7 @@ const Index = ({airport} :any) => {
                         </div>
                         <div className='flex gap-2'>
                              {/* <button className="btn btn-active btn-primary w-20 text-white">Put</button> */}
-                             <button className="btn btn-error w-20 text-white" onClick={onOpen}>Del</button>
+                             <button className="btn btn-error w-20 text-white" onClick={onOpen}>Delete</button>
                              <Modal 
                              isOpen={isOpen} onClose={onClose}>
                                <ModalContent>

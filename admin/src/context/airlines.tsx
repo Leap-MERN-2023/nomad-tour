@@ -57,6 +57,8 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
       );
       console.log("delete airline", data);
       setRefresh(!refresh);
+      setNewAirline({ logo: "",
+      name: "",})
       toast.success("complete delete airline")
     } catch (error) {
       toast.error("delete denied")

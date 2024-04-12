@@ -1,35 +1,28 @@
-import { FiSearch } from "react-icons/fi";
-import { IoIosArrowDown } from "react-icons/io";
-import Image from "next/image";
+import React, {useContext} from "react";
+import { useRouter } from "next/navigation";
+import { AuthContext } from '@/context/authProvider';
 
 function HeaderAccount() {
+	const Router = useRouter();
+	const {user,logout} =useContext(AuthContext)
+	const handlelogout = () => {
+	   logout(),Router.push("/")
+	} 
 	return (
 		<div className="flex justify-between">
 			<div className="flex gap-8 items-center">
-				{/* <Image
-					priority
-					src={"/assets/flag-uk.svg"}
-					height={28}
-					width={28}
-					alt=""
-				/>
-				<Image
-					priority
-					src={"/assets/notification-icon.svg"}
-					height={32}
-					width={32}
-					alt=""
-				/> */}
 			</div>
 			<div className="flex items-center gap-5">
-				<div className="text-base text-[#27292C]">Nick McMilan</div>
-				<Image
+				<div className="text-base text-[#27292C]">{user.name}</div>
+				<img
 					priority
-					src={"/assets/avatar-nick.svg"}
+					src={"/assets/nomad.png"}
 					height={48}
 					width={48}
+					className="rounded-full"
 					alt=""
 				/>
+				<button className="btn hover:btn-info hover:text-white" onClick={handlelogout}>logout</button>
 			</div>
 		</div>
 	);

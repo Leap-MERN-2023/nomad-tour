@@ -25,7 +25,7 @@ const Index = ({airline}:any) => {
                 className="btn btn-error w-20 text-white"
                 onClick={onOpen}
               >
-                del
+                delete
               </button>
               <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />

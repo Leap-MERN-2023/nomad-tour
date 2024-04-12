@@ -65,6 +65,8 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
       );
       setrefresh(!refresh);
       toast.success("airport add complete")
+      setNewAirport({country: "",
+      name: "",})
     } catch (error: any) {
       toast.error("airport denied")
       console.log("create airport error", error);

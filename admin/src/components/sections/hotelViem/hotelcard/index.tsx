@@ -48,7 +48,7 @@ const HotelCard = ({hotel}: any) => {
         </div>
       </div>
       <div className="flex justify-center mb-6">
-      <button className="btn btn-error w-1/3 text-white" onClick={onOpen}>Del</button>
+      <button className="btn btn-error w-1/3 text-white" onClick={onOpen}>Delete</button>
       <Modal isOpen={isOpen} onClose={onClose}>
          <ModalContent>
           <ModalHeader>Delete</ModalHeader>
