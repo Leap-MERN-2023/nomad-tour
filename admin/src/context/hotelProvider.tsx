@@ -42,7 +42,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
   const getHotels = async () => {
     try {
       const { data } = await axios.get(
-        "https://nomad-tour-backend.vercel.app/hotels"
+        "http://localhost:8008/hotels"
       );
       setHotels(data.allHotel);
       // console.log("Hotel 1",data.allHotel);
@@ -54,10 +54,15 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.post(
-        "https://nomad-tour-backend.vercel.app/hotels",
+        "http://localhost:8008/hotels",
         newHotel
       );
       setrefresh(!refresh);
+      setNewHotel({name: "",
+      description: "",
+      price: "",
+      rating: "",
+      images: [],})
       toast.success("Complete new hotel")
       // console.log("newHotel", newHotel);
     } catch (error: any) {
@@ -75,7 +80,7 @@ const HotelProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.delete(
-        `https://nomad-tour-backend.vercel.app/hotels/${hotelId}`,
+        `http://localhost:8008/hotels/${hotelId}`,
         {}
       );
       console.log("delete hotel", data);

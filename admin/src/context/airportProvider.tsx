@@ -36,7 +36,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
   const getAllairPort = async () => {
     try {
       const { airport } = await axios
-        .get("https://nomad-tour-backend.vercel.app/airport")
+        .get("http://localhost:8008/airport")
         .then((res) => res.data);
       // console.log("airport", airport);
       setAirPorts(airport);
@@ -60,11 +60,13 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
       const formData = new FormData();
       formData.set("name", newAirport.name);
       const data = await axios.post(
-        "https://nomad-tour-backend.vercel.app/airport",
+        "http://localhost:8008/airport",
         newAirport
       );
       setrefresh(!refresh);
       toast.success("airport add complete")
+      setNewAirport({country: "",
+      name: "",})
     } catch (error: any) {
       toast.error("airport denied")
       console.log("create airport error", error);
@@ -77,7 +79,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.delete(
-        `https://nomad-tour-backend.vercel.app/airport/${airportId}`,
+        `http://localhost:8008/airport/${airportId}`,
         {}
       );
       console.log("delete", data);
@@ -94,7 +96,7 @@ const AirPortProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.put(
-        `https://nomad-tour-backend.vercel.app/airport/${airportId}`,
+        `http://localhost:8008/airport/${airportId}`,
         {}
       );
       console.log("put", data);

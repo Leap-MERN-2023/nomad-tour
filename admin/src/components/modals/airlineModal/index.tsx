@@ -74,7 +74,7 @@ function Index() {
                 onChange={handleAirlineForm}
               />
             </FormControl>
-            <FormControl mt={4}>
+            <FormControl mt={4} sx={{display: "flex"}}>
               <CldUploadWidget
                 uploadPreset="cloud9"
                 onSuccess={handleSuccess}
@@ -93,6 +93,9 @@ function Index() {
                   );
                 }}
               </CldUploadWidget>
+              <div className='w-12 h-12 rounded-full hidden'>
+                <img className='w-full h-full' src="/assets/correct.jpg" alt="cor " />
+              </div>
             </FormControl>
           </ModalBody>
 

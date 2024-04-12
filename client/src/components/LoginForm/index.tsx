@@ -150,9 +150,10 @@ const Login = ({ closeForm }: any) => {
         {formik.errors["password"] && (
           <p className="text-red-400 text-xs">{formik.errors["password"]}</p>
         )}
-        <div className="flex justify-end">
+        <div className="flex justify-between">
+          <button className="btn btn-outline btn-success flex items-center justify-center w-[47%]"><a href="https://nomad-tour-admin.vercel.app/">login admin</a></button>
           <button
-            className="btn btn-outline btn-success "
+            className="btn btn-outline btn-success w-[47%] hover:text-sky-400"
             onClick={clickHandler}
           >
             Forget password
