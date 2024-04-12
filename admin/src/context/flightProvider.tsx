@@ -28,7 +28,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
   const getFlights = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8008/flight"
+        "https://nomad-tour-backend.vercel.app/flight"
       );
       // console.log("FLIGHT DATA", data);
       setFlights(data.allFlights);
@@ -44,7 +44,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.post(
-        "http://localhost:8008/flight",
+        "https://nomad-tour-backend.vercel.app/flight",
         newFlight
       );
       setrefresh(!refresh);
@@ -62,7 +62,7 @@ const FlightProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.delete(
-        `http://localhost:8008/flight/${flightId}`,
+        `https://nomad-tour-backend.vercel.app/flight/${flightId}`,
         {}
       );
       setrefresh(!refresh);

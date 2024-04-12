@@ -38,7 +38,7 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
     // console.log("Working airlines");
     try {
       const { data } = await axios.get(
-        "http://localhost:8008/airlines"
+        "https://nomad-tour-backend.vercel.app/airlines"
       );
       // console.log("airlines",data.airline);
       setAirlines(data.airline);
@@ -52,7 +52,7 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
     setLoading(true);
     try {
       const data = await axios.delete(
-        `http://localhost:8008/airlines/${airlineId}`,
+        `https://nomad-tour-backend.vercel.app/airlines/${airlineId}`,
         {}
       );
       console.log("delete airline", data);
@@ -72,7 +72,7 @@ const AirlinesProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.post(
-        "http://localhost:8008/airlines",
+        "https://nomad-tour-backend.vercel.app/airlines",
         newAirline
       );
       console.log("newAirline", data);

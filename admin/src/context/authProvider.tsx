@@ -39,7 +39,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   const getUsers = async () => {
     try {
       const { data } = await axios.get(
-        "http://localhost:8008/auth"
+        "https://nomad-tour-backend.vercel.app/auth"
       );
       setUsers(data.getUsers);
       console.log("users",data.getUsers)
@@ -52,7 +52,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     try {
       setLoading(true);
       const data = await axios.delete(
-        `http://localhost:8008/auth/${userId}`,
+        `https://nomad-tour-backend.vercel.app/auth/${userId}`,
         {}
       );
       console.log("delete", data);
@@ -89,7 +89,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
   }, []);
   const login = async (email: string, password: string) => {
     try {
-      const { data }  = await axios.post("http://localhost:8008/auth/login", {
+      const { data }  = await axios.post("https://nomad-tour-backend.vercel.app/auth/login", {
         email: email,
         password: password,
       });
